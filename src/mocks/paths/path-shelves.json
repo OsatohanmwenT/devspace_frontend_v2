@@ -1,0 +1,1201 @@
+[
+ {
+  "id": "machine-learning",
+  "family": "ml",
+  "level": "Career path",
+  "title": "Machine Learning Engineer",
+  "description": "Build the skills to prepare data, train models and deploy reliable ML systems.",
+  "progressValue": 23,
+  "emblem": "art/scientific-thinking.png",
+  "cards": [
+   {
+    "id": "orientation",
+    "level": "Region 1",
+    "title": "Orientation",
+    "summary": "See how the career path is structured and how each unit builds toward real machine learning work.",
+    "reason": "A clear map makes it easier to understand what you are building toward and how each part of the path supports real machine learning work.",
+    "goals": [
+     "Understand how the path is organised",
+     "Recognise the stages of a machine learning workflow",
+     "Set a realistic learning goal"
+    ],
+    "state": "completed",
+    "progress": "100%",
+    "progressValue": 100,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "ml-welcome",
+      "title": "Welcome to machine learning",
+      "state": "completed"
+     },
+     {
+      "id": "ml-map",
+      "title": "How this path works",
+      "state": "completed"
+     },
+     {
+      "id": "ml-goals",
+      "title": "Set your learning goals",
+      "state": "completed"
+     },
+     {
+      "id": "ml-workflow",
+      "title": "The machine learning workflow",
+      "state": "completed",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "python-foundations",
+    "level": "Region 2",
+    "title": "Python Foundations",
+    "summary": "Learn to write clear Python programs, use variables, and turn simple ideas into working code.",
+    "reason": "Python is the working language used throughout the Machine Learning path. These foundations let you express instructions, store information and control what a program does.",
+    "goals": [
+     "Explain how Python executes instructions",
+     "Create, name and update variables",
+     "Use expressions to calculate new values",
+     "Display output and receive input",
+     "Compare values using booleans",
+     "Control program behaviour with conditions",
+     "Read a short program and predict its result"
+    ],
+    "state": "current",
+    "progress": "35%",
+    "progressValue": 35,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "writing-programs",
+      "title": "Writing Programs",
+      "state": "current",
+      "description": "Turn ideas into simple programs a computer can run."
+     },
+     {
+      "id": "using-variables",
+      "title": "Using Variables",
+      "state": "available",
+      "description": "Store information your programs can use."
+     },
+     {
+      "id": "input-output",
+      "title": "Input and Output",
+      "state": "available",
+      "checkpoint": true,
+      "description": "Make a program respond and show its result."
+     },
+     {
+      "id": "program-flow",
+      "title": "Program Flow",
+      "state": "available",
+      "description": "Guide a program through steps and decisions."
+     }
+    ]
+   },
+   {
+    "id": "data-math-foundations",
+    "level": "Region 3",
+    "title": "Data & Math Foundations",
+    "summary": "Build the data and math intuition you need to understand how machine learning models work.",
+    "reason": "Models learn from numbers and relationships. This region gives you the vocabulary to inspect data and understand what a model is measuring.",
+    "goals": [
+     "Recognise common Python data types",
+     "Use the core maths behind simple models",
+     "Reason about probability and relationships in data"
+    ],
+    "state": "available",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "data-types",
+      "title": "Working with data types",
+      "state": "locked"
+     },
+     {
+      "id": "math-for-ml",
+      "title": "Math for machine learning",
+      "state": "locked"
+     },
+     {
+      "id": "probability-basics",
+      "title": "Probability basics",
+      "state": "locked",
+      "checkpoint": true
+     },
+     {
+      "id": "data-relationships",
+      "title": "Understanding data relationships",
+      "state": "locked"
+     }
+    ]
+   },
+   {
+    "id": "eda-features",
+    "level": "Region 4",
+    "title": "EDA & Features",
+    "summary": "Explore datasets and shape raw information into useful features for a model.",
+    "reason": "A model can only learn from the information it receives. Exploring and preparing data helps you find useful signals before training begins.",
+    "goals": [
+     "Explore a dataset systematically",
+     "Clean common data quality problems",
+     "Create features that represent useful signals"
+    ],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "explore-data",
+      "title": "Explore a dataset",
+      "state": "locked"
+     },
+     {
+      "id": "feature-basics",
+      "title": "Create useful features",
+      "state": "locked"
+     },
+     {
+      "id": "clean-data",
+      "title": "Clean and prepare data",
+      "state": "locked"
+     },
+     {
+      "id": "feature-checkpoint",
+      "title": "Feature engineering checkpoint",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "core-ml",
+    "level": "Region 5",
+    "title": "Core ML",
+    "summary": "Train your first models, evaluate their results, and learn how to improve them.",
+    "reason": "Training a model is only the beginning. This region teaches you how to judge whether its predictions are useful and improve them responsibly.",
+    "goals": [
+     "Train a baseline machine learning model",
+     "Evaluate model performance with suitable metrics",
+     "Compare and improve candidate models"
+    ],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "train-model",
+      "title": "Train your first model",
+      "state": "locked"
+     },
+     {
+      "id": "evaluate-model",
+      "title": "Evaluate model results",
+      "state": "locked",
+      "checkpoint": true
+     },
+     {
+      "id": "model-selection",
+      "title": "Choose the right model",
+      "state": "locked"
+     },
+     {
+      "id": "improve-model",
+      "title": "Improve model performance",
+      "state": "locked"
+     }
+    ]
+   },
+   {
+    "id": "ml-career-capstone",
+    "level": "Region 6",
+    "title": "ML Career Capstone",
+    "summary": "Bring your new skills together by shipping a practical machine learning project.",
+    "reason": "A finished project proves that you can connect data, modelling and communication into one practical piece of work.",
+    "goals": [
+     "Plan a focused machine learning project",
+     "Build and evaluate an end-to-end solution",
+     "Present your decisions and results clearly"
+    ],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "capstone": true,
+    "lessons": [
+     {
+      "id": "capstone-plan",
+      "title": "Plan your capstone",
+      "state": "locked"
+     },
+     {
+      "id": "capstone-build",
+      "title": "Build your solution",
+      "state": "locked"
+     },
+     {
+      "id": "capstone-present",
+      "title": "Present your project",
+      "state": "locked"
+     },
+     {
+      "id": "ml-capstone",
+      "title": "Ship an ML project",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "technical-project-coordinator",
+  "family": "data",
+  "level": "Career path",
+  "title": "Technical Project Coordinator",
+  "description": "Keep technical work organised, visible, and moving through the right people and milestones.",
+  "progressValue": 0,
+  "emblem": "art/programming-with-variables.png",
+  "cards": [
+   {
+    "id": "working-in-a-technical-team",
+    "level": "Region 1",
+    "title": "Working in a Technical Team",
+    "summary": "Learn how technical teams organise work, handle dependencies, and communicate progress.",
+    "reason": "Understanding the coordinator’s role gives you a foundation for planning and delivery work.",
+    "goals": [
+     "Understand team roles",
+     "Spot dependencies",
+     "Share clear updates"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "technical-teams-basics",
+      "title": "How technical teams work",
+      "state": "current",
+      "description": "Learn how coordinators create clarity and help teams move forward."
+     }
+    ]
+   },
+   {
+    "id": "coordinator-scope-planning",
+    "level": "Region 2",
+    "title": "Scope & Planning",
+    "summary": "Turn goals into milestones, deliverables, and realistic timelines.",
+    "reason": "Turn goals into milestones, deliverables, and realistic timelines.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "coordinator-scope-planning-preview",
+      "title": "Plan a delivery",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "coordinator-agile-delivery",
+    "level": "Region 3",
+    "title": "Agile Delivery",
+    "summary": "Support sprints, ceremonies, backlogs, and changing priorities.",
+    "reason": "Support sprints, ceremonies, backlogs, and changing priorities.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "coordinator-agile-delivery-preview",
+      "title": "Run a sprint",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "coordinator-stakeholders",
+    "level": "Region 4",
+    "title": "Stakeholders & Communication",
+    "summary": "Keep technical and non-technical partners aligned.",
+    "reason": "Keep technical and non-technical partners aligned.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "coordinator-stakeholders-preview",
+      "title": "Lead a stakeholder update",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "coordinator-risk-reporting",
+    "level": "Region 5",
+    "title": "Risk & Reporting",
+    "summary": "Track dependencies, surface risks, and report progress clearly.",
+    "reason": "Track dependencies, surface risks, and report progress clearly.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "coordinator-risk-reporting-preview",
+      "title": "Build a delivery report",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "coordinator-capstone",
+    "level": "Region 6",
+    "title": "Launch Coordination Capstone",
+    "summary": "Coordinate a complete digital product launch from kickoff to release.",
+    "reason": "Coordinate a complete digital product launch from kickoff to release.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "coordinator-capstone-preview",
+      "title": "Coordinate a launch",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "digital-marketing",
+  "family": "ml",
+  "level": "Career path",
+  "title": "Digital Marketing",
+  "description": "Understand customers, shape clear messages, and grow digital products through measurable campaigns.",
+  "progressValue": 0,
+  "emblem": "art/exploring-data-visually.png",
+  "cards": [
+   {
+    "id": "customer-campaign-foundations",
+    "level": "Region 1",
+    "title": "Customer & Campaign Foundations",
+    "summary": "Learn how audience, goals, messages, channels, and evidence connect.",
+    "reason": "These foundations make later campaign decisions easier to understand and improve.",
+    "goals": [
+     "Know the audience",
+     "Choose a clear goal",
+     "Use results to improve"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "digital-marketing-basics",
+      "title": "How digital marketing works",
+      "state": "current",
+      "description": "Learn how marketers connect an audience, a goal, and measurable results."
+     }
+    ]
+   },
+   {
+    "id": "marketing-messaging-content",
+    "level": "Region 2",
+    "title": "Messaging & Content",
+    "summary": "Develop useful messages and content around real customer needs.",
+    "reason": "Develop useful messages and content around real customer needs.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "marketing-messaging-content-preview",
+      "title": "Shape a content message",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "marketing-channels",
+    "level": "Region 3",
+    "title": "Channels & Content Planning",
+    "summary": "Choose suitable channels and plan consistent campaign content.",
+    "reason": "Choose suitable channels and plan consistent campaign content.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "marketing-channels-preview",
+      "title": "Build a content calendar",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "marketing-lifecycle",
+    "level": "Region 4",
+    "title": "Email & Lifecycle",
+    "summary": "Guide customers from awareness to activation and retention.",
+    "reason": "Guide customers from awareness to activation and retention.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "marketing-lifecycle-preview",
+      "title": "Design an email journey",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "marketing-analytics",
+    "level": "Region 5",
+    "title": "Analytics & Optimisation",
+    "summary": "Read campaign results and decide what to improve next.",
+    "reason": "Read campaign results and decide what to improve next.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "marketing-analytics-preview",
+      "title": "Optimise a campaign",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "marketing-capstone",
+    "level": "Region 6",
+    "title": "Campaign Capstone",
+    "summary": "Bring strategy, content, channels, and measurement into one product launch.",
+    "reason": "Bring strategy, content, channels, and measurement into one product launch.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "marketing-capstone-preview",
+      "title": "Launch a campaign",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "data-analyst",
+  "family": "data",
+  "level": "Career path",
+  "title": "Data Analyst",
+  "description": "Use data to answer practical questions, uncover patterns, and guide better everyday decisions.",
+  "progressValue": 0,
+  "emblem": "art/exploring-data-visually.png",
+  "cards": [
+   {
+    "id": "data-analysis-foundations",
+    "level": "Region 1",
+    "title": "Data Analysis Foundations",
+    "summary": "Learn how a clear question, clean data, and honest evidence lead to a decision worth trusting.",
+    "reason": "These foundations make every later spreadsheet, query, and chart easier to trust and act on.",
+    "goals": [
+     "Ask a clear question",
+     "Clean before concluding",
+     "Turn evidence into a decision"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "data-analysis-basics",
+      "title": "How data analysis works",
+      "state": "current",
+      "description": "Learn how analysts move from raw data to a decision worth trusting."
+     }
+    ]
+   },
+   {
+    "id": "data-analyst-spreadsheets",
+    "level": "Region 2",
+    "title": "Spreadsheet Fundamentals",
+    "summary": "Organise, filter, and summarise data with confidence in a spreadsheet.",
+    "reason": "Organise, filter, and summarise data with confidence in a spreadsheet.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "data-analyst-spreadsheets-preview",
+      "title": "Build a summary table",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "data-analyst-sql",
+    "level": "Region 3",
+    "title": "SQL Fundamentals",
+    "summary": "Pull the exact rows you need straight from a database.",
+    "reason": "Pull the exact rows you need straight from a database.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "data-analyst-sql-preview",
+      "title": "Write a first query",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "data-analyst-cleaning-viz",
+    "level": "Region 4",
+    "title": "Data Cleaning & Visualization",
+    "summary": "Spot messy data and present findings so people understand them fast.",
+    "reason": "Spot messy data and present findings so people understand them fast.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "data-analyst-cleaning-viz-preview",
+      "title": "Clean a dataset",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "data-analyst-statistics",
+    "level": "Region 5",
+    "title": "Statistics Basics",
+    "summary": "Use averages, distributions, and significance to avoid fooling yourself.",
+    "reason": "Use averages, distributions, and significance to avoid fooling yourself.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "data-analyst-statistics-preview",
+      "title": "Test an assumption",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "data-analyst-capstone",
+    "level": "Region 6",
+    "title": "Insights Capstone",
+    "summary": "Take a real dataset from question to a decision-ready report.",
+    "reason": "Take a real dataset from question to a decision-ready report.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "data-analyst-capstone-preview",
+      "title": "Deliver an insight report",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "video-editor",
+  "family": "media",
+  "level": "Career path",
+  "title": "Video Editor",
+  "description": "Shape raw footage, sound, pacing, colour, and graphics into clear stories people want to watch.",
+  "progressValue": 0,
+  "emblem": "art/thinking-in-code.png",
+  "cards": [
+   {
+    "id": "video-editing-foundations",
+    "level": "Region 1",
+    "title": "Editing Foundations",
+    "summary": "Learn how purpose, selection, order, and timing turn raw footage into a coherent edit.",
+    "reason": "Strong editing starts with the story and audience before effects or software.",
+    "goals": [
+     "Define the purpose of an edit",
+     "Choose useful footage",
+     "Shape a clear sequence"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "video-editing-basics",
+      "title": "How video editing works",
+      "state": "current",
+      "description": "Learn how editors shape raw footage into a clear story."
+     }
+    ]
+   },
+   {
+    "id": "video-editor-story",
+    "level": "Region 2",
+    "title": "Story & Structure",
+    "summary": "Build sequences with a clear beginning, development, and ending.",
+    "reason": "Build sequences with a clear beginning, development, and ending.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "video-editor-story-preview",
+      "title": "Shape a story edit",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "video-editor-pacing",
+    "level": "Region 3",
+    "title": "Pacing & Continuity",
+    "summary": "Control rhythm and create smooth visual continuity between shots.",
+    "reason": "Control rhythm and create smooth visual continuity between shots.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "video-editor-pacing-preview",
+      "title": "Refine a sequence",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "video-editor-audio",
+    "level": "Region 4",
+    "title": "Audio & Sound",
+    "summary": "Balance dialogue, music, and effects so the story sounds intentional.",
+    "reason": "Balance dialogue, music, and effects so the story sounds intentional.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "video-editor-audio-preview",
+      "title": "Mix a short scene",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "video-editor-colour",
+    "level": "Region 5",
+    "title": "Colour & Motion Graphics",
+    "summary": "Use colour correction, titles, and graphics to strengthen meaning.",
+    "reason": "Use colour correction, titles, and graphics to strengthen meaning.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "video-editor-colour-preview",
+      "title": "Finish a branded edit",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "video-editor-capstone",
+    "level": "Region 6",
+    "title": "Showreel Capstone",
+    "summary": "Plan, edit, finish, and present a portfolio ready video.",
+    "reason": "Plan, edit, finish, and present a portfolio ready video.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "video-editor-capstone-preview",
+      "title": "Publish a showreel piece",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "content-creator",
+  "family": "media",
+  "level": "Career path",
+  "title": "Content Creator",
+  "description": "Develop useful ideas, produce strong content, and build a repeatable publishing practice around an audience.",
+  "progressValue": 0,
+  "emblem": "art/scientific-thinking.png",
+  "cards": [
+   {
+    "id": "content-creation-foundations",
+    "level": "Region 1",
+    "title": "Content Foundations",
+    "summary": "Learn how audience, purpose, format, and a clear promise shape useful content.",
+    "reason": "A strong idea serves a specific audience before production begins.",
+    "goals": [
+     "Know the audience",
+     "Choose a useful promise",
+     "Match the format to the idea"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "content-creation-basics",
+      "title": "How content creation works",
+      "state": "current",
+      "description": "Learn how creators turn audience needs into focused content."
+     }
+    ]
+   },
+   {
+    "id": "content-creator-ideas",
+    "level": "Region 2",
+    "title": "Ideas & Research",
+    "summary": "Build a reliable idea system from audience questions and useful research.",
+    "reason": "Build a reliable idea system from audience questions and useful research.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "content-creator-ideas-preview",
+      "title": "Develop an idea bank",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "content-creator-story",
+    "level": "Region 3",
+    "title": "Writing & Storytelling",
+    "summary": "Use hooks, structure, and clear language to hold attention.",
+    "reason": "Use hooks, structure, and clear language to hold attention.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "content-creator-story-preview",
+      "title": "Write a content script",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "content-creator-production",
+    "level": "Region 4",
+    "title": "Production Workflow",
+    "summary": "Plan and produce consistent work without making the process too heavy.",
+    "reason": "Plan and produce consistent work without making the process too heavy.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "content-creator-production-preview",
+      "title": "Build a production workflow",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "content-creator-publishing",
+    "level": "Region 5",
+    "title": "Publishing & Learning",
+    "summary": "Package, publish, measure, and improve content using real feedback.",
+    "reason": "Package, publish, measure, and improve content using real feedback.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "content-creator-publishing-preview",
+      "title": "Review content performance",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "content-creator-capstone",
+    "level": "Region 6",
+    "title": "Content Series Capstone",
+    "summary": "Create and publish a coherent multi piece content series.",
+    "reason": "Create and publish a coherent multi piece content series.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "content-creator-capstone-preview",
+      "title": "Publish a content series",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "social-media-manager",
+  "family": "marketing",
+  "level": "Career path",
+  "title": "Social Media Manager",
+  "description": "Plan useful social content, support communities, and improve channel performance with clear evidence.",
+  "progressValue": 0,
+  "emblem": "art/exploring-data-visually.png",
+  "cards": [
+   {
+    "id": "social-media-foundations",
+    "level": "Region 1",
+    "title": "Social Media Foundations",
+    "summary": "Learn how audience, brand goals, channel behaviour, and community needs guide social work.",
+    "reason": "Good social management balances what the audience values with what the organisation needs.",
+    "goals": [
+     "Define an audience and goal",
+     "Choose a suitable channel",
+     "Measure a useful outcome"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "social-media-basics",
+      "title": "How social media management works",
+      "state": "current",
+      "description": "Learn how managers connect audience value, brand goals, and measurable outcomes."
+     }
+    ]
+   },
+   {
+    "id": "social-media-strategy",
+    "level": "Region 2",
+    "title": "Channel Strategy",
+    "summary": "Choose channel roles, content pillars, and practical goals.",
+    "reason": "Choose channel roles, content pillars, and practical goals.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "social-media-strategy-preview",
+      "title": "Plan a channel strategy",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "social-media-calendar",
+    "level": "Region 3",
+    "title": "Content Planning",
+    "summary": "Build a balanced calendar and coordinate production and approvals.",
+    "reason": "Build a balanced calendar and coordinate production and approvals.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "social-media-calendar-preview",
+      "title": "Build a social calendar",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "social-media-community",
+    "level": "Region 4",
+    "title": "Community Management",
+    "summary": "Respond consistently, manage risk, and support healthy conversations.",
+    "reason": "Respond consistently, manage risk, and support healthy conversations.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "social-media-community-preview",
+      "title": "Create response guidelines",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "social-media-analytics",
+    "level": "Region 5",
+    "title": "Social Analytics",
+    "summary": "Read channel results and turn them into better content decisions.",
+    "reason": "Read channel results and turn them into better content decisions.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "social-media-analytics-preview",
+      "title": "Deliver a channel report",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "social-media-capstone",
+    "level": "Region 6",
+    "title": "Social Campaign Capstone",
+    "summary": "Plan, publish, and review a complete social campaign.",
+    "reason": "Plan, publish, and review a complete social campaign.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "social-media-capstone-preview",
+      "title": "Run a social campaign",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "graphic-designer",
+  "family": "design",
+  "level": "Career path",
+  "title": "Graphic Designer",
+  "description": "Use typography, layout, colour, imagery, and systems to communicate ideas with clarity and character.",
+  "progressValue": 0,
+  "emblem": "art/scientific-thinking.png",
+  "cards": [
+   {
+    "id": "graphic-design-foundations",
+    "level": "Region 1",
+    "title": "Graphic Design Foundations",
+    "summary": "Learn how hierarchy, composition, type, and colour guide attention and communicate meaning.",
+    "reason": "Design choices work best when they support a clear message and audience.",
+    "goals": [
+     "Create visual hierarchy",
+     "Use composition intentionally",
+     "Connect form to message"
+    ],
+    "state": "current",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "graphic-design-basics",
+      "title": "How graphic design works",
+      "state": "current",
+      "description": "Learn how designers organise visual elements to communicate clearly."
+     }
+    ]
+   },
+   {
+    "id": "graphic-designer-typography",
+    "level": "Region 2",
+    "title": "Typography",
+    "summary": "Choose, pair, and organise type for readable, expressive communication.",
+    "reason": "Choose, pair, and organise type for readable, expressive communication.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/thinking-in-code.png",
+    "lessons": [
+     {
+      "id": "graphic-designer-typography-preview",
+      "title": "Build a type system",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "graphic-designer-layout",
+    "level": "Region 3",
+    "title": "Layout & Composition",
+    "summary": "Use grids, spacing, scale, and alignment to create structure.",
+    "reason": "Use grids, spacing, scale, and alignment to create structure.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/programming-with-variables.png",
+    "lessons": [
+     {
+      "id": "graphic-designer-layout-preview",
+      "title": "Design a campaign layout",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "graphic-designer-colour",
+    "level": "Region 4",
+    "title": "Colour & Image",
+    "summary": "Combine colour and imagery to build mood, contrast, and meaning.",
+    "reason": "Combine colour and imagery to build mood, contrast, and meaning.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/exploring-data-visually.png",
+    "lessons": [
+     {
+      "id": "graphic-designer-colour-preview",
+      "title": "Create a visual direction",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "graphic-designer-brand",
+    "level": "Region 5",
+    "title": "Brand Systems",
+    "summary": "Turn a visual direction into a flexible, consistent identity system.",
+    "reason": "Turn a visual direction into a flexible, consistent identity system.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/probability-and-chance.png",
+    "lessons": [
+     {
+      "id": "graphic-designer-brand-preview",
+      "title": "Build a small brand system",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   },
+   {
+    "id": "graphic-designer-capstone",
+    "level": "Region 6",
+    "title": "Portfolio Project Capstone",
+    "summary": "Develop and present a complete design project from brief to outcome.",
+    "reason": "Develop and present a complete design project from brief to outcome.",
+    "goals": [],
+    "state": "locked",
+    "progress": "0%",
+    "progressValue": 0,
+    "image": "art/scientific-thinking.png",
+    "lessons": [
+     {
+      "id": "graphic-designer-capstone-preview",
+      "title": "Publish a design case study",
+      "state": "locked",
+      "checkpoint": true
+     }
+    ]
+   }
+  ]
+ }
+]

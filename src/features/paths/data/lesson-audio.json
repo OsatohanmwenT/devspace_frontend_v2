@@ -1,0 +1,119 @@
+{
+  "writing-programs": {
+    "title": "Writing programs",
+    "chapters": [
+      {
+        "id": "program-execution-learn",
+        "conceptTitle": "Program execution",
+        "title": "Program execution",
+        "text": "Program execution. A Python program is a set of instructions that the computer follows in order.. Programs are instructions. Each line tells Python to do one small thing. When you run a file, Python starts at the top and works through the statements in sequence — so print(\"first\") really does run before the line beneath it.. What happens when something goes wrong. Python doesn’t skip a broken line and carry on — it runs everything up to the mistake, then stops right there. Nothing after that line runs, and nothing before it gets undone."
+      },
+      {
+        "id": "variables-expressions-learn",
+        "conceptTitle": "Variables and expressions",
+        "title": "Variables and expressions",
+        "text": "Variables and expressions. Variables give values useful names, while expressions combine those values to produce a result.. Variables keep track of values. A variable gives a value a useful name. Instead of repeating a number, store it once as hours_per_week and reuse that name wherever the calculation needs it.. Variables can change. A variable isn’t locked to its first value — assign it again and the old value is simply replaced. score = 10 followed later by score = score + 5 leaves score holding 15 — the name didn’t change, only what it points to did."
+      },
+      {
+        "id": "naming-comments-learn",
+        "conceptTitle": "Naming and comments",
+        "title": "Naming and comments",
+        "text": "Naming and comments. Code is read far more often than it’s written — a clear name and a short comment save the next reader real time.. Names use snake case. When a name needs more than one word, join them with underscores — home_city, not homeCity. Python programmers call this snake case.. Comments explain the why. A line starting with # is a comment — Python skips it completely when running the program. Comments don’t change what the code does; they tell the next reader why it does it."
+      },
+      {
+        "id": "putting-it-together-learn",
+        "conceptTitle": "Putting it together",
+        "title": "Putting it together",
+        "text": "Putting it together. Every program you’ve seen so far follows the same shape — time to prove you can finish one yourself.. The pattern so far. Store a value, calculate something from it, then show the result — the same three-line shape you’ve now seen with hours_per_week and yearly_hours. A comment or two and a clear, snake_case name make that shape easy for someone else — or future you — to follow."
+      }
+    ]
+  },
+  "data-types": {
+    "title": "Data types",
+    "chapters": [
+      {
+        "id": "value-types-learn",
+        "conceptTitle": "Values have types",
+        "title": "Values have types",
+        "text": "Values have types. Every value in Python has a type, and the type decides what you can do with it.. Three types to start with. Text is a string and goes in quotes — \"word\". Whole numbers are integers like 42. And True or False is a boolean.. Types change what happens. 2 + 2 gives 4, but \"2\" + \"2\" gives \"22\" — the same operator behaves differently depending on the type."
+      }
+    ]
+  },
+  "technical-teams-basics": {
+    "title": "How technical teams work",
+    "chapters": [
+      {
+        "id": "technical-team-coordination-learn",
+        "conceptTitle": "Technical team coordination",
+        "title": "Helping technical teams move together",
+        "text": "Helping technical teams move together. A technical project coordinator helps people understand what is happening, what comes next, and what could slow the work down.. Coordination creates clarity. Developers, designers, marketers, and stakeholders often depend on one another. A coordinator keeps the shared goal, current tasks, owners, and deadlines visible so nobody has to guess what is happening.. The role removes obstacles. A coordinator does not need to write the code. They notice missing decisions, unclear ownership, and blocked work, then help the right people resolve them."
+      }
+    ]
+  },
+  "digital-marketing-basics": {
+    "title": "How digital marketing works",
+    "chapters": [
+      {
+        "id": "digital-marketing-foundations-learn",
+        "conceptTitle": "Digital marketing foundations",
+        "title": "Connecting useful products with the right people",
+        "text": "Connecting useful products with the right people. Digital marketing uses online channels to help a specific audience discover, understand, and choose a product or service.. Start with the audience and goal. Good marketing begins by deciding who you want to reach and what useful action you want them to take. A clear goal might be trial signups, event registrations, or completed purchases.. Use evidence to improve. Marketers choose a message and channel, publish content, then measure what happened. Results such as clicks, signups, and cost help them decide what to improve next."
+      }
+    ]
+  },
+  "data-analysis-basics": {
+    "title": "How data analysis works",
+    "chapters": [
+      {
+        "id": "data-analysis-foundations-learn",
+        "conceptTitle": "Data analysis foundations",
+        "title": "Turning raw data into a decision",
+        "text": "Turning raw data into a decision. A data analyst answers a real question by moving from raw, messy data to a clear, trustworthy conclusion.. Start with a clear question. Good analysis begins before you open a spreadsheet. Decide what decision the answer needs to support, such as whether signups dropped after a pricing change, not just \"look at the data\".. Clean before you conclude. Raw data usually has duplicates, missing values, and inconsistent formats. Cleaning it first means the patterns you find later are real, not artifacts of messy data."
+      }
+    ]
+  },
+  "video-editing-basics": {
+    "title": "How video editing works",
+    "chapters": [
+      {
+        "id": "video-editing-basics-learn",
+        "conceptTitle": "Video editing foundations",
+        "title": "Video editing foundations",
+        "text": "Video editing foundations. Video editing turns selected images and sounds into a sequence with a clear purpose, feeling, and flow.. Start with the story. Before choosing transitions or effects, decide what the viewer should understand or feel. That purpose guides which footage belongs in the edit.. Selection and timing create meaning. Editors choose the strongest moments, place them in a useful order, and adjust timing so each cut helps the viewer follow the story."
+      }
+    ]
+  },
+  "content-creation-basics": {
+    "title": "How content creation works",
+    "chapters": [
+      {
+        "id": "content-creation-basics-learn",
+        "conceptTitle": "Content creation foundations",
+        "title": "Content creation foundations",
+        "text": "Content creation foundations. Useful content gives a specific audience a clear reason to watch, read, save, or share.. Know who it is for. A focused audience makes the idea easier to shape. Start with a real question, need, or interest instead of trying to speak to everyone.. Make one clear promise. Strong content tells the audience what they will learn, feel, or be able to do, then delivers that value in a suitable format."
+      }
+    ]
+  },
+  "social-media-basics": {
+    "title": "How social media management works",
+    "chapters": [
+      {
+        "id": "social-media-basics-learn",
+        "conceptTitle": "Social media foundations",
+        "title": "Social media foundations",
+        "text": "Social media foundations. Social media management connects what an audience values with a clear organisation goal and a healthy community.. Give each channel a job. A channel should have a clear audience, purpose, and role. Posting everywhere without a reason creates work without creating value.. Measure the useful action. Reach and likes can provide context, but the best measure depends on the goal, such as useful replies, event signups, qualified visits, or retained community members."
+      }
+    ]
+  },
+  "graphic-design-basics": {
+    "title": "How graphic design works",
+    "chapters": [
+      {
+        "id": "graphic-design-basics-learn",
+        "conceptTitle": "Graphic design foundations",
+        "title": "Graphic design foundations",
+        "text": "Graphic design foundations. Graphic design organises type, image, colour, and space so a message is clear, useful, and memorable.. Hierarchy guides attention. Scale, weight, contrast, and position tell people what to notice first, what supports it, and what action or detail comes next.. Composition supports the message. Alignment, spacing, and grouping create relationships between elements. Every visual choice should help the intended audience understand the message."
+      }
+    ]
+  }
+}

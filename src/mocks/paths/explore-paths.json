@@ -1,0 +1,812 @@
+[
+ {
+  "id": "machine-learning",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "ml",
+  "title": "Machine Learning Engineer",
+  "meta": "Beginner · 6 regions",
+  "reason": "Prepare data, train models and deploy ML systems.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "Python",
+   "Data",
+   "ML"
+  ],
+  "description": "Prepare data, train models, and deploy reliable ML systems that solve practical problems.",
+  "recommended": false,
+  "learningSteps": [
+   "Python fundamentals",
+   "Math & statistics for ML",
+   "Core ML algorithms",
+   "Model training & evaluation",
+   "Deployment & MLOps"
+  ]
+ },
+ {
+  "id": "data-scientist",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "data",
+  "title": "Data Scientist",
+  "meta": "Beginner · 7 regions",
+  "reason": "Turn evidence into clear decisions with data.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "Python",
+   "SQL",
+   "Analytics"
+  ],
+  "description": "Turn evidence into clear decisions by exploring data, finding patterns, and communicating results.",
+  "recommended": false,
+  "learningSteps": [
+   "Python & statistics fundamentals",
+   "Data wrangling with pandas",
+   "Data visualization",
+   "Machine learning basics",
+   "Model evaluation & deployment"
+  ]
+ },
+ {
+  "id": "backend-developer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "Backend Developer",
+  "meta": "Beginner · 8 regions",
+  "reason": "Build reliable services and software systems.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "Python",
+   "APIs",
+   "Databases"
+  ],
+  "description": "Build reliable APIs, data services, and software systems that power useful applications.",
+  "recommended": false,
+  "learningSteps": [
+   "Python fundamentals",
+   "HTTP & REST basics",
+   "Databases & queries",
+   "Authentication & security",
+   "API design & scaling"
+  ]
+ },
+ {
+  "id": "ai-engineer",
+  "type": "career",
+  "category": "Cloud & Security",
+  "family": "security",
+  "title": "AI Engineer",
+  "meta": "Intermediate · 7 regions",
+  "reason": "Build intelligent products with modern AI tools.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Python",
+   "LLMs",
+   "ML"
+  ],
+  "description": "Build intelligent products with modern AI tools, from useful prompts to production-ready features.",
+  "recommended": true,
+  "learningSteps": [
+   "Python fundamentals",
+   "Working with LLM APIs",
+   "Prompt engineering",
+   "Building AI-powered apps",
+   "Vector databases & RAG"
+  ]
+ },
+ {
+  "id": "frontend-developer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "Frontend Developer",
+  "meta": "Beginner · 7 regions",
+  "reason": "Create polished, accessible web interfaces that people enjoy using.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "HTML",
+   "CSS",
+   "JavaScript"
+  ],
+  "description": "Create polished, accessible web interfaces with the foundations of modern frontend development.",
+  "recommended": false,
+  "learningSteps": [
+   "HTML & CSS basics",
+   "JavaScript fundamentals",
+   "DOM manipulation / interactivity"
+  ]
+ },
+ {
+  "id": "fullstack-developer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "Full-Stack Developer",
+  "meta": "Beginner · 8 regions",
+  "reason": "Build complete web products from interface to database.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "JavaScript",
+   "APIs",
+   "Databases"
+  ],
+  "description": "Build complete web products by connecting user-facing features, APIs, and data storage.",
+  "recommended": false,
+  "learningSteps": [
+   "HTML, CSS & JavaScript basics",
+   "Frontend framework basics",
+   "Backend fundamentals",
+   "Databases & APIs",
+   "Connecting frontend, backend & database"
+  ]
+ },
+ {
+  "id": "ui-engineer",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "backend",
+  "title": "UI Engineer",
+  "meta": "Beginner · 6 regions",
+  "reason": "Turn product designs into responsive, high-quality interfaces.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "HTML",
+   "CSS",
+   "Design systems"
+  ],
+  "description": "Translate product designs into responsive, accessible interfaces that feel polished in use.",
+  "recommended": false,
+  "learningSteps": [
+   "Design fundamentals",
+   "Figma / prototyping basics",
+   "HTML & CSS for designers",
+   "Prototyping & developer handoff",
+   "Implementing designs in code"
+  ]
+ },
+ {
+  "id": "ios-developer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "Mobile Developer (iOS)",
+  "meta": "Beginner · 7 regions",
+  "reason": "Build thoughtful, native mobile experiences for Apple devices.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Swift",
+   "iOS",
+   "Xcode"
+  ],
+  "description": "Build thoughtful native mobile experiences for Apple devices using core iOS development patterns.",
+  "recommended": false,
+  "learningSteps": [
+   "Swift basics",
+   "SwiftUI / UIKit basics",
+   "Navigation & app state",
+   "Networking & APIs",
+   "App Store deployment"
+  ]
+ },
+ {
+  "id": "android-developer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "Mobile Developer (Android)",
+  "meta": "Beginner · 7 regions",
+  "reason": "Create reliable Android apps for a wide range of devices.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "Kotlin",
+   "Android",
+   "APIs"
+  ],
+  "description": "Create reliable Android apps that work well across the devices people use every day.",
+  "recommended": false,
+  "learningSteps": [
+   "Kotlin basics",
+   "Jetpack Compose / UI basics",
+   "Navigation & app state",
+   "Networking & APIs",
+   "Play Store deployment"
+  ]
+ },
+ {
+  "id": "cross-platform-developer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "Cross-Platform Developer",
+  "meta": "Beginner · 7 regions",
+  "reason": "Ship one mobile product across iOS and Android.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "React Native",
+   "Dart",
+   "Mobile"
+  ],
+  "description": "Ship mobile products across iOS and Android with shared code and platform-aware design.",
+  "recommended": false,
+  "learningSteps": [
+   "JavaScript / Dart basics",
+   "Component & widget basics",
+   "Navigation & app state",
+   "Native APIs & device features",
+   "Publishing to app stores"
+  ]
+ },
+ {
+  "id": "database-developer",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "data",
+  "title": "Database Developer",
+  "meta": "Beginner · 6 regions",
+  "reason": "Design dependable data stores and write efficient queries.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "SQL",
+   "Databases",
+   "Data modelling"
+  ],
+  "description": "Design dependable data stores and write efficient queries that support real applications.",
+  "recommended": false,
+  "learningSteps": [
+   "SQL fundamentals",
+   "Schema design & normalization",
+   "Indexing & query optimization",
+   "NoSQL basics",
+   "Migrations & backups"
+  ]
+ },
+ {
+  "id": "api-systems-engineer",
+  "type": "career",
+  "category": "Development",
+  "family": "backend",
+  "title": "API / Systems Engineer",
+  "meta": "Intermediate · 8 regions",
+  "reason": "Design the services and integrations that connect products.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "APIs",
+   "Python",
+   "Systems"
+  ],
+  "description": "Design the reliable APIs, services, and integrations that allow products to work together.",
+  "recommended": false,
+  "learningSteps": [
+   "HTTP & networking fundamentals",
+   "REST / GraphQL API design",
+   "Authentication & authorization",
+   "Caching & performance",
+   "Microservices & system design"
+  ]
+ },
+ {
+  "id": "data-analyst",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "data",
+  "title": "Data Analyst",
+  "meta": "Beginner · 6 regions",
+  "reason": "Use data to answer practical questions and guide decisions.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "SQL",
+   "Excel",
+   "Analytics"
+  ],
+  "description": "Use data to answer practical questions, uncover patterns, and guide better everyday decisions.",
+  "recommended": false,
+  "learningSteps": [
+   "Spreadsheet fundamentals",
+   "SQL fundamentals",
+   "Data cleaning & visualization",
+   "Statistics basics",
+   "Dashboarding"
+  ]
+ },
+ {
+  "id": "data-engineer",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "data",
+  "title": "Data Engineer",
+  "meta": "Intermediate · 8 regions",
+  "reason": "Build trusted data pipelines that make analysis possible.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "Python",
+   "SQL",
+   "Pipelines"
+  ],
+  "description": "Build trusted data pipelines and foundations that give teams reliable information to work with.",
+  "recommended": false,
+  "learningSteps": [
+   "Python & SQL fundamentals",
+   "ETL pipeline basics",
+   "Data warehousing",
+   "Workflow orchestration",
+   "Cloud data platforms"
+  ]
+ },
+ {
+  "id": "business-intelligence",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "data",
+  "title": "Business Intelligence",
+  "meta": "Beginner · 6 regions",
+  "reason": "Turn business data into clear reporting and useful insight.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "SQL",
+   "Dashboards",
+   "Analytics"
+  ],
+  "description": "Turn business data into useful reporting, dashboards, and insights people can act on.",
+  "recommended": false,
+  "learningSteps": [
+   "Excel fundamentals",
+   "Power BI basics",
+   "Data modeling",
+   "DAX formulas",
+   "Dashboard design"
+  ]
+ },
+ {
+  "id": "ai-application-developer",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "ml",
+  "title": "AI Application Developer",
+  "meta": "Intermediate · 7 regions",
+  "reason": "Build useful AI features into products people use every day.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Python",
+   "LLMs",
+   "APIs"
+  ],
+  "description": "Build useful AI-powered product features with modern models, prompts, and integrations.",
+  "recommended": false,
+  "learningSteps": [
+   "Python fundamentals",
+   "Working with LLM APIs",
+   "Prompt engineering",
+   "Building AI-powered apps",
+   "Vector databases & RAG"
+  ]
+ },
+ {
+  "id": "automation-developer",
+  "type": "career",
+  "category": "Data & AI",
+  "family": "ml",
+  "title": "Automation Developer",
+  "meta": "Beginner · 6 regions",
+  "reason": "Automate repetitive work with reliable, maintainable workflows.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "Python",
+   "APIs",
+   "Workflows"
+  ],
+  "description": "Automate repetitive work with reliable workflows that save people time and reduce mistakes.",
+  "recommended": false,
+  "learningSteps": [
+   "Python / JavaScript fundamentals",
+   "Scripting & automation basics",
+   "Working with APIs",
+   "Scheduling & workflows",
+   "Bots & integrations"
+  ]
+ },
+ {
+  "id": "product-manager",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "data",
+  "title": "Product Manager",
+  "meta": "Beginner · 6 regions",
+  "reason": "Guide product decisions from customer problems to outcomes.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "Discovery",
+   "Strategy",
+   "Analytics"
+  ],
+  "description": "Guide product decisions from customer problems through delivery and measurable outcomes.",
+  "recommended": false,
+  "learningSteps": [
+   "Product fundamentals",
+   "User research basics",
+   "Roadmapping & prioritization",
+   "Working with engineering & design",
+   "Metrics & analytics"
+  ]
+ },
+ {
+  "id": "business-analyst",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "data",
+  "title": "Business Analyst",
+  "meta": "Beginner · 6 regions",
+  "reason": "Clarify requirements and improve the processes behind products.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "Requirements",
+   "Processes",
+   "Analytics"
+  ],
+  "description": "Clarify requirements and improve the processes that help products and teams work better.",
+  "recommended": false,
+  "learningSteps": [
+   "Business analysis fundamentals",
+   "Requirements gathering",
+   "Data analysis basics",
+   "Process mapping",
+   "Stakeholder communication"
+  ]
+ },
+ {
+  "id": "technical-project-coordinator",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "backend",
+  "title": "Technical Project Coordinator",
+  "meta": "Beginner · 6 regions",
+  "reason": "Keep technical work organised, visible, and moving forward.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "Planning",
+   "Agile",
+   "Collaboration"
+  ],
+  "description": "Keep technical work organised, visible, and moving through the right people and milestones.",
+  "recommended": false,
+  "learningSteps": [
+   "Project management fundamentals",
+   "Agile & Scrum basics",
+   "Tools (Jira / Trello)",
+   "Technical communication",
+   "Risk & timeline tracking"
+  ]
+ },
+ {
+  "id": "digital-marketing",
+  "type": "career",
+  "category": "Business & Marketing",
+  "family": "ml",
+  "title": "Digital Marketing",
+  "meta": "Beginner · 6 regions",
+  "reason": "Understand customers and grow products with measurable campaigns.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "Audience",
+   "Content",
+   "Analytics"
+  ],
+  "description": "Understand customers, create useful campaigns, and improve results with clear evidence.",
+  "recommended": false,
+  "learningSteps": [
+   "Marketing fundamentals",
+   "Audience research",
+   "Content and campaigns",
+   "Channels and analytics",
+   "Campaign optimisation"
+  ]
+ },
+ {
+  "id": "social-media-manager",
+  "type": "career",
+  "category": "Business & Marketing",
+  "family": "marketing",
+  "title": "Social Media Manager",
+  "meta": "Beginner · 6 regions",
+  "reason": "Plan useful social content and grow healthy communities.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "Strategy",
+   "Community",
+   "Analytics"
+  ],
+  "description": "Plan useful social content, support communities, and improve channel performance with clear evidence.",
+  "recommended": false,
+  "learningSteps": [
+   "Social media fundamentals",
+   "Audience and content basics",
+   "Content planning",
+   "Community management",
+   "Social analytics"
+  ]
+ },
+ {
+  "id": "video-editor",
+  "type": "career",
+  "category": "Content & Media",
+  "family": "media",
+  "title": "Video Editor",
+  "meta": "Beginner · 6 regions",
+  "reason": "Shape footage, sound, pacing, and colour into clear stories.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Story",
+   "Audio",
+   "Colour"
+  ],
+  "description": "Shape raw footage, sound, pacing, colour, and graphics into clear stories people want to watch.",
+  "recommended": false,
+  "learningSteps": [
+   "Editing fundamentals",
+   "Timeline and sequence basics",
+   "Audio and pacing",
+   "Colour and motion graphics",
+   "Producing a portfolio edit"
+  ]
+ },
+ {
+  "id": "content-creator",
+  "type": "career",
+  "category": "Content & Media",
+  "family": "media",
+  "title": "Content Creator",
+  "meta": "Beginner · 6 regions",
+  "reason": "Develop useful ideas and build a repeatable publishing practice.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "Ideas",
+   "Production",
+   "Publishing"
+  ],
+  "description": "Develop useful ideas, produce strong content, and build a repeatable publishing practice around an audience.",
+  "recommended": false,
+  "learningSteps": [
+   "Content fundamentals",
+   "Audience and idea development",
+   "Content production basics",
+   "Publishing workflow",
+   "Content strategy and growth"
+  ]
+ },
+ {
+  "id": "ui-ux-designer",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "data",
+  "title": "UI/UX Designer",
+  "meta": "Beginner · 6 regions",
+  "reason": "Design clear digital experiences around real user needs.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "UX research",
+   "Wireframes",
+   "Prototyping"
+  ],
+  "description": "Design clear, inclusive digital experiences around real user needs, journeys, and feedback.",
+  "recommended": false,
+  "learningSteps": [
+   "Design fundamentals",
+   "Wireframing & prototyping",
+   "User research basics",
+   "Usability testing",
+   "Design systems"
+  ]
+ },
+ {
+  "id": "product-designer",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "data",
+  "title": "Product Designer",
+  "meta": "Beginner · 7 regions",
+  "reason": "Shape useful products from early ideas to refined experiences.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "UX",
+   "UI design",
+   "Prototyping"
+  ],
+  "description": "Shape useful products from early ideas through refined experiences that solve real problems.",
+  "recommended": false,
+  "learningSteps": [
+   "Design fundamentals",
+   "End-to-end design process",
+   "Prototyping & testing",
+   "Collaborating with engineering",
+   "Design systems"
+  ]
+ },
+ {
+  "id": "design-systems-specialist",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "backend",
+  "title": "Design Systems Specialist",
+  "meta": "Intermediate · 7 regions",
+  "reason": "Create reusable design foundations that help teams move faster.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Components",
+   "Tokens",
+   "Accessibility"
+  ],
+  "description": "Create reusable design foundations, components, and patterns that help teams move faster.",
+  "recommended": false,
+  "learningSteps": [
+   "Design fundamentals",
+   "Component libraries",
+   "Design tokens",
+   "Documentation & governance",
+   "Cross-team collaboration"
+  ]
+ },
+ {
+  "id": "graphic-designer",
+  "type": "career",
+  "category": "Design & Product",
+  "family": "design",
+  "title": "Graphic Designer",
+  "meta": "Beginner · 6 regions",
+  "reason": "Communicate ideas through type, layout, colour, and imagery.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "Typography",
+   "Layout",
+   "Brand design"
+  ],
+  "description": "Use typography, layout, colour, imagery, and systems to communicate ideas with clarity and character.",
+  "recommended": false,
+  "learningSteps": [
+   "Design fundamentals",
+   "Layout and typography",
+   "Colour and composition",
+   "Brand design",
+   "Building a portfolio system"
+  ]
+ },
+ {
+  "id": "devops-engineer",
+  "type": "career",
+  "category": "Cloud & Security",
+  "family": "security",
+  "title": "DevOps Engineer",
+  "meta": "Intermediate · 8 regions",
+  "reason": "Improve how software is built, deployed, and operated.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "CI/CD",
+   "Docker",
+   "Cloud"
+  ],
+  "description": "Improve how software is built, deployed, monitored, and operated across its lifecycle.",
+  "recommended": false,
+  "learningSteps": [
+   "Linux & command line basics",
+   "Version control (Git)",
+   "CI/CD pipelines",
+   "Containers (Docker)",
+   "Infrastructure as code"
+  ]
+ },
+ {
+  "id": "cloud-engineer",
+  "type": "career",
+  "category": "Cloud & Security",
+  "family": "security",
+  "title": "Cloud Engineer",
+  "meta": "Intermediate · 7 regions",
+  "reason": "Build scalable cloud infrastructure for dependable products.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "Cloud",
+   "Infrastructure",
+   "Security"
+  ],
+  "description": "Build scalable cloud infrastructure that keeps products dependable, secure, and ready to grow.",
+  "recommended": false,
+  "learningSteps": [
+   "Cloud fundamentals",
+   "Networking basics",
+   "Compute & storage services",
+   "Infrastructure as code",
+   "Security & cost management"
+  ]
+ },
+ {
+  "id": "cybersecurity-specialist",
+  "type": "career",
+  "category": "Cloud & Security",
+  "family": "security",
+  "title": "Cybersecurity Specialist",
+  "meta": "Beginner · 7 regions",
+  "reason": "Protect systems, data, and people through practical security work.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Security",
+   "Networks",
+   "Risk"
+  ],
+  "description": "Protect systems, data, and people through practical security principles and safer operations.",
+  "recommended": false,
+  "learningSteps": [
+   "Networking & security fundamentals",
+   "Common vulnerabilities (OWASP)",
+   "Security tools & monitoring",
+   "Incident response",
+   "Penetration testing basics"
+  ]
+ },
+ {
+  "id": "learn-python",
+  "type": "skill",
+  "category": "Development",
+  "family": "backend",
+  "title": "Learn Python",
+  "meta": "Beginner · 7 lessons",
+  "reason": "Build useful programs with Python.",
+  "image": "art/programming-with-variables.png",
+  "tools": [
+   "Python",
+   "Logic"
+  ],
+  "description": "Build useful programs with Python and learn the programming patterns behind clear, confident code.",
+  "recommended": false,
+  "learningSteps": null
+ },
+ {
+  "id": "learn-sql",
+  "type": "skill",
+  "category": "Data & AI",
+  "family": "data",
+  "title": "Learn SQL",
+  "meta": "Beginner · 6 lessons",
+  "reason": "Query data and turn questions into answers.",
+  "image": "art/exploring-data-visually.png",
+  "tools": [
+   "SQL",
+   "Data"
+  ],
+  "description": "Query data, answer real questions, and turn raw tables into useful insight for better decisions.",
+  "recommended": false,
+  "learningSteps": null
+ },
+ {
+  "id": "learn-git",
+  "type": "skill",
+  "category": "Development",
+  "family": "backend",
+  "title": "Learn Git",
+  "meta": "Beginner · 5 lessons",
+  "reason": "Work confidently with versions and collaboration.",
+  "image": "art/scientific-thinking.png",
+  "tools": [
+   "Git",
+   "Collaboration"
+  ],
+  "description": "Work confidently with versions, collaboration, and the everyday Git workflow used by development teams.",
+  "recommended": false,
+  "learningSteps": null
+ },
+ {
+  "id": "learn-docker",
+  "type": "skill",
+  "category": "Development",
+  "family": "backend",
+  "title": "Learn Docker",
+  "meta": "Beginner · 6 lessons",
+  "reason": "Package and run projects anywhere.",
+  "image": "art/thinking-in-code.png",
+  "tools": [
+   "Docker",
+   "Containers"
+  ],
+  "description": "Package and run projects consistently, so your development environment works wherever it needs to.",
+  "recommended": false,
+  "learningSteps": null
+ }
+]
