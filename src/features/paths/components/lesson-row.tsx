@@ -3,6 +3,8 @@
 import { motion, useReducedMotion } from "motion/react";
 import { DevyRive } from "~/components/devy";
 import type { DerivedLesson } from "../api/paths-api";
+import type { LaunchFlight } from "../hooks/use-lesson-launch";
+import { DevyFlyer } from "./devy-flyer";
 import { LessonPedestalIcon } from "./lesson-pedestal-icon";
 
 const STATE_LABELS = {
@@ -46,25 +48,35 @@ type LessonRowProps = {
   lesson: DerivedLesson;
   index: number;
   selected: boolean;
-  // True while Devy is taking off from this tile.
-  flying: boolean;
+  // Set while Devy is flying out from this tile to the lesson.
+  flight: LaunchFlight | null;
   onSelect: () => void;
   onStart: () => void;
 };
 
-export function LessonRow({ lesson, index, selected, flying, onSelect, onStart }: LessonRowProps) {
+export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }: LessonRowProps) {
   const reducedMotion = useReducedMotion();
   const state = lesson.derivedState;
   const current = state === "current";
   const locked = state === "locked";
   const label = STATE_LABELS[state];
+  const flying = flight !== null;
   const ariaLabel = `${lesson.title}, ${label}${lesson.checkpoint ? ", checkpoint" : ""}`;
 
   // The Rive state machine draws its own launchpad; the static pedestal stands
   // in under reduced motion because the Rive file starts on an empty frame.
   const icon =
     current && !reducedMotion ? (
-      <DevyRive clip="complete-flow" flying={flying} className="h-[210px] w-[200px]" ariaLabel="" />
+      <DevyFlyer flight={flight}>
+        <DevyRive
+          clip="complete-flow"
+          flying={flying}
+          // The rig's "particles" state is the airborne loop.
+          onStateChange={(states) => states.includes("particles") && flight?.onAirborne()}
+          className="size-full"
+          ariaLabel=""
+        />
+      </DevyFlyer>
     ) : (
       <LessonPedestalIcon state={state} checkpoint={lesson.checkpoint} selected={selected} />
     );
@@ -82,7 +94,11 @@ export function LessonRow({ lesson, index, selected, flying, onSelect, onStart }
   );
 
   return (
-    <div data-current-lesson={current || undefined} className={`relative z-1 flex min-h-[126px] w-full ${ALIGNMENT[index % 3]}`}>
+    <div
+      data-current-lesson={current || undefined}
+      // Above the launch scene while Devy is in flight, so he crosses the sticky headers and the lesson bar.
+      className={`relative flex min-h-[126px] w-full ${flying ? "z-[101]" : "z-1"} ${ALIGNMENT[index % 3]}`}
+    >
       {current ? (
         <div className="flex min-h-[126px] w-[min(100%,278px)] items-center px-2">
           <button

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRive } from "@rive-app/react-webgl2";
-import { useEffect, useEffectEvent } from "react";
+import { useEffect, useEffectEvent, useRef } from "react";
 import { assetUrl } from "~/config/assets";
 import { usePrefersReducedMotion } from "~/hooks/use-prefers-reduced-motion";
 import { RIVE_CLIPS, type RiveClip, type RiveClipName } from "./rive-clips";
@@ -17,6 +17,9 @@ type DevyRiveProps = {
   onReady?: () => void;
   // "complete-flow" only: true takes off, false lands again.
   flying?: boolean;
+  // "complete-flow" only: the names of the state machine's active states each
+  // time they change (e.g. "tower_launch" on the pad, "particles" in the air).
+  onStateChange?: (states: string[]) => void;
 };
 
 const SHARP_PIXEL_RATIO = 3;
@@ -27,6 +30,7 @@ export function DevyRive({
   ariaLabel,
   onReady,
   flying = false,
+  onStateChange,
 }: DevyRiveProps) {
   const reducedMotion = usePrefersReducedMotion();
   const config: RiveClip = RIVE_CLIPS[clip];
@@ -39,6 +43,13 @@ export function DevyRive({
 
   const reportReady = useEffectEvent(() => onReady?.());
 
+  // Rive keeps the callbacks it was created with, so it reads the latest one
+  // through a ref.
+  const stateListener = useRef(onStateChange);
+  useEffect(() => {
+    stateListener.current = onStateChange;
+  });
+
   const { rive, RiveComponent } = useRive(
     {
       src: assetUrl(config.src),
@@ -46,6 +57,7 @@ export function DevyRive({
       animations: timeline,
       autoplay: false,
       autoBind: isAutoBound,
+      onStateChange: (event) => stateListener.current?.(Array.isArray(event.data) ? event.data.map(String) : []),
     },
     { customDevicePixelRatio: isSharp ? SHARP_PIXEL_RATIO : undefined },
   );
