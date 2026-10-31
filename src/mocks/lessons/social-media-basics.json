@@ -1,0 +1,63 @@
+{
+  "id": "social-media-basics",
+  "title": "How social media management works",
+  "role": "social_media_manager",
+  "concepts": [
+    {
+      "id": "social-media-basics-foundations",
+      "title": "Social media foundations",
+      "activities": [
+        {
+          "id": "social-media-basics-learn",
+          "type": "article",
+          "content": {
+            "title": "Social media foundations",
+            "intro": "Social media management connects what an audience values with a clear organisation goal and a healthy community.",
+            "sections": [
+              {
+                "title": "Give each channel a job",
+                "body": "A channel should have a clear audience, purpose, and role. Posting everywhere without a reason creates work without creating value."
+              },
+              {
+                "title": "Measure the useful action",
+                "body": "Reach and likes can provide context, but the best measure depends on the goal, such as useful replies, event signups, qualified visits, or retained community members."
+              }
+            ],
+            "next": {
+              "title": "Check social media foundations",
+              "body": "Choose the response that best applies the foundation you just learned."
+            }
+          }
+        },
+        {
+          "id": "social-media-basics-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check social media foundations",
+            "intro": "Choose the clearest next step.",
+            "questions": [
+              {
+                "id": "social-media-basics-q1",
+                "type": "multiple-choice",
+                "prompt": "A team wants more event registrations. Which result is most useful to track?",
+                "options": [
+                  "How many posts were published",
+                  "Event registrations attributed to social content",
+                  "The total number of emojis used",
+                  "Whether every channel used identical copy"
+                ],
+                "correctIndex": 1,
+                "explanation": "The measure should connect directly to the goal the social work is meant to support."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand social media foundations!",
+    "body": "You learned how audience value, channel purpose, community, and measurable goals work together."
+  }
+}

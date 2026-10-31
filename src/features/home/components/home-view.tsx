@@ -7,8 +7,7 @@ import { useLoad } from "~/hooks/use-load";
 import type { HomeData } from "~/types/home";
 import { getHome } from "../api/home-api";
 import { useDevyChat } from "../hooks/use-devy-chat";
-import { useHomeActions } from "../hooks/use-home-actions";
-import { ACCENTS } from "../lib/accents";
+import { useHomeActions } from "../hooks/use-home-actions";import { ACCENTS } from "../lib/accents";
 import { buildSuggestions } from "../lib/compose-suggestions";
 import { ComposeStage } from "./compose-stage";
 import { HomeCarousel } from "./home-carousel";
@@ -17,8 +16,7 @@ import { PromptBar } from "./prompt-bar";
 
 function HomeContent({ data }: { data: HomeData }) {
   const breakpoint = useBreakpoint();
-  const actions = useHomeActions(data);
-  const course = data.courses[0];
+  const actions = useHomeActions(data);  const course = data.courses[0];
   const promptInputRef = useRef<HTMLInputElement>(null);
   const [promptText, setPromptText] = useState("");
   // The accent of the suggestion in front while composing, for the bar's glow.

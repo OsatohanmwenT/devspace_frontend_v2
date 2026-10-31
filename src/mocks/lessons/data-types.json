@@ -1,0 +1,156 @@
+{
+  "id": "data-types",
+  "title": "Data types",
+  "concepts": [
+    {
+      "id": "value-types",
+      "title": "Values have types",
+      "activities": [
+        {
+          "id": "value-types-learn",
+          "type": "article",
+          "content": {
+            "title": "Values have types",
+            "intro": "Every value in Python has a type, and the type decides what you can do with it.",
+            "sections": [
+              {
+                "title": "Three types to start with",
+                "body": [
+                  "Text is a ",
+                  {
+                    "strong": "string"
+                  },
+                  " and goes in quotes — ",
+                  {
+                    "code": "\"word\""
+                  },
+                  ". Whole numbers are ",
+                  {
+                    "strong": "integers"
+                  },
+                  " like ",
+                  {
+                    "code": "42"
+                  },
+                  ". And ",
+                  {
+                    "code": "True"
+                  },
+                  " or ",
+                  {
+                    "code": "False"
+                  },
+                  " is a ",
+                  {
+                    "strong": "boolean"
+                  },
+                  "."
+                ]
+              },
+              {
+                "title": "Types change what happens",
+                "body": [
+                  {
+                    "code": "2 + 2"
+                  },
+                  " gives ",
+                  {
+                    "code": "4"
+                  },
+                  ", but ",
+                  {
+                    "code": "\"2\" + \"2\""
+                  },
+                  " gives ",
+                  {
+                    "code": "\"22\""
+                  },
+                  " — the same operator behaves differently depending on the type."
+                ]
+              }
+            ],
+            "example": {
+              "title": "One of each",
+              "body": "Three variables, three different types.",
+              "code": "name = \"Ada\"\nage = 36\nis_learning = True\nprint(name, age, is_learning)"
+            },
+            "next": {
+              "title": "Check what you know",
+              "body": "Identify the types before you use them in code."
+            }
+          }
+        },
+        {
+          "id": "value-types-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check data types",
+            "intro": "Match each value to the type Python gives it.",
+            "questions": [
+              {
+                "id": "dt1",
+                "type": "multiple-choice",
+                "prompt": [
+                  {
+                    "code": "\"42\""
+                  },
+                  " — what type is this value?"
+                ],
+                "options": [
+                  [
+                    {
+                      "strong": "Integer"
+                    },
+                    " — a whole number"
+                  ],
+                  [
+                    {
+                      "strong": "String"
+                    },
+                    " — text in quotes"
+                  ],
+                  [
+                    {
+                      "strong": "Boolean"
+                    },
+                    " — true or false"
+                  ]
+                ],
+                "correctIndex": 1,
+                "explanation": "The quotes make it a string. Without them, 42 would be an integer."
+              },
+              {
+                "id": "dt2",
+                "type": "code-fill",
+                "filename": "types.py",
+                "prompt": "Give each variable a value of the right type.",
+                "segments": [
+                  "name = ",
+                  "\nage = ",
+                  "\nis_learning = ",
+                  ""
+                ],
+                "answers": [
+                  "\"Ada\"",
+                  "36",
+                  "True"
+                ],
+                "options": [
+                  "\"Ada\"",
+                  "36",
+                  "True"
+                ],
+                "explanation": "A string in quotes, an integer with no quotes, and a boolean written with a capital T."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "Lesson complete!",
+    "body": "You can now tell strings, integers and booleans apart — and you know why it matters."
+  }
+}

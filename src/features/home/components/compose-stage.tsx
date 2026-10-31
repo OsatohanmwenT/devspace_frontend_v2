@@ -201,7 +201,7 @@ export function ComposeStage({
             onClick={() => onPick(suggestion.label)}
           >
             <svg
-              className="size-[22px] text-[#2563eb] max-tab:size-[18px] dark:text-[#88bdf2]"
+              className="size-[22px] text-[rgb(var(--card-accent))] max-tab:size-[18px]"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { Button } from "~/components/ui/button";
 import { useBuildIn } from "../hooks/use-build-in";
-import { useCountUp } from "../hooks/use-count-up";
+import { useCountUp } from "~/hooks/use-count-up";
 import type { StageGroup } from "../types";
 
 type AssessmentResultProps = {

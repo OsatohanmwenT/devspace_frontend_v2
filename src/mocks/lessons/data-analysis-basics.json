@@ -1,0 +1,94 @@
+{
+  "id": "data-analysis-basics",
+  "title": "How data analysis works",
+  "role": "data_analyst",
+  "concepts": [
+    {
+      "id": "data-analysis-foundations",
+      "title": "Data analysis foundations",
+      "activities": [
+        {
+          "id": "data-analysis-foundations-learn",
+          "type": "article",
+          "content": {
+            "title": "Turning raw data into a decision",
+            "intro": "A data analyst answers a real question by moving from raw, messy data to a clear, trustworthy conclusion.",
+            "sections": [
+              {
+                "title": "Start with a clear question",
+                "body": [
+                  "Good analysis begins before you open a spreadsheet. Decide ",
+                  {
+                    "strong": "what decision the answer needs to support"
+                  },
+                  ", such as whether signups dropped after a pricing change, not just \"look at the data\"."
+                ]
+              },
+              {
+                "title": "Clean before you conclude",
+                "body": "Raw data usually has duplicates, missing values, and inconsistent formats. Cleaning it first means the patterns you find later are real, not artifacts of messy data."
+              }
+            ],
+            "diagram": {
+              "title": "From raw data to a decision",
+              "body": "Each stage removes noise and adds meaning, until the result is something a person can act on.",
+              "label": "Raw data becomes cleaned data, then analysis, then an insight, then a decision",
+              "nodes": [
+                "Raw data",
+                "Cleaned data",
+                "Analysis",
+                "Insight",
+                "Decision"
+              ]
+            },
+            "next": {
+              "title": "Check the analysis foundations",
+              "body": "Choose the clearer question and the sounder next step in two short situations."
+            }
+          }
+        },
+        {
+          "id": "data-analysis-foundations-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check data analysis foundations",
+            "intro": "Use the question, the data, and the decision behind each choice.",
+            "questions": [
+              {
+                "id": "data-analysis-q1",
+                "type": "multiple-choice",
+                "prompt": "Which is the clearest question to start an analysis with?",
+                "options": [
+                  "What does the data say?",
+                  "Did signups drop after the March 1 pricing change, and by how much?",
+                  "Can we make a chart?",
+                  "Is the data interesting?"
+                ],
+                "correctIndex": 1,
+                "explanation": "A useful question names the event, the metric it affects, and asks for a measurable answer."
+              },
+              {
+                "id": "data-analysis-q2",
+                "type": "multiple-choice",
+                "prompt": "A spreadsheet of signups has duplicate rows and blank dates. What should the analyst do first?",
+                "options": [
+                  "Build the chart anyway, duplicates rarely matter",
+                  "Clean the duplicates and missing values before analyzing",
+                  "Delete the whole dataset and ask for a new one",
+                  "Ignore the dates and use only the totals"
+                ],
+                "correctIndex": 1,
+                "explanation": "Cleaning the data first keeps later patterns and conclusions trustworthy."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand data analysis!",
+    "body": "You learned how a clear question, clean data, and honest evidence lead to a decision worth trusting."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "id": "video-editing-basics",
+  "title": "How video editing works",
+  "role": "video_editor",
+  "concepts": [
+    {
+      "id": "video-editing-basics-foundations",
+      "title": "Video editing foundations",
+      "activities": [
+        {
+          "id": "video-editing-basics-learn",
+          "type": "article",
+          "content": {
+            "title": "Video editing foundations",
+            "intro": "Video editing turns selected images and sounds into a sequence with a clear purpose, feeling, and flow.",
+            "sections": [
+              {
+                "title": "Start with the story",
+                "body": "Before choosing transitions or effects, decide what the viewer should understand or feel. That purpose guides which footage belongs in the edit."
+              },
+              {
+                "title": "Selection and timing create meaning",
+                "body": "Editors choose the strongest moments, place them in a useful order, and adjust timing so each cut helps the viewer follow the story."
+              }
+            ],
+            "next": {
+              "title": "Check video editing foundations",
+              "body": "Choose the response that best applies the foundation you just learned."
+            }
+          }
+        },
+        {
+          "id": "video-editing-basics-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check video editing foundations",
+            "intro": "Choose the clearest next step.",
+            "questions": [
+              {
+                "id": "video-editing-basics-q1",
+                "type": "multiple-choice",
+                "prompt": "You receive an hour of footage for a 60 second story. What should you do first?",
+                "options": [
+                  "Add effects to every clip",
+                  "Define the story and select footage that supports it",
+                  "Use the clips in the order they were filmed",
+                  "Choose music before watching the footage"
+                ],
+                "correctIndex": 1,
+                "explanation": "The story and audience give you a reason to include or remove each piece of footage."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand video editing foundations!",
+    "body": "You learned how purpose, selection, order, and timing shape raw footage into a clear story."
+  }
+}

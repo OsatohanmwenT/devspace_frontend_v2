@@ -1,0 +1,443 @@
+{
+  "id": "writing-programs",
+  "title": "Writing programs",
+  "concepts": [
+    {
+      "id": "program-execution",
+      "title": "Program execution",
+      "activities": [
+        {
+          "id": "program-execution-learn",
+          "type": "article",
+          "content": {
+            "title": "Program execution",
+            "intro": "A Python program is a set of instructions that the computer follows in order.",
+            "sections": [
+              {
+                "title": "Programs are instructions",
+                "body": [
+                  "Each line tells Python to do one small thing. When you run a file, Python starts at the ",
+                  {
+                    "strong": "top"
+                  },
+                  " and works through the statements in sequence — so ",
+                  {
+                    "code": "print(\"first\")"
+                  },
+                  " really does run before the line beneath it."
+                ]
+              },
+              {
+                "title": "What happens when something goes wrong",
+                "body": [
+                  "Python doesn’t skip a broken line and carry on — it runs everything up to the mistake, then stops right there. Nothing after that line runs, and nothing before it gets undone."
+                ]
+              }
+            ],
+            "next": {
+              "title": "Check the execution order",
+              "body": "Use what you just learned to identify how Python works through a file."
+            }
+          }
+        },
+        {
+          "id": "program-execution-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check program execution",
+            "intro": "Show that you understand how Python works through a file before moving on.",
+            "questions": [
+              {
+                "id": "q1",
+                "type": "multiple-choice",
+                "prompt": "What order does Python follow when it runs a file?",
+                "options": [
+                  "Top to bottom, one statement at a time",
+                  "Whichever line is shortest first",
+                  "Bottom to top",
+                  "A random order each run"
+                ],
+                "correctIndex": 0,
+                "explanation": "Python starts at the top of the file and works through statements in sequence."
+              }
+            ]
+          }
+        }
+      ],
+      "transition": {
+        "eyebrow": "Concept complete",
+        "title": "Great work—you finished Program execution!",
+        "body": "Next, you’ll learn how Python stores and works with values."
+      }
+    },
+    {
+      "id": "variables-expressions",
+      "title": "Variables and expressions",
+      "activities": [
+        {
+          "id": "variables-expressions-learn",
+          "type": "article",
+          "content": {
+            "title": "Variables and expressions",
+            "intro": "Variables give values useful names, while expressions combine those values to produce a result.",
+            "sections": [
+              {
+                "title": "Variables keep track of values",
+                "body": [
+                  "A variable gives a value a useful name. Instead of repeating a number, store it once as ",
+                  {
+                    "code": "hours_per_week"
+                  },
+                  " and reuse that name wherever the calculation needs it."
+                ]
+              },
+              {
+                "title": "Variables can change",
+                "body": [
+                  "A variable isn’t locked to its first value — assign it again and the old value is simply replaced. ",
+                  {
+                    "code": "score = 10"
+                  },
+                  " followed later by ",
+                  {
+                    "code": "score = score + 5"
+                  },
+                  " leaves ",
+                  {
+                    "code": "score"
+                  },
+                  " holding ",
+                  {
+                    "code": "15"
+                  },
+                  " — the name didn’t change, only what it points to did."
+                ]
+              }
+            ],
+            "diagram": {
+              "title": "How a program flows",
+              "body": "A program turns starting values into a useful result through a short chain of instructions.",
+              "label": "Weekly hours becomes a named variable, is calculated into yearly hours, then printed as an output",
+              "nodes": [
+                "Weekly hours",
+                "Named variable",
+                "Yearly calculation",
+                "Printed result"
+              ]
+            },
+            "example": {
+              "title": "A short program",
+              "body": "This program stores weekly learning hours, calculates a yearly total, then displays the answer.",
+              "code": "hours_per_week = 6\nyearly_hours = hours_per_week * 52\nprint(yearly_hours)"
+            },
+            "next": {
+              "title": "Your first calculation",
+              "body": "Check your understanding, then use these building blocks to finish a short Python program."
+            }
+          }
+        },
+        {
+          "id": "variables-expressions-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check variables and expressions",
+            "intro": "Answer this question before applying the concept in code.",
+            "questions": [
+              {
+                "id": "q2",
+                "type": "multiple-choice",
+                "prompt": "What do computers use variables for?",
+                "options": [
+                  "To display information on the screen",
+                  "To store information for later use",
+                  "To make the program run faster",
+                  "To hide values from the console"
+                ],
+                "correctIndex": 1,
+                "explanation": "A variable names a value once so you can reuse it in later calculations."
+              }
+            ]
+          }
+        },
+        {
+          "id": "variables-expressions-fill",
+          "type": "quiz",
+          "content": {
+            "title": "Fill in the program",
+            "intro": "Use the variables and values from this lesson to complete the sentence.",
+            "questions": [
+              {
+                "id": "q5",
+                "type": "fill",
+                "prompt": "Fill in the blanks to complete the sentence.",
+                "segments": [
+                  "A variable named ",
+                  " stores the value calculated by ",
+                  " multiplied by ",
+                  "."
+                ],
+                "answers": [
+                  "yearly_hours",
+                  "hours_per_week",
+                  "52"
+                ],
+                "options": [
+                  "yearly_hours",
+                  "hours_per_week",
+                  "52"
+                ],
+                "explanation": "yearly_hours stores the result of hours_per_week multiplied by 52."
+              }
+            ]
+          }
+        },
+        {
+          "id": "variables-expressions-guided-editor",
+          "type": "code-editor",
+          "content": {
+            "title": "Try the calculation",
+            "description": "Finish the calculation, then print the yearly total. This focused lab keeps the task in one place.",
+            "example": "hours_per_week = 40",
+            "filename": "yearly_hours.py",
+            "starterCode": "hours_per_week = 40\nweeks_per_year = 52\n\n# Calculate and print the yearly total",
+            "output": "2080",
+            "layout": "guided",
+            "continueLabel": "Open full editor",
+            "tasks": [
+              {
+                "title": "Calculate the yearly total",
+                "description": "Multiply `hours_per_week` by `weeks_per_year` and save the result in a new variable.",
+                "check": {
+                  "pattern": "^[ \\t]*[A-Za-z_]\\w*[ \\t]*=[ \\t]*(hours_per_week[ \\t]*\\*[ \\t]*weeks_per_year|weeks_per_year[ \\t]*\\*[ \\t]*hours_per_week)[ \\t]*$"
+                },
+                "nudge": "The numbers are ready — now make a new variable that multiplies `hours_per_week` by `weeks_per_year`."
+              },
+              {
+                "title": "Print the result",
+                "description": "Use `print()` with the variable you created.",
+                "check": {
+                  "output": "2080"
+                },
+                "nudge": "Your calculation is there, but nothing shows it yet. Pass your new variable to `print()`."
+              }
+            ],
+            "hints": [
+              "Multiplication in Python uses `*`. A new variable is just a name, `=`, and the calculation on the right.",
+              "Try a line like `yearly_total = hours_per_week * weeks_per_year`, then a second line that prints `yearly_total`.",
+              "yearly_total = hours_per_week * weeks_per_year\nprint(yearly_total)"
+            ]
+          }
+        },
+        {
+          "id": "variables-expressions-editor",
+          "type": "code-editor",
+          "content": {
+            "title": "Build the yearly-hours program",
+            "description": "Use the two variables to calculate the yearly total, then print it.",
+            "example": "hours_per_week = 40",
+            "devyIntro": "Two variables are already set up for you. Calculate the yearly total from them, then print it. Run it whenever you like — I’ll tell you how it’s going.",
+            "filename": "yearly_hours.py",
+            "starterCode": "hours_per_week = 40\nweeks_per_year = 52\n\n# Calculate and print the yearly total",
+            "output": "2080",
+            "tasks": [
+              {
+                "title": "Calculate the yearly total",
+                "description": "Multiply `hours_per_week` by `weeks_per_year` and save the result in a new variable.",
+                "check": {
+                  "pattern": "^[ \\t]*[A-Za-z_]\\w*[ \\t]*=[ \\t]*(hours_per_week[ \\t]*\\*[ \\t]*weeks_per_year|weeks_per_year[ \\t]*\\*[ \\t]*hours_per_week)[ \\t]*$"
+                },
+                "nudge": "The numbers are ready — now make a new variable that multiplies `hours_per_week` by `weeks_per_year`."
+              },
+              {
+                "title": "Print the result",
+                "description": "Use `print()` with the variable you created.",
+                "check": {
+                  "output": "2080"
+                },
+                "nudge": "Your calculation is there, but nothing shows it yet. Pass your new variable to `print()`."
+              }
+            ],
+            "hints": [
+              "Multiplication in Python uses `*`. A new variable is just a name, `=`, and the calculation on the right.",
+              "Try a line like `yearly_total = hours_per_week * weeks_per_year`, then a second line that prints `yearly_total`.",
+              "yearly_total = hours_per_week * weeks_per_year\nprint(yearly_total)"
+            ]
+          }
+        }
+      ],
+      "transition": {
+        "eyebrow": "Concept complete",
+        "title": "Nice — Variables and expressions is done!",
+        "body": "Next, a quick style detour: naming things well and leaving a note for later."
+      }
+    },
+    {
+      "id": "naming-comments",
+      "title": "Naming and comments",
+      "activities": [
+        {
+          "id": "naming-comments-learn",
+          "type": "article",
+          "content": {
+            "title": "Naming and comments",
+            "intro": "Code is read far more often than it’s written — a clear name and a short comment save the next reader real time.",
+            "sections": [
+              {
+                "title": "Names use snake case",
+                "body": [
+                  "When a name needs more than one word, join them with underscores — ",
+                  {
+                    "code": "home_city"
+                  },
+                  ", not ",
+                  {
+                    "code": "homeCity"
+                  },
+                  ". Python programmers call this ",
+                  {
+                    "strong": "snake case"
+                  },
+                  "."
+                ]
+              },
+              {
+                "title": "Comments explain the why",
+                "body": [
+                  "A line starting with ",
+                  {
+                    "code": "#"
+                  },
+                  " is a comment — Python skips it completely when running the program. Comments don’t change what the code does; they tell the next reader ",
+                  {
+                    "strong": "why"
+                  },
+                  " it does it."
+                ]
+              }
+            ],
+            "example": {
+              "title": "A commented calculation",
+              "body": "The comments explain the plan; the code carries it out.",
+              "code": "# Weekly learning hours\nhours_per_week = 6\n\n# Multiply by the weeks in a year\nyearly_hours = hours_per_week * 52"
+            },
+            "next": {
+              "title": "Check what you know",
+              "body": "One question on naming before you put everything together."
+            }
+          }
+        },
+        {
+          "id": "naming-comments-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check naming",
+            "intro": "One question on how Python names are written.",
+            "questions": [
+              {
+                "id": "q4",
+                "type": "multiple-choice",
+                "prompt": "How does snake case format multiple words when creating a variable name?",
+                "options": [
+                  [
+                    {
+                      "strong": "Using capital letters"
+                    },
+                    " — ",
+                    {
+                      "code": "myVariableName"
+                    }
+                  ],
+                  [
+                    {
+                      "strong": "Using underscores"
+                    },
+                    " — ",
+                    {
+                      "code": "my_variable_name"
+                    }
+                  ]
+                ],
+                "correctIndex": 1,
+                "explanation": "Snake case joins words with underscores and keeps every letter lowercase."
+              }
+            ]
+          }
+        }
+      ],
+      "transition": {
+        "eyebrow": "Concept complete",
+        "title": "Naming and comments — done!",
+        "body": "Last stop: put everything from this lesson into one finished program."
+      }
+    },
+    {
+      "id": "putting-it-together",
+      "title": "Putting it together",
+      "activities": [
+        {
+          "id": "putting-it-together-learn",
+          "type": "article",
+          "content": {
+            "title": "Putting it together",
+            "intro": "Every program you’ve seen so far follows the same shape — time to prove you can finish one yourself.",
+            "sections": [
+              {
+                "title": "The pattern so far",
+                "body": [
+                  "Store a value, calculate something from it, then show the result — the same three-line shape you’ve now seen with ",
+                  {
+                    "code": "hours_per_week"
+                  },
+                  " and ",
+                  {
+                    "code": "yearly_hours"
+                  },
+                  ". A comment or two and a clear, snake_case name make that shape easy for someone else — or future you — to follow."
+                ]
+              }
+            ],
+            "next": {
+              "title": "Finish the program",
+              "body": "Use everything from this lesson to complete a real program."
+            }
+          }
+        },
+        {
+          "id": "putting-it-together-check",
+          "type": "quiz",
+          "content": {
+            "title": "Finish the program",
+            "intro": "Use the variables and values from this lesson to complete the calculation.",
+            "questions": [
+              {
+                "id": "q6",
+                "type": "code-fill",
+                "filename": "warmup.py",
+                "prompt": "Finish the program so it prints the yearly total.",
+                "segments": [
+                  "# Weekly learning hours\nhours_per_week = 6\n\n# Multiply by the weeks in a year\nyearly_hours = ",
+                  " * 52\n\n# Show the result\nprint(",
+                  ")"
+                ],
+                "answers": [
+                  "hours_per_week",
+                  "yearly_hours"
+                ],
+                "options": [
+                  "hours_per_week",
+                  "yearly_hours"
+                ],
+                "explanation": "The expression reads hours_per_week, multiplies it by 52, and stores it in yearly_hours — which is what print then shows."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "Lesson complete!",
+    "body": "You did it. You built something real with Python."
+  }
+}

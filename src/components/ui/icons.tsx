@@ -22,7 +22,7 @@ export const HomeIcon = (props: IconProps) => (
   </Icon>
 );
 
-export const CompassIcon = (props: IconProps) => (
+export const CompassIcon =(props: IconProps) => (
   <Icon {...props}>
     <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
     <path d="M15.3 8.7 12.8 13 8.5 15.3 11 11l4.3-2.3Z" fill="currentColor" />
@@ -161,3 +161,10 @@ export const ChevronRightIcon = (props: IconProps) => (
     <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
   </Icon>
 );
+
+export const GemIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M6 3h12l3 5-9 13L3 8l3-5Z" fill="currentColor" />
+  </Icon>
+);
+

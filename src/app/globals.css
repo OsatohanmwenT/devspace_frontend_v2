@@ -54,6 +54,19 @@
   --animate-orbit-travel: orbit-travel 18s ease-in-out infinite;
   --animate-msg-in: msg-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-composer-in: composer-in 320ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-lesson-glow: lesson-glow 1.5s ease-out both;
+  --animate-choice-in: choice-in 140ms ease-out both;
+  --animate-answer-correct: answer-correct 260ms cubic-bezier(0.22, 1.4, 0.36, 1) both;
+  --animate-answer-wrong: answer-wrong 260ms ease-out both;
+  --animate-segment-in: segment-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-options-nudge: options-nudge 3.6s 500ms ease-in-out infinite;
+  --animate-speech-in: speech-in 320ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+  --animate-speech-text-in: speech-text-in 180ms ease-out both;
+  --animate-loader-beam: loader-beam 1500ms 300ms ease-out forwards;
+  --animate-card-float: card-float 3.2s ease-in-out var(--idle-delay, 1.8s) infinite;
+  --animate-sheen: sheen 4.5s ease-in-out var(--idle-delay, 1.8s) infinite;
+  --animate-bolt-charge: bolt-charge 1.8s ease-in-out infinite;
+  --animate-loader-devy: loader-devy 1200ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
 
   @keyframes devy-celebrate-in {
     0% { transform: scale(0.72) rotate(-8deg); opacity: 0; }
@@ -148,5 +161,73 @@
 
   @keyframes composer-in {
     from { opacity: 0; transform: translateY(6px); }
+  }
+
+  @keyframes lesson-glow {
+    0% { opacity: 0; }
+    14% { opacity: 1; }
+    62% { opacity: 0.7; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes choice-in {
+    from { transform: scale(0.985); }
+  }
+
+  @keyframes answer-correct {
+    0% { transform: scale(0.98); }
+    58% { transform: scale(1.012); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes answer-wrong {
+    0%, 100% { transform: translateX(0); }
+    28% { transform: translateX(-3px); }
+    56% { transform: translateX(3px); }
+    76% { transform: translateX(-1px); }
+  }
+
+  @keyframes segment-in {
+    from { transform: scaleX(0); }
+  }
+
+  @keyframes options-nudge {
+    0%, 30%, 100% { transform: rotate(0deg); box-shadow: 0 0 0 0 rgba(102, 153, 236, 0); }
+    8% { transform: rotate(-10deg); box-shadow: 0 0 0 4px rgba(102, 153, 236, 0.16); }
+    16% { transform: rotate(10deg); box-shadow: 0 0 0 7px rgba(102, 153, 236, 0.04); }
+    24% { transform: rotate(-10deg); box-shadow: 0 0 0 3px rgba(102, 153, 236, 0.1); }
+  }
+
+  @keyframes speech-in {
+    0% { transform: translateX(-16px) translateY(4px) scale(0.9); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  @keyframes speech-text-in {
+    from { opacity: 0; transform: translateY(4px); }
+  }
+
+  @keyframes loader-beam {
+    to { opacity: 0; }
+  }
+
+  @keyframes card-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -5px; }
+  }
+
+  @keyframes sheen {
+    0% { translate: -120% 0; }
+    30%, 100% { translate: 120% 0; }
+  }
+
+  @keyframes bolt-charge {
+    50% { transform: scale(1.04) rotate(-2deg); filter: brightness(1.12) drop-shadow(0 0 14px rgb(255 214 0 / 0.55)); }
+  }
+
+  @keyframes loader-devy {
+    from { opacity: 0; transform: translateY(-160px) scale(0.82); }
+    70% { opacity: 1; transform: translateY(8px) scale(1.04); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
 }

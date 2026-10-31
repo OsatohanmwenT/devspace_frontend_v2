@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useToast } from "~/providers/toast-provider";
 import { startPath } from "../api/paths-api";
@@ -14,6 +15,7 @@ const FLY_OPEN_MS = 2400;
 // path it becomes it, and a toast offers an Undo in case the learner was only
 // trying it out.
 export function useLessonLaunch(pathId: string, pathTitle: string, initialActivePathId: string, currentLessonId: string | null) {
+  const router = useRouter();
   const toast = useToast();
   const reducedMotion = useReducedMotion();
   const [activePathId, setActivePathId] = useState(initialActivePathId);
@@ -25,13 +27,8 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
-  const open = () => {
-    // The lesson screen arrives with the lessons phase.
-    toast("Lessons are coming soon");
-    setFlying(false);
-    setOrigin(null);
-    launching.current = false;
-  };
+  // The spotlight stays up until the lesson's own loader takes over.
+  const open = (lessonId: string) => router.push(`/lesson/${lessonId}`);
 
   const start = async (lessonId: string) => {
     if (launching.current) return;
@@ -58,11 +55,11 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
     const tile = document.querySelector("[data-current-lesson]")?.getBoundingClientRect();
     const mascot = document.querySelector("[data-devy-start]")?.getBoundingClientRect();
     const onScreen = tile && tile.bottom > 0 && tile.top < window.innerHeight;
-    if (reducedMotion || !onScreen || !mascot || lessonId !== currentLessonId) return open();
+    if (reducedMotion || !onScreen || !mascot || lessonId !== currentLessonId) return open(lessonId);
 
     setOrigin({ x: mascot.left + mascot.width / 2, y: mascot.top + mascot.height / 2 });
     setFlying(true);
-    timer.current = window.setTimeout(open, FLY_OPEN_MS);
+    timer.current = window.setTimeout(() => open(lessonId), FLY_OPEN_MS);
   };
 
   return { activePathId, startedIds, flying, origin, start };

@@ -8,6 +8,7 @@ const ICONS = {
   "daily-tasks-notebook": "icons/daily-tasks-notebook.webp",
   "shield-keyhole": "icons/shield-keyhole.webp",
   "treasure-chest": "icons/treasure-chest.webp",
+  "devy-treasure-chest": "icons/devy-treasure-chest.webp",
   "lightning-bolt": "icons/lightning-bolt.webp",
   "coin-stack": "icons/coin-stack.webp",
   "gold-coin": "icons/gold-coin.webp",

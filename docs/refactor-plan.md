@@ -2,7 +2,7 @@
 
 Source of truth for the migration from the ideation codebase (`../devspace-theme`, Vite + JSX, no router) into this Next.js 16 / TypeScript / Tailwind 4 project, organised by feature.
 
-> Status: **Phases 0–3 built.** Next: Phase 4 (Lesson).
+> Status: **Phases 0–4 built (lesson extras deferred).** Next: Phase 5 (Practice).
 > Decided so far: Tailwind only · no unneeded code · Rive + Lottie from a CDN (Tigris, wired later; local `public/` until then) · `dark:` variants · typed mock data behind an API layer (backend to come).
 
 ---
@@ -335,6 +335,8 @@ features/paths/
 **Fix on the way in:** a single model `Path → Region → Lesson` (replaces the disconnected `currentPath.cards` vs `detailLevels`). Lessons are owned by regions, so selecting a region determines the tiles. Delete `PathRoadmap`.
 
 ### Phase 4 — Lesson  `/lesson/[lessonId]` (largest phase, three sub-phases)
+
+> **Status: 4a, 4b and 4c built; Devy chat panel, notes, narration, podcast and video deferred.** Content fixtures are generated from the Teams lessons into `mocks/lessons/*.json` (narration lines and video left out for now); `features/lesson/lib` has the flow builder, answer state, Python runner (`mini-python.ts`), exercise checker and highlighter. Screens: article, multiple-choice / fill / code-fill questions with one retry, concept transitions with the curtain, skill check, guided and full code labs (resizable, Devy coach with hints), exit dialog, cheatsheet from the lesson menu, loader. Completion calls `completeLesson` once on reaching the last screen and shows the results, daily-quest and streak screens from what it returns; a half-done lesson resumes from `localStorage`. Starting a lesson on the path page now navigates here. **Not built:** the Devy chat panel and its "Earn it first" rule (needs a model), notes drawer, narration / podcast, video player, SQL table-select questions and the practice session (Phase 5), the roadmap-complete screen and the league-qualified celebration. Only 9 lessons have content; any other lesson id shows "isn't written yet".
 
 Old: `components/lesson/*` (22 components + 12 logic files, ~280 KB).
 
