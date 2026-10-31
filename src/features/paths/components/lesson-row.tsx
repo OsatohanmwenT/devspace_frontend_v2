@@ -96,8 +96,9 @@ export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }
   return (
     <div
       data-current-lesson={current || undefined}
-      // Above the launch scene while Devy is in flight, so he crosses the sticky headers and the lesson bar.
-      className={`relative flex min-h-[126px] w-full ${flying ? "z-[101]" : "z-1"} ${ALIGNMENT[index % 3]}`}
+      // While Devy is in flight the row stops being its own layer, so the launch scene covers the tile's
+      // label and glow and only the flying canvas (see DevyFlyer) stays above it.
+      className={`relative flex min-h-[126px] w-full ${flying ? "" : "z-1"} ${ALIGNMENT[index % 3]}`}
     >
       {current ? (
         <div className="flex min-h-[126px] w-[min(100%,278px)] items-center px-2">

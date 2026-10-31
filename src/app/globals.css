@@ -66,7 +66,7 @@
   --animate-card-float: card-float 3.2s ease-in-out var(--idle-delay, 1.8s) infinite;
   --animate-sheen: sheen 4.5s ease-in-out var(--idle-delay, 1.8s) infinite;
   --animate-bolt-charge: bolt-charge 1.8s ease-in-out infinite;
-  --animate-loader-devy: loader-devy 1200ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-loader-devy: loader-devy 1300ms cubic-bezier(0.16, 0.7, 0.3, 1) both;
 
   @keyframes devy-celebrate-in {
     0% { transform: scale(0.72) rotate(-8deg); opacity: 0; }
@@ -225,9 +225,11 @@
     50% { transform: scale(1.04) rotate(-2deg); filter: brightness(1.12) drop-shadow(0 0 14px rgb(255 214 0 / 0.55)); }
   }
 
+  /* Devy's flight continues from the path page: he arrives from above the
+     screen, fast then slowing, and settles into the scene. */
   @keyframes loader-devy {
-    from { opacity: 0; transform: translateY(-160px) scale(0.82); }
-    70% { opacity: 1; transform: translateY(8px) scale(1.04); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from { transform: translateY(-100vh) scale(1.45) rotate(-9deg); }
+    72% { transform: translateY(10px) scale(0.98) rotate(2deg); }
+    to { transform: translateY(0) scale(1) rotate(0deg); }
   }
 }

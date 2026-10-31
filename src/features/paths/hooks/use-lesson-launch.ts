@@ -9,8 +9,9 @@ import { startPath } from "../api/paths-api";
 // Devy's trip from the roadmap to the lesson, in order:
 // - liftoff: the rig crouches on the launchpad and takes off in place.
 // - away: Devy streaks off the top of the screen while the lesson scene rises.
-// - arrived: Devy has flown into the scene and hovers there before it opens.
-export type LaunchPhase = "liftoff" | "away" | "arrived";
+// Once he is out of view the lesson opens, and its own loading screen brings
+// him down into the same scene.
+export type LaunchPhase = "liftoff" | "away";
 
 export type LaunchBox = { left: number; top: number; width: number; height: number };
 
@@ -20,8 +21,8 @@ export type LaunchFlight = {
   box: LaunchBox;
   // The rig reports it has left the pad.
   onAirborne: () => void;
-  // The flight into the lesson scene has finished.
-  onArrived: () => void;
+  // Devy has flown out of view.
+  onGone: () => void;
 };
 
 // The rig's own take-off starts the flight: it reports "airborne" as Devy
@@ -31,7 +32,8 @@ export type LaunchFlight = {
 // so the learner is not stuck.
 const CLEAR_OF_PAD_MS = 900;
 const AIRBORNE_FALLBACK_MS = 4000;
-const ARRIVED_HOLD_MS = 500;
+// Lets the rising scene finish covering the roadmap before the lesson opens.
+const SCENE_SETTLE_MS = 200;
 
 // Starting a lesson is the one way to choose a path: if it is not the active
 // path it becomes it, and a toast offers an Undo in case the learner was only
@@ -46,15 +48,33 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
   const timer = useRef<number | undefined>(undefined);
   const launching = useRef(false);
   const airborne = useRef(false);
+  const lesson = useRef("");
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
-  // The spotlight stays up until the lesson's own loader takes over.
+  // The scene stays up until the lesson's own loading screen takes over.
   const open = (lessonId: string) => router.push(`/lesson/${lessonId}`);
+
+  const advance = (from: LaunchPhase, to: LaunchPhase) =>
+    setFlightState((state) => (state?.phase === from ? { ...state, phase: to } : state));
+
+  const leave = () => advance("liftoff", "away");
+
+  const onAirborne = () => {
+    if (airborne.current) return;
+    airborne.current = true;
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(leave, CLEAR_OF_PAD_MS);
+  };
+
+  const onGone = () => {
+    timer.current = window.setTimeout(() => open(lesson.current), SCENE_SETTLE_MS);
+  };
 
   const start = async (lessonId: string) => {
     if (launching.current) return;
     launching.current = true;
+    lesson.current = lessonId;
     setStartedIds((ids) => (ids.includes(lessonId) ? ids : [...ids, lessonId]));
 
     if (pathId !== activePathId) {
@@ -79,12 +99,11 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
     const onScreen = tile && tile.bottom > 0 && tile.top < window.innerHeight;
     if (reducedMotion || !onScreen || !mascot || lessonId !== currentLessonId) return open(lessonId);
 
-    setOrigin({ x: mascot.left + mascot.width / 2, y: mascot.top + mascot.height / 2 });
-    setFlying(true);
-    timer.current = window.setTimeout(() => open(lessonId), FLY_OPEN_MS);
+    setFlightState({ phase: "liftoff", box: { left: mascot.left, top: mascot.top, width: mascot.width, height: mascot.height } });
+    timer.current = window.setTimeout(leave, AIRBORNE_FALLBACK_MS);
   };
 
-  const flight: LaunchFlight | null = flightState && { ...flightState, onAirborne, onArrived };
+  const flight: LaunchFlight | null = flightState && { ...flightState, onAirborne, onGone };
 
   return { activePathId, startedIds, flight, start };
 }
