@@ -1,17 +1,18 @@
 import type { DerivedRegion } from "../api/paths-api";
+import type { LaunchFlight } from "../hooks/use-lesson-launch";
 import { LessonRow } from "./lesson-row";
 
 type RegionSectionProps = {
   region: DerivedRegion;
   pinned: boolean;
   selectedLessonId: string;
-  flying: boolean;
+  flight: LaunchFlight | null;
   onSelect: (lessonId: string) => void;
   onStart: (lessonId: string) => void;
 };
 
 // One stretch of the route: a sticky header, then its lessons down a centre line.
-export function RegionSection({ region, pinned, selectedLessonId, flying, onSelect, onStart }: RegionSectionProps) {
+export function RegionSection({ region, pinned, selectedLessonId, flight, onSelect, onStart }: RegionSectionProps) {
   return (
     <section className="relative grid min-w-0 grid-cols-[minmax(0,1fr)]" aria-labelledby={`${region.id}-title`}>
       <header
@@ -34,7 +35,7 @@ export function RegionSection({ region, pinned, selectedLessonId, flying, onSele
             lesson={lesson}
             index={index}
             selected={lesson.id === selectedLessonId}
-            flying={lesson.derivedState === "current" && flying}
+            flight={lesson.derivedState === "current" ? flight : null}
             onSelect={() => onSelect(lesson.id)}
             onStart={() => onStart(lesson.id)}
           />

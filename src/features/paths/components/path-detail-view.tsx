@@ -16,7 +16,7 @@ import lessonAudio from "../data/lesson-audio.json";
 import { CheatsheetDrawer } from "./cheatsheet-drawer";
 import { FrameworkCheckpoint } from "./framework-checkpoint";
 import { GuidebookView } from "./guidebook-view";
-import { LaunchSpotlight } from "./launch-spotlight";
+import { LaunchScene } from "./launch-scene";
 import { LessonBar } from "./lesson-bar";
 import { LessonAudioDialog } from "./lesson-audio-dialog";
 import { LessonPreviewDialog } from "./lesson-preview-dialog";
@@ -89,7 +89,7 @@ function PathDetail({ data }: { data: PathDetailData }) {
               region={region}
               pinned={pinnedId === region.id}
               selectedLessonId={selected.id}
-              flying={launch.flying}
+              flight={launch.flight}
               onSelect={setSelectedId}
               onStart={(lessonId) => {
                 setSelectedId(lessonId);
@@ -100,7 +100,7 @@ function PathDetail({ data }: { data: PathDetailData }) {
           <LessonBar
             lesson={selected}
             started={launch.startedIds.includes(selected.id)}
-            flying={launch.flying}
+            flying={launch.flight !== null}
             onStart={() => launch.start(selected.id)}
             onDetails={() => setPreviewing(true)}
             onListen={audioLesson ? () => setListening(true) : undefined}
@@ -128,7 +128,7 @@ function PathDetail({ data }: { data: PathDetailData }) {
         />
       )}
       {listening && audioLesson && <LessonAudioDialog lesson={audioLesson} onClose={() => setListening(false)} />}
-      <AnimatePresence>{launch.origin && <LaunchSpotlight key="launch-spotlight" origin={launch.origin} />}</AnimatePresence>
+      <AnimatePresence>{launch.flight && launch.flight.phase !== "liftoff" && <LaunchScene key="launch-scene" />}</AnimatePresence>
     </main>
   );
 }
