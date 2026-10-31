@@ -94,8 +94,8 @@ export function HomeCarousel({ data, actions, promptBar, composing, stage }: Hom
       : actions.continueLesson;
 
   return (
-    <div className="h-[calc(100vh-64px)] overflow-hidden px-[22px] py-5 max-tab:h-[calc(100dvh-64px)] max-tab:px-[18px] max-tab:py-4">
-      <div className="relative mx-auto flex h-full w-full max-w-[1100px] flex-col justify-center max-tab:justify-start max-tab:pt-14">
+    <div className="h-[calc(100vh-64px)] overflow-hidden px-[22px] py-5 max-tab:h-[calc(100dvh-64px)] max-tab:px-[18px] max-tab:py-3">
+      <div className="relative mx-auto flex h-full w-full max-w-[1100px] flex-col justify-center max-tab:justify-start max-tab:pt-12">
         <div className="absolute inset-x-0 top-0 z-12 flex justify-center">
           <DailyQuests
             quests={data.quests}
@@ -155,7 +155,7 @@ export function HomeCarousel({ data, actions, promptBar, composing, stage }: Hom
 
           {/* Phones only: Devy peeks over the top of the stack. */}
           {isMobile && (
-            <div className="pointer-events-none absolute top-14 left-1/2 z-0 -translate-x-1/2">
+            <div className="pointer-events-none absolute top-11 left-1/2 z-0 -translate-x-1/2">
               <DevyLottie key={CARDS[activeIndex].id} clip={CARDS[activeIndex].devy} className="size-20" />
             </div>
           )}
@@ -218,7 +218,7 @@ export function HomeCarousel({ data, actions, promptBar, composing, stage }: Hom
         {!composing && <ScenePager cards={CARDS} activeIndex={activeIndex} onSelect={setActiveIndex} />}
 
         <section
-          className="relative mx-auto mt-9 flex w-full max-w-[1040px] items-center justify-center py-3 max-tab:absolute max-tab:bottom-4 max-tab:left-1/2 max-tab:z-10 max-tab:mt-0 max-tab:-translate-x-1/2 max-tab:pt-3 max-tab:pb-4"
+          className="relative mx-auto mt-9 flex w-full max-w-[1040px] items-center justify-center py-3 max-tab:absolute max-tab:bottom-3 max-tab:left-1/2 max-tab:z-10 max-tab:mt-0 max-tab:-translate-x-1/2 max-tab:pt-3 max-tab:pb-0"
           aria-label="Quick actions"
         >
           {promptBar(CARDS[activeIndex].accent)}

@@ -1,0 +1,82 @@
+{
+  "id": "digital-marketing-basics",
+  "title": "How digital marketing works",
+  "role": "digital_marketer",
+  "concepts": [
+    {
+      "id": "digital-marketing-foundations",
+      "title": "Digital marketing foundations",
+      "activities": [
+        {
+          "id": "digital-marketing-foundations-learn",
+          "type": "article",
+          "content": {
+            "title": "Connecting useful products with the right people",
+            "intro": "Digital marketing uses online channels to help a specific audience discover, understand, and choose a product or service.",
+            "sections": [
+              {
+                "title": "Start with the audience and goal",
+                "body": [
+                  "Good marketing begins by deciding ",
+                  {
+                    "strong": "who"
+                  },
+                  " you want to reach and what useful action you want them to take. A clear goal might be trial signups, event registrations, or completed purchases."
+                ]
+              },
+              {
+                "title": "Use evidence to improve",
+                "body": "Marketers choose a message and channel, publish content, then measure what happened. Results such as clicks, signups, and cost help them decide what to improve next."
+              }
+            ],
+            "next": {
+              "title": "Check the marketing foundations",
+              "body": "Choose the audience focused and measurable response in two short situations."
+            }
+          }
+        },
+        {
+          "id": "digital-marketing-foundations-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check digital marketing foundations",
+            "intro": "Use the audience, goal, and evidence behind each choice.",
+            "questions": [
+              {
+                "id": "marketing-q1",
+                "type": "multiple-choice",
+                "prompt": "Which is the clearest campaign goal?",
+                "options": [
+                  "Become popular online",
+                  "Generate 100 free trial signups this month",
+                  "Post more often",
+                  "Make everyone like the brand"
+                ],
+                "correctIndex": 1,
+                "explanation": "A useful goal names a measurable action, a target, and a time period."
+              },
+              {
+                "id": "marketing-q2",
+                "type": "multiple-choice",
+                "prompt": "Why should a marketer review clicks and signups after a campaign?",
+                "options": [
+                  "To make the report look longer",
+                  "To replace the campaign goal",
+                  "To understand what worked and improve the next decision",
+                  "To avoid learning about the audience"
+                ],
+                "correctIndex": 2,
+                "explanation": "Campaign evidence helps a marketer keep effective choices and change weaker ones."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand digital marketing!",
+    "body": "You learned how audience, goals, messages, channels, and evidence work together."
+  }
+}

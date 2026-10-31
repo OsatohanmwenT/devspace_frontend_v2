@@ -1,6 +1,7 @@
 import type { ProgressSummary } from "~/types/progress";
 import type { Profile } from "~/types/profile";
-import { readDb } from "./mock-db";
+import { STREAK_MILESTONES } from "~/config/streak-milestones";
+import { readDb, writeDb } from "./mock-db";
 import { getPath } from "./paths/get-path";
 
 type Completed = Record<string, { completedAt: string }>;
@@ -97,4 +98,41 @@ export function getMockProgressSummary(
     earnedStreakMilestones: progress.earnedStreakMilestones,
     lastStreakProtection: progress.lastStreakProtection,
   };
+}
+
+// What a first, unassisted lesson completion pays. The backend decides awards;
+// these are placeholders for its rules.
+const LESSON_XP = 25;
+const LESSON_COINS = 5;
+const STREAK_DATES_KEPT = 30;
+
+export type LessonCompletion = { xpEarned: number; before: MockProgress; after: MockProgress };
+
+// Records a finished lesson: a first completion earns XP and season coins,
+// a replay earns neither, and either keeps the day's streak going.
+export function recordMockLessonCompletion(lessonId: string, today = new Date().toDateString()): LessonCompletion {
+  const before = getMockProgress(today);
+  const firstCompletion = !before.completedLessons[lessonId];
+  const xpEarned = firstCompletion ? LESSON_XP : 0;
+  const isNewDay = before.lastActiveDate !== today;
+  const streakDays = isNewDay ? before.streakDays + 1 : before.streakDays;
+  const reached = STREAK_MILESTONES.filter((milestone) => milestone.days <= streakDays && !before.earnedStreakMilestones.includes(milestone.days));
+
+  const after: MockProgress = {
+    ...before,
+    xp: before.xp + xpEarned,
+    dailyXp: before.dailyXp + xpEarned,
+    dailyXpDate: today,
+    seasonCoins: before.seasonCoins + (firstCompletion ? LESSON_COINS : 0),
+    streakDays,
+    lastActiveDate: today,
+    longestStreak: Math.max(before.longestStreak, streakDays),
+    earnedStreakMilestones: [...before.earnedStreakMilestones, ...reached.map((milestone) => milestone.days)],
+    streakRestoreCredits: before.streakRestoreCredits + reached.reduce((sum, milestone) => sum + milestone.restores, 0),
+    streakActivityDates: before.streakActivityDates.includes(today) ? before.streakActivityDates : [...before.streakActivityDates, today].slice(-STREAK_DATES_KEPT),
+    completedLessons: { ...before.completedLessons, [lessonId]: { completedAt: today } },
+  };
+
+  writeDb({ ...readDb(), progress: after });
+  return { xpEarned, before, after };
 }

@@ -1,0 +1,63 @@
+{
+  "id": "graphic-design-basics",
+  "title": "How graphic design works",
+  "role": "graphic_designer",
+  "concepts": [
+    {
+      "id": "graphic-design-basics-foundations",
+      "title": "Graphic design foundations",
+      "activities": [
+        {
+          "id": "graphic-design-basics-learn",
+          "type": "article",
+          "content": {
+            "title": "Graphic design foundations",
+            "intro": "Graphic design organises type, image, colour, and space so a message is clear, useful, and memorable.",
+            "sections": [
+              {
+                "title": "Hierarchy guides attention",
+                "body": "Scale, weight, contrast, and position tell people what to notice first, what supports it, and what action or detail comes next."
+              },
+              {
+                "title": "Composition supports the message",
+                "body": "Alignment, spacing, and grouping create relationships between elements. Every visual choice should help the intended audience understand the message."
+              }
+            ],
+            "next": {
+              "title": "Check graphic design foundations",
+              "body": "Choose the response that best applies the foundation you just learned."
+            }
+          }
+        },
+        {
+          "id": "graphic-design-basics-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check graphic design foundations",
+            "intro": "Choose the clearest next step.",
+            "questions": [
+              {
+                "id": "graphic-design-basics-q1",
+                "type": "multiple-choice",
+                "prompt": "A poster has five messages competing at the same size and weight. What should the designer do first?",
+                "options": [
+                  "Add more colours",
+                  "Choose the primary message and create a clear hierarchy",
+                  "Make every message bold",
+                  "Remove all spacing"
+                ],
+                "correctIndex": 1,
+                "explanation": "A clear primary message gives the design an intentional reading order."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand graphic design foundations!",
+    "body": "You learned how hierarchy, composition, type, and colour guide attention and communicate meaning."
+  }
+}

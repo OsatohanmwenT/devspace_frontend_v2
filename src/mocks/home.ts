@@ -1,6 +1,6 @@
 import { getRoleLabelByValue } from "~/features/onboarding";
 import { STREAK_MILESTONES } from "~/config/streak-milestones";
-import type { Badge, HomeCourse, HomeData, HomeUpdate, Quest } from "~/types/home";
+import type { Badge, HomeCourse, HomeData, HomeUpdate } from "~/types/home";
 import type { Profile } from "~/types/profile";
 import { getLeague, getPromoteCount } from "~/config/leagues";
 import { getStandings } from "./leaderboard/league-sim";
@@ -9,6 +9,7 @@ import { formatSeasonTimeLeft } from "./leagues";
 import { derivePathProgress, type DerivedPath } from "./paths/derive-path-progress";
 import { getPath } from "./paths/get-path";
 import { dailyXpGoal, getMockProgress, type MockProgress } from "./progress";
+import { buildQuests } from "./quests";
 
 const doneOn = (record: MockProgress["completedLessons"], today: string) =>
   Object.values(record).some((entry) => entry.completedAt === today);
@@ -110,11 +111,7 @@ export function buildMockHome(profile: Profile, today = new Date().toDateString(
   const lessonDoneToday = doneOn(progress.completedLessons, today);
   const practiceDoneToday = doneOn(progress.completedSessions, today);
 
-  const quests: Quest[] = [
-    { id: "xp" as const, label: `Earn ${xpGoal} XP`, current: Math.min(progress.dailyXp, xpGoal), target: xpGoal },
-    { id: "lesson" as const, label: "Finish a lesson", current: lessonDoneToday ? 1 : 0, target: 1 },
-    { id: "practice" as const, label: "Warm up or practice", current: practiceDoneToday ? 1 : 0, target: 1 },
-  ].map((quest) => ({ ...quest, done: quest.current >= quest.target }));
+  const quests = buildQuests(progress, xpGoal, today);
 
   const timestamp = Date.now();
   const league = getLeague(0);

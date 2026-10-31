@@ -1,0 +1,82 @@
+{
+  "id": "technical-teams-basics",
+  "title": "How technical teams work",
+  "role": "technical_project_coordinator",
+  "concepts": [
+    {
+      "id": "technical-team-coordination",
+      "title": "Technical team coordination",
+      "activities": [
+        {
+          "id": "technical-team-coordination-learn",
+          "type": "article",
+          "content": {
+            "title": "Helping technical teams move together",
+            "intro": "A technical project coordinator helps people understand what is happening, what comes next, and what could slow the work down.",
+            "sections": [
+              {
+                "title": "Coordination creates clarity",
+                "body": [
+                  "Developers, designers, marketers, and stakeholders often depend on one another. A coordinator keeps the shared goal, current tasks, owners, and deadlines ",
+                  {
+                    "strong": "visible"
+                  },
+                  " so nobody has to guess what is happening."
+                ]
+              },
+              {
+                "title": "The role removes obstacles",
+                "body": "A coordinator does not need to write the code. They notice missing decisions, unclear ownership, and blocked work, then help the right people resolve them."
+              }
+            ],
+            "next": {
+              "title": "Check the coordinator mindset",
+              "body": "Use this idea to choose the clearest response to two everyday team situations."
+            }
+          }
+        },
+        {
+          "id": "technical-team-coordination-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check technical team coordination",
+            "intro": "Choose the response that makes work clearer and easier to move forward.",
+            "questions": [
+              {
+                "id": "coordination-q1",
+                "type": "multiple-choice",
+                "prompt": "A developer cannot start because a design has not been approved. What should the coordinator do first?",
+                "options": [
+                  "Make the dependency visible and ask the design owner for a decision",
+                  "Tell the developer to build something else without updating the plan",
+                  "Wait until the next weekly meeting",
+                  "Approve the design personally"
+                ],
+                "correctIndex": 0,
+                "explanation": "The coordinator makes the blocked dependency visible and brings the right owner into the decision."
+              },
+              {
+                "id": "coordination-q2",
+                "type": "multiple-choice",
+                "prompt": "Which project update is most useful to a team?",
+                "options": [
+                  "Everything is fine",
+                  "Work is continuing as normal",
+                  "Invite testing is blocked until Sam approves the design by Thursday",
+                  "The team has many tasks"
+                ],
+                "correctIndex": 2,
+                "explanation": "A useful update names the work, its current state, the dependency, the owner, and the needed timing."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand the coordinator’s role!",
+    "body": "You learned how coordinators create clarity, expose dependencies, and help technical teams keep moving."
+  }
+}

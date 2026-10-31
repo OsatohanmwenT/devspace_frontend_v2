@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useToast } from "~/providers/toast-provider";
 import { startPath } from "../api/paths-api";
@@ -36,6 +37,7 @@ const ARRIVED_HOLD_MS = 500;
 // path it becomes it, and a toast offers an Undo in case the learner was only
 // trying it out.
 export function useLessonLaunch(pathId: string, pathTitle: string, initialActivePathId: string, currentLessonId: string | null) {
+  const router = useRouter();
   const toast = useToast();
   const reducedMotion = useReducedMotion();
   const [activePathId, setActivePathId] = useState(initialActivePathId);
@@ -47,31 +49,8 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
-  const open = () => {
-    // The lesson screen arrives with the lessons phase.
-    window.clearTimeout(timer.current);
-    toast("Lessons are coming soon");
-    setFlightState(null);
-    launching.current = false;
-    airborne.current = false;
-  };
-
-  const advance = (from: LaunchPhase, to: LaunchPhase) =>
-    setFlightState((state) => (state?.phase === from ? { ...state, phase: to } : state));
-
-  const leave = () => advance("liftoff", "away");
-
-  const onAirborne = () => {
-    if (airborne.current) return;
-    airborne.current = true;
-    window.clearTimeout(timer.current);
-    timer.current = window.setTimeout(leave, CLEAR_OF_PAD_MS);
-  };
-
-  const onArrived = () => {
-    advance("away", "arrived");
-    timer.current = window.setTimeout(open, ARRIVED_HOLD_MS);
-  };
+  // The spotlight stays up until the lesson's own loader takes over.
+  const open = (lessonId: string) => router.push(`/lesson/${lessonId}`);
 
   const start = async (lessonId: string) => {
     if (launching.current) return;
@@ -98,10 +77,11 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
     const tile = document.querySelector("[data-current-lesson]")?.getBoundingClientRect();
     const mascot = document.querySelector("[data-devy-flyer]")?.getBoundingClientRect();
     const onScreen = tile && tile.bottom > 0 && tile.top < window.innerHeight;
-    if (reducedMotion || !onScreen || !mascot || lessonId !== currentLessonId) return open();
+    if (reducedMotion || !onScreen || !mascot || lessonId !== currentLessonId) return open(lessonId);
 
-    setFlightState({ phase: "liftoff", box: { left: mascot.left, top: mascot.top, width: mascot.width, height: mascot.height } });
-    timer.current = window.setTimeout(leave, AIRBORNE_FALLBACK_MS);
+    setOrigin({ x: mascot.left + mascot.width / 2, y: mascot.top + mascot.height / 2 });
+    setFlying(true);
+    timer.current = window.setTimeout(() => open(lessonId), FLY_OPEN_MS);
   };
 
   const flight: LaunchFlight | null = flightState && { ...flightState, onAirborne, onArrived };

@@ -1,0 +1,63 @@
+{
+  "id": "content-creation-basics",
+  "title": "How content creation works",
+  "role": "content_creator",
+  "concepts": [
+    {
+      "id": "content-creation-basics-foundations",
+      "title": "Content creation foundations",
+      "activities": [
+        {
+          "id": "content-creation-basics-learn",
+          "type": "article",
+          "content": {
+            "title": "Content creation foundations",
+            "intro": "Useful content gives a specific audience a clear reason to watch, read, save, or share.",
+            "sections": [
+              {
+                "title": "Know who it is for",
+                "body": "A focused audience makes the idea easier to shape. Start with a real question, need, or interest instead of trying to speak to everyone."
+              },
+              {
+                "title": "Make one clear promise",
+                "body": "Strong content tells the audience what they will learn, feel, or be able to do, then delivers that value in a suitable format."
+              }
+            ],
+            "next": {
+              "title": "Check content creation foundations",
+              "body": "Choose the response that best applies the foundation you just learned."
+            }
+          }
+        },
+        {
+          "id": "content-creation-basics-check",
+          "type": "quiz",
+          "content": {
+            "title": "Check content creation foundations",
+            "intro": "Choose the clearest next step.",
+            "questions": [
+              {
+                "id": "content-creation-basics-q1",
+                "type": "multiple-choice",
+                "prompt": "Which is the strongest starting point for a new piece of content?",
+                "options": [
+                  "A trend everyone else is copying",
+                  "A clear audience question you can answer well",
+                  "The most expensive camera available",
+                  "A format with no defined purpose"
+                ],
+                "correctIndex": 1,
+                "explanation": "A real audience question provides both relevance and a clear promise for the content."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "completion": {
+    "eyebrow": "Lesson complete",
+    "title": "You understand content creation foundations!",
+    "body": "You learned how audience, purpose, format, and a clear promise shape useful content."
+  }
+}
