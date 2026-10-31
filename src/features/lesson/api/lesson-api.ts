@@ -12,10 +12,11 @@ export async function getLesson(lessonId: string): Promise<Lesson | null> {
 }
 
 // Records a finished lesson and returns what it paid. A first completion earns
-// XP and season coins; a replay earns neither. Call once per finish.
-export async function completeLesson(lessonId: string): Promise<LessonReward> {
+// XP and season coins; a replay, or a run that leaned on Devy before trying
+// ("assisted"), earns neither. Call once per finish.
+export async function completeLesson(lessonId: string, assisted: boolean): Promise<LessonReward> {
   const today = new Date().toDateString();
-  const { xpEarned, before, after } = recordMockLessonCompletion(lessonId, today);
+  const { xpEarned, before, after } = recordMockLessonCompletion(lessonId, assisted, today);
   const xpGoal = dailyXpGoal(getMockProfile()?.dailyMinutes);
   const questsBefore = buildQuests(before, xpGoal, today);
   const questsAfter = buildQuests(after, xpGoal, today);

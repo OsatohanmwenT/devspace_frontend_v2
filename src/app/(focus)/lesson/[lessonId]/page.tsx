@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { LessonView } from "~/features/lesson";
+import { LessonScene, LessonView } from "~/features/lesson";
 
 async function Lesson({ params }: { params: PageProps<"/lesson/[lessonId]">["params"] }) {
   const { lessonId } = await params;
@@ -9,7 +9,7 @@ async function Lesson({ params }: { params: PageProps<"/lesson/[lessonId]">["par
 // Reading the route params is runtime data, so it streams in behind a boundary.
 export default function Page(props: PageProps<"/lesson/[lessonId]">) {
   return (
-    <Suspense>
+    <Suspense fallback={<LessonScene />}>
       <Lesson params={props.params} />
     </Suspense>
   );

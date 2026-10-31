@@ -5,6 +5,18 @@ import { isFillQuestion, isQuestionCorrect, type Answer, type BlankAnswer } from
 import { FillQuestionView } from "./fill-question";
 import { MultipleChoice } from "./multiple-choice";
 
+function AskDevyButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      className="focus-ring min-h-9 flex-none rounded-lg border border-[#e5e5e5] px-3.5 text-sm font-semibold text-neutral-800 hover:border-[#6699ec] hover:bg-[#fafafa] dark:border-[#5c5c60] dark:text-night-ink dark:hover:bg-[#303030]"
+      onClick={onClick}
+    >
+      Ask Devy
+    </button>
+  );
+}
+
 type LessonQuestionProps = {
   question: Question;
   answer: Answer;
@@ -12,9 +24,10 @@ type LessonQuestionProps = {
   // A wrong answer with an attempt left: a nudge, not the reveal.
   retrying: boolean;
   onAnswer: (answer: Answer) => void;
+  onAskDevy: () => void;
 };
 
-export function LessonQuestion({ question, answer, checked, retrying, onAnswer }: LessonQuestionProps) {
+export function LessonQuestion({ question, answer, checked, retrying, onAnswer, onAskDevy }: LessonQuestionProps) {
   const correct = checked && isQuestionCorrect(question, answer);
 
   return (
@@ -38,6 +51,7 @@ export function LessonQuestion({ question, answer, checked, retrying, onAnswer }
             <strong className="block text-sm text-neutral-800 dark:text-night-ink">Not quite yet</strong>
             <p className="m-0 mt-0.5 text-[13px] leading-[1.4] text-ink-soft dark:text-night-soft">Have another look and try again.</p>
           </div>
+          <AskDevyButton onClick={onAskDevy} />
         </aside>
       )}
 
@@ -54,6 +68,19 @@ export function LessonQuestion({ question, answer, checked, retrying, onAnswer }
             <RichText content={question.explanation} />
           </p>
         </div>
+      )}
+
+      {/* Devy takes a miss personally, at the question rather than the learner,
+          which is what makes the offer of help land instead of nag. */}
+      {checked && (
+        <aside className="flex items-center gap-3 rounded-xl border border-[#e7e7e7] bg-white px-4 py-2.5 max-tab:items-start dark:border-night-line dark:bg-[#262626]" aria-label="Get help from Devy">
+          <DevyMood mood={correct ? "neutral" : "annoyed"} className="size-9 flex-none" />
+          <div className="min-w-0 flex-1">
+            <strong className="block text-sm text-neutral-800 dark:text-night-ink">{correct ? "Want the why?" : "That one catches people out."}</strong>
+            <p className="m-0 mt-0.5 text-[13px] leading-[1.4] text-ink-soft dark:text-night-soft">{correct ? "Devy can unpack why this answer works." : "Devy can walk you through it."}</p>
+          </div>
+          <AskDevyButton onClick={onAskDevy} />
+        </aside>
       )}
     </section>
   );

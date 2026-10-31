@@ -1,11 +1,12 @@
 import { DevyMood } from "~/components/devy";
+import { LESSON_SCENE } from "./lesson-scene";
 
 // The beat between the path page and the lesson: Devy drops in under a beam of
 // light, in the same blue scene the launch spotlight filled the screen with.
 export function LessonLoading({ title }: { title: string }) {
   return (
     <section
-      className="fixed inset-0 z-30 grid min-h-screen place-items-center bg-[linear-gradient(to_bottom,#fafaf8_0%,#fafaf8_42%,#e4effd_100%)] px-6 py-8 text-neutral-800 max-tab:px-4 dark:bg-[linear-gradient(to_bottom,#121214_0%,#121214_42%,#1d2a43_100%)] dark:text-night-ink"
+      className={`fixed inset-0 z-30 grid min-h-screen place-items-center ${LESSON_SCENE} px-6 py-8 text-neutral-800 max-tab:px-4 dark:text-night-ink`}
       aria-label="Preparing your lesson"
       aria-live="polite"
       aria-busy="true"

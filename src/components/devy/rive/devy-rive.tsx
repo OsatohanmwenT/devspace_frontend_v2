@@ -1,10 +1,15 @@
 "use client";
 
-import { useRive } from "@rive-app/react-webgl2";
+import { Rive, useRive } from "@rive-app/react-webgl2";
 import { useEffect, useEffectEvent, useRef } from "react";
 import { assetUrl } from "~/config/assets";
 import { usePrefersReducedMotion } from "~/hooks/use-prefers-reduced-motion";
 import { RIVE_CLIPS, type RiveClip, type RiveClipName } from "./rive-clips";
+
+// The lift-off cue listens for the rig's "particles" state. Rive deprecates
+// that style of listener; moving to data binding means re-exporting the .riv in
+// the editor, so until then the console warning is silenced.
+Rive.suppressDeprecationWarnings = ["state-change-events"];
 
 type DevyRiveProps = {
   clip: RiveClipName;

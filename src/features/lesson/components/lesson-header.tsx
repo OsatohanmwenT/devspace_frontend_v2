@@ -15,11 +15,14 @@ type LessonHeaderProps = {
   onExit: () => void;
   // Only offered when the lesson has reference material.
   onOpenCheatsheet?: () => void;
+  onOpenNotes: () => void;
+  // The audio control, present on articles.
+  narration?: ReactNode;
   progress: ReactNode;
 };
 
 // Exit, where you are in the lesson, XP, and a menu of lesson options.
-export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenCheatsheet, progress }: LessonHeaderProps) {
+export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenCheatsheet, onOpenNotes, narration, progress }: LessonHeaderProps) {
   const menu = useRef<HTMLDivElement>(null);
   useDismiss(menuOpen, () => onMenuOpenChange(false), menu);
 
@@ -44,6 +47,20 @@ export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenChe
           {xp}
         </span>
 
+        {narration}
+
+        <button
+          type="button"
+          className="focus-ring grid size-10 place-items-center rounded-[10px] bg-[#f5f5f5] text-neutral-800 hover:bg-[#eeeeeb] dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030]"
+          onClick={onOpenNotes}
+          aria-label="Notes"
+          title="Notes"
+        >
+          <svg className="size-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
         <div ref={menu} className="relative">
           <button
             type="button"
@@ -58,6 +75,20 @@ export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenChe
           </button>
           {menuOpen && (
             <div className="absolute top-[calc(100%+8px)] right-0 z-20 grid w-[240px] rounded-xl border border-[#eeeeeb] bg-white p-2 shadow-[0_12px_28px_rgba(20,20,20,.12)] dark:border-night-line dark:bg-night-card dark:shadow-[0_12px_28px_rgba(0,0,0,.32)]" role="menu">
+              <button
+                type="button"
+                className={MENU_ITEM}
+                role="menuitem"
+                onClick={() => {
+                  onMenuOpenChange(false);
+                  onOpenNotes();
+                }}
+              >
+                <svg className="size-[18px]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Notes
+              </button>
               {onOpenCheatsheet && (
                 <button
                   type="button"

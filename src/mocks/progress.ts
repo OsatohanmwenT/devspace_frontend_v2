@@ -110,10 +110,12 @@ export type LessonCompletion = { xpEarned: number; before: MockProgress; after: 
 
 // Records a finished lesson: a first completion earns XP and season coins,
 // a replay earns neither, and either keeps the day's streak going.
-export function recordMockLessonCompletion(lessonId: string, today = new Date().toDateString()): LessonCompletion {
+export function recordMockLessonCompletion(lessonId: string, assisted = false, today = new Date().toDateString()): LessonCompletion {
   const before = getMockProgress(today);
   const firstCompletion = !before.completedLessons[lessonId];
-  const xpEarned = firstCompletion ? LESSON_XP : 0;
+  // Replays and assisted runs still count toward the path, they just pay nothing.
+  const paid = firstCompletion && !assisted;
+  const xpEarned = paid ? LESSON_XP : 0;
   const isNewDay = before.lastActiveDate !== today;
   const streakDays = isNewDay ? before.streakDays + 1 : before.streakDays;
   const reached = STREAK_MILESTONES.filter((milestone) => milestone.days <= streakDays && !before.earnedStreakMilestones.includes(milestone.days));
@@ -123,7 +125,7 @@ export function recordMockLessonCompletion(lessonId: string, today = new Date().
     xp: before.xp + xpEarned,
     dailyXp: before.dailyXp + xpEarned,
     dailyXpDate: today,
-    seasonCoins: before.seasonCoins + (firstCompletion ? LESSON_COINS : 0),
+    seasonCoins: before.seasonCoins + (paid ? LESSON_COINS : 0),
     streakDays,
     lastActiveDate: today,
     longestStreak: Math.max(before.longestStreak, streakDays),

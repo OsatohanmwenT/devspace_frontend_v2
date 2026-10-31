@@ -7,7 +7,9 @@ export type RichText = string | RichTextPart[];
 export type ArticleContent = {
   title: string;
   intro: string;
-  sections: { title: string; body: RichText }[];
+  // The same content as Devy would say it, for the commentary version of narration.
+  spokenIntro?: string;
+  sections: { title: string; body: RichText; spoken?: string }[];
   // A short chain of boxes, e.g. how a program flows.
   diagram?: { title: string; body: string; label: string; nodes: string[] };
   example?: { title: string; body: string; code: string };
@@ -43,6 +45,8 @@ export type Question = MultipleChoiceQuestion | FillQuestion;
 export type QuizContent = {
   title: string;
   intro: string;
+  // Devy's framing line, spoken when the quiz begins.
+  spokenIntro?: string;
   questions: Question[];
 };
 

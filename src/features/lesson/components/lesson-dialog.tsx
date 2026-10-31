@@ -4,6 +4,10 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 type LessonDialogProps = {
   title: string;
+  eyebrow?: string;
+  body?: string;
+  // "calm" for a choice that is not a loss, such as asking for help.
+  leaveTone?: "danger" | "calm";
   media: ReactNode;
   // The safe choice, which Escape also picks.
   stayLabel: string;
@@ -14,7 +18,7 @@ type LessonDialogProps = {
 
 // A "wait, don't go" prompt. Focus stays inside it, starts on the safe choice
 // and Escape picks that choice.
-export function LessonDialog({ title, media, stayLabel, leaveLabel, onStay, onLeave }: LessonDialogProps) {
+export function LessonDialog({ title, eyebrow, body, leaveTone = "danger", media, stayLabel, leaveLabel, onStay, onLeave }: LessonDialogProps) {
   const dialog = useRef<HTMLDivElement>(null);
   const stay = useRef<HTMLButtonElement>(null);
 
@@ -53,7 +57,9 @@ export function LessonDialog({ title, media, stayLabel, leaveLabel, onStay, onLe
         aria-label={title}
       >
         {media}
+        {eyebrow && <span className="mb-1.5 text-[11px] font-bold tracking-widest text-[#2563eb] uppercase dark:text-[#88bdf2]">{eyebrow}</span>}
         <h2 className="m-0 max-w-[18ch] text-2xl leading-[1.35] font-semibold text-neutral-800 dark:text-night-ink">{title}</h2>
+        {body && <p className="m-0 mt-2.5 max-w-[34ch] text-sm leading-normal text-ink-soft dark:text-[#b2b2b6]">{body}</p>}
         <div className="mt-7 grid w-full gap-3">
           <button
             ref={stay}
@@ -65,7 +71,7 @@ export function LessonDialog({ title, media, stayLabel, leaveLabel, onStay, onLe
           </button>
           <button
             type="button"
-            className="focus-ring min-h-11 px-5 text-[15px] font-semibold tracking-[0.06em] text-[#d92d2d] uppercase hover:text-[#ff8585] dark:text-[#ff6262]"
+            className={`focus-ring min-h-11 px-5 text-[15px] font-semibold tracking-[0.06em] uppercase ${leaveTone === "danger" ? "text-[#d92d2d] hover:text-[#ff8585] dark:text-[#ff6262]" : "text-ink-soft hover:text-neutral-700 dark:text-night-soft dark:hover:text-[#c4c4c7]"}`}
             onClick={onLeave}
           >
             {leaveLabel}

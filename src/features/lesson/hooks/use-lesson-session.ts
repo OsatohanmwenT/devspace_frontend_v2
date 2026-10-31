@@ -22,7 +22,7 @@ type StepState = {
 
 // `finished` is set once the lesson has been recorded, so a refresh on the last
 // screen keeps what it paid instead of asking again.
-type Session = { stepIndex: number; steps: Record<string, StepState>; streak: number; startedAt: number; finished?: { reward: LessonReward; seconds: number } };
+type Session = { stepIndex: number; steps: Record<string, StepState>; streak: number; startedAt: number; assisted?: boolean; finished?: { reward: LessonReward; seconds: number } };
 
 export type CheckOutcome = "correct" | "wrong" | "retry";
 
@@ -39,6 +39,7 @@ function loadSession(lessonId: string, flowLength: number): Session {
       steps: saved.steps ?? {},
       streak: saved.streak ?? 0,
       startedAt: saved.startedAt ?? Date.now(),
+      assisted: saved.assisted,
       finished: saved.finished,
     };
   } catch {
@@ -118,6 +119,9 @@ export function useLessonSession(lessonId: string, flow: FlowStep[]) {
     streak: session.streak,
     isLastStep: session.stepIndex === flow.length - 1,
     finished: session.finished,
+    // Asking Devy before a first attempt forfeits the lesson's reward.
+    assisted: Boolean(session.assisted),
+    markAssisted: () => setSession((current) => ({ ...current, assisted: true })),
     finish: (reward: LessonReward) =>
       setSession((current) => ({ ...current, finished: { reward, seconds: Math.max(1, Math.round((Date.now() - current.startedAt) / 1000)) } })),
     next: () => move(1),
