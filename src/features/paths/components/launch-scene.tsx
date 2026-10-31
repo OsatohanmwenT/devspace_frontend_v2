@@ -2,9 +2,9 @@
 
 import { motion } from "motion/react";
 
-// The lesson's blue intro scene. It rises from the bottom of the screen right
-// behind Devy as he flies off the top, so he seems to pull the new screen in
-// after him.
+// The lesson's blue intro scene, the same one its loading screen shows. It
+// rises from the bottom of the screen right behind Devy as he flies off the
+// top, so he seems to pull the new screen in after him.
 export function LaunchScene() {
   return (
     <motion.div
