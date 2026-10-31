@@ -284,11 +284,20 @@ export function LessonView({ lessonId }: { lessonId: string }) {
   const load = useCallback(() => Promise.all([getLesson(lessonId), getProgressSummary(), getProfile()]), [lessonId]);
   const loaded = useLoad(load);
   const [prepared, setPrepared] = useState(false);
+  // Bumped when the lesson goes away, so every visit mounts a fresh screen.
+  const [visit, setVisit] = useState(0);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const timer = window.setTimeout(() => setPrepared(true), reduced ? 0 : LOADING_MS);
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      // Next keeps a left page alive and restores it as it was, so an open
+      // exit dialog or a half-finished lesson would greet the next visit. Start
+      // over, loading screen included.
+      setPrepared(false);
+      setVisit((count) => count + 1);
+    };
   }, []);
 
   if (loaded.status === "error") return <UnavailableLesson lessonId={lessonId} onBack={() => router.push("/paths")} />;
@@ -297,5 +306,5 @@ export function LessonView({ lessonId }: { lessonId: string }) {
   const [lesson, summary, profile] = loaded.data;
   if (!lesson) return <UnavailableLesson lessonId={lessonId} onBack={() => router.push("/paths")} />;
   if (!prepared) return <LessonLoading title={lesson.title} />;
-  return <LessonScreen lesson={lesson} xp={summary.xp} profile={profile} />;
+  return <LessonScreen key={visit} lesson={lesson} xp={summary.xp} profile={profile} />;
 }
