@@ -50,7 +50,19 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
   const airborne = useRef(false);
   const lesson = useRef("");
 
-  useEffect(() => () => window.clearTimeout(timer.current), []);
+  // Next keeps this page alive when the learner moves on to the lesson and
+  // restores it, state and all, when they come back. Leaving a launch half-done
+  // would replay the flight and send them straight into the lesson again, so it
+  // is cleared whenever the page goes away.
+  useEffect(
+    () => () => {
+      window.clearTimeout(timer.current);
+      setFlightState(null);
+      launching.current = false;
+      airborne.current = false;
+    },
+    [],
+  );
 
   // The scene stays up until the lesson's own loading screen takes over.
   const open = (lessonId: string) => router.push(`/lesson/${lessonId}`);
