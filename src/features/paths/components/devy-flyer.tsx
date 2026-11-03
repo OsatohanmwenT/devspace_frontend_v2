@@ -35,16 +35,18 @@ export function DevyFlyer({ flight, children }: DevyFlyerProps) {
     const el = scope.current;
     let cancelled = false;
 
+    // Offsets are from where the canvas sits on the roadmap.
+    const aboveY = -(box.top + box.height + OFFSCREEN_MARGIN);
+    const controls = animate(el, { x: DRIFT_PX, y: aboveY, rotate: LEAN_DEG, scale: CLIMB_SCALE }, { duration: EXIT_S, ease: ACCELERATE });
     const fly = async () => {
-      // Offsets are from where the canvas sits on the roadmap.
-      const aboveY = -(box.top + box.height + OFFSCREEN_MARGIN);
-      await animate(el, { x: DRIFT_PX, y: aboveY, rotate: LEAN_DEG, scale: CLIMB_SCALE }, { duration: EXIT_S, ease: ACCELERATE });
+      await controls;
       if (!cancelled) gone();
     };
     fly();
 
     return () => {
       cancelled = true;
+      controls.stop();
     };
   }, [phase, box, animate, scope]);
 

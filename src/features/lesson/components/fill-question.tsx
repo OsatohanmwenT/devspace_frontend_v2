@@ -13,13 +13,13 @@ type FillProps = {
 };
 
 const BLANK =
-  "focus-ring mx-[3px] inline-flex min-h-[38px] min-w-[102px] items-center justify-center rounded-lg px-2.5 py-[3px] align-middle font-mono text-sm leading-[1.2] font-medium text-neutral-800 active:not-disabled:translate-y-px active:not-disabled:scale-[0.985] max-tab:min-h-9 max-tab:min-w-[86px] max-tab:px-2 dark:text-night-ink";
+  "focus-ring mx-[3px] inline-flex min-h-[38px] min-w-[102px] items-center justify-center rounded-lg px-2.5 py-[3px] align-middle font-mono text-sm leading-[1.2] font-semibold transition-[background-color,box-shadow,transform] duration-100 active:not-disabled:translate-y-[3px] active:not-disabled:shadow-none max-tab:min-h-9 max-tab:min-w-[86px] max-tab:px-2";
 
 function blankState(checked: boolean, selected: string | undefined, correct: boolean) {
-  if (checked && selected && correct) return "animate-answer-correct cursor-pointer border border-solid border-[#04adc0] bg-[#cee9ed] dark:bg-[#213c3f]";
-  if (checked && selected) return "animate-answer-wrong cursor-pointer border border-solid border-[#ff676d] bg-[#f6e1e2] dark:bg-[#442f30]";
-  if (selected) return "animate-choice-in cursor-pointer border border-solid border-[#6699ec] bg-white dark:bg-[#303030]";
-  return "cursor-default border border-dashed border-[#d5d5d5] bg-white dark:border-[#515151] dark:bg-[#303030]";
+  if (checked && selected && correct) return "animate-answer-correct cursor-pointer border border-solid border-[#04adc0] bg-[#cee9ed] text-neutral-800 shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#78bdc7] dark:bg-[#213c3f] dark:text-night-ink dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.1),0_4px_0_#124b53]";
+  if (checked && selected) return "animate-answer-wrong cursor-pointer border border-solid border-[#ff676d] bg-[#f6e1e2] text-neutral-800 shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#cb8990] dark:bg-[#442f30] dark:text-night-ink dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.1),0_4px_0_#732d32]";
+  if (selected) return "animate-choice-in cursor-pointer border border-solid border-[#60a5fa] bg-[#2563eb] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#1d4ed8]";
+  return "cursor-default border border-dashed border-[#d5d5d5] bg-white text-neutral-800 dark:border-[#515151] dark:bg-[#303030] dark:text-night-ink";
 }
 
 type BlankProps = FillProps & {
@@ -38,7 +38,7 @@ function Blank({ question, answer, blankIndex, checked, onAnswer, dropTarget, on
   return (
     <button
       type="button"
-      className={`${BLANK} ${blankState(checked, selected, selected === question.answers[blankIndex])} ${isDropTarget ? "bg-[#eef5ff] ring-2 ring-[#6699ec] ring-offset-2 dark:bg-[#303030]" : ""}`}
+      className={`${BLANK} ${blankState(checked, selected, selected === question.answers[blankIndex])} ${isDropTarget ? "ring-2 ring-[#6699ec] ring-offset-2 dark:ring-offset-[#1e1e1e]" : ""}`}
       disabled={checked}
       onClick={() => onAnswer(clearBlank(current, blankIndex))}
       onDragOver={(event) => {
@@ -72,7 +72,7 @@ function TokenBank({ question, answer, checked, onAnswer, onDragStart, onDragEnd
           <button
             key={optionIndex}
             type="button"
-            className="focus-ring min-h-11 rounded-[10px] border border-[#d5d5d5] bg-white px-4 font-mono text-sm font-medium text-neutral-800 transition-[border-color,background] duration-[120ms] active:not-disabled:translate-y-px active:not-disabled:scale-[0.985] enabled:hover:border-[#6699ec] enabled:hover:bg-[#f0f5fd] disabled:cursor-not-allowed disabled:opacity-45 dark:border-[#4a4a4a] dark:bg-[#303030] dark:text-night-ink dark:enabled:hover:bg-[#393747]"
+            className="focus-ring min-h-11 rounded-[10px] border border-[#60a5fa] bg-[#2563eb] px-4 font-mono text-sm font-semibold text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#1d4ed8] transition-[background-color,box-shadow,transform] duration-100 active:not-disabled:translate-y-[3px] active:not-disabled:shadow-none enabled:hover:bg-[#3b82f6] disabled:cursor-not-allowed disabled:opacity-45"
             disabled={used || checked}
             draggable={!used && !checked}
             onDragStart={(event) => {

@@ -128,7 +128,7 @@ export function DevyAssistant({ step, checked, profile, recentLines, lessonTitle
       <div ref={conversation} className="mt-5 min-h-0 flex-1 overflow-y-auto [scrollbar-width:none]" aria-live="polite">
         <div className="grid min-h-full content-end gap-3">
           {recentLines.map((line, index) => (
-            <div key={`${line}-${index}`} className={index === recentLines.length - 1 ? "animate-msg-in" : FADED}>
+            <div key={`${line}-${index}`} className={index === recentLines.length - 1 && turns.length === 0 && !thinking ? "animate-msg-in" : FADED}>
               <Bubble>{line}</Bubble>
             </div>
           ))}

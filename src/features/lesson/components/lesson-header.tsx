@@ -51,7 +51,7 @@ export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenChe
 
         <button
           type="button"
-          className="focus-ring grid size-10 place-items-center rounded-[10px] bg-[#f5f5f5] text-neutral-800 hover:bg-[#eeeeeb] dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030]"
+          className="focus-ring group flex h-10 items-center rounded-[10px] border border-[#bfd3f7] bg-[#eff4ff] px-2.5 text-sm font-semibold text-[#2563eb] transition-colors hover:bg-[#dfe9ff] max-[720px]:px-2.5 dark:border-[#6699ec]/40 dark:bg-[#6699ec]/15 dark:text-[#88bdf2] dark:hover:bg-[#6699ec]/25"
           onClick={onOpenNotes}
           aria-label="Notes"
           title="Notes"
@@ -59,12 +59,13 @@ export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenChe
           <svg className="size-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
+          <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-200 ease-out group-hover:grid-cols-[1fr] group-focus-visible:grid-cols-[1fr] max-[720px]:hidden"><span className="overflow-hidden whitespace-nowrap"><span className="pl-2">Notes</span></span></span>
         </button>
 
         <div ref={menu} className="relative">
           <button
             type="button"
-            className={`focus-ring grid size-10 place-items-center rounded-[10px] bg-[#f5f5f5] text-neutral-800 hover:bg-[#eeeeeb] dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030] ${menuOpen ? "" : "animate-options-nudge"}`}
+            className={`focus-ring grid size-10 place-items-center rounded-[10px] border border-[#e1e1e1] bg-white text-neutral-800 hover:bg-[#f5f5f5] dark:border-night-line dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030] ${menuOpen ? "" : "animate-options-nudge"}`}
             onClick={() => onMenuOpenChange(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Lesson options"

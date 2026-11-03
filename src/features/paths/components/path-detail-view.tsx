@@ -128,7 +128,7 @@ function PathDetail({ data }: { data: PathDetailData }) {
         />
       )}
       {listening && audioLesson && <LessonAudioDialog lesson={audioLesson} onClose={() => setListening(false)} />}
-      <AnimatePresence>{launch.flight && launch.flight.phase !== "liftoff" && <LaunchScene key="launch-scene" />}</AnimatePresence>
+      <AnimatePresence>{launch.flight && launch.flight.phase !== "liftoff" && <LaunchScene key="launch-scene" onCovered={launch.flight.onCovered} />}</AnimatePresence>
     </main>
   );
 }

@@ -233,3 +233,16 @@
     to { transform: translateY(0) scale(1) rotate(0deg); }
   }
 }
+
+/* A slim scrollbar everywhere. In the base layer so a utility such as
+   [scrollbar-width:none] still wins where one is wanted. */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0 0 0 / 0.22) transparent;
+  }
+
+  .dark * {
+    scrollbar-color: rgb(255 255 255 / 0.22) transparent;
+  }
+}

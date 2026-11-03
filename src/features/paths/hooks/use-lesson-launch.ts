@@ -23,6 +23,8 @@ export type LaunchFlight = {
   onAirborne: () => void;
   // Devy has flown out of view.
   onGone: () => void;
+  // The rising intro backdrop has covered the roadmap.
+  onCovered: () => void;
 };
 
 // The rig's own take-off starts the flight: it reports "airborne" as Devy
@@ -32,8 +34,6 @@ export type LaunchFlight = {
 // so the learner is not stuck.
 const CLEAR_OF_PAD_MS = 900;
 const AIRBORNE_FALLBACK_MS = 4000;
-// Lets the rising scene finish covering the roadmap before the lesson opens.
-const SCENE_SETTLE_MS = 200;
 
 // Starting a lesson is the one way to choose a path: if it is not the active
 // path it becomes it, and a toast offers an Undo in case the learner was only
@@ -48,6 +48,7 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
   const timer = useRef<number | undefined>(undefined);
   const launching = useRef(false);
   const airborne = useRef(false);
+  const arrival = useRef({ gone: false, covered: false, opened: false });
   const lesson = useRef("");
 
   // Next keeps this page alive when the learner moves on to the lesson and
@@ -60,6 +61,7 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
       setFlightState(null);
       launching.current = false;
       airborne.current = false;
+      arrival.current = { gone: false, covered: false, opened: false };
     },
     [],
   );
@@ -70,23 +72,42 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
   const advance = (from: LaunchPhase, to: LaunchPhase) =>
     setFlightState((state) => (state?.phase === from ? { ...state, phase: to } : state));
 
-  const leave = () => advance("liftoff", "away");
+  const leave = () => {
+    // Also close the airborne gate when the fallback starts the climb. A late
+    // Rive event must not schedule another pad delay after departure.
+    airborne.current = true;
+    advance("liftoff", "away");
+  };
 
   const onAirborne = () => {
-    if (airborne.current) return;
+    if (!launching.current || airborne.current) return;
     airborne.current = true;
     window.clearTimeout(timer.current);
     timer.current = window.setTimeout(leave, CLEAR_OF_PAD_MS);
   };
 
+  const finish = () => {
+    if (!launching.current || !arrival.current.gone || !arrival.current.covered || arrival.current.opened) return;
+    arrival.current.opened = true;
+    window.clearTimeout(timer.current);
+    open(lesson.current);
+  };
+
   const onGone = () => {
-    timer.current = window.setTimeout(() => open(lesson.current), SCENE_SETTLE_MS);
+    arrival.current.gone = true;
+    finish();
+  };
+
+  const onCovered = () => {
+    arrival.current.covered = true;
+    finish();
   };
 
   const start = async (lessonId: string) => {
     if (launching.current) return;
     launching.current = true;
     lesson.current = lessonId;
+    router.prefetch(`/lesson/${lessonId}`);
     setStartedIds((ids) => (ids.includes(lessonId) ? ids : [...ids, lessonId]));
 
     if (pathId !== activePathId) {
@@ -115,7 +136,7 @@ export function useLessonLaunch(pathId: string, pathTitle: string, initialActive
     timer.current = window.setTimeout(leave, AIRBORNE_FALLBACK_MS);
   };
 
-  const flight: LaunchFlight | null = flightState && { ...flightState, onAirborne, onGone };
+  const flight: LaunchFlight | null = flightState && { ...flightState, onAirborne, onGone, onCovered };
 
   return { activePathId, startedIds, flight, start };
 }

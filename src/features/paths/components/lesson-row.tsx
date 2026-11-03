@@ -83,10 +83,11 @@ export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }
 
   const text = (
     <span className={`grid min-w-0 gap-[5px] ${current ? "-ml-6" : ""}`}>
-      <span className={`text-[10px] font-bold tracking-[.08em] uppercase ${current || selected ? "text-[#4169e1]" : "text-ink-soft dark:text-night-soft"}`}>
+      <span className={`flex items-center gap-1.5 text-[10px] font-bold tracking-[.08em] whitespace-nowrap uppercase ${current || selected ? "text-[#4169e1] dark:text-[#88bdf2]" : "text-ink-soft dark:text-night-soft"}`}>
+        {current && <span className="size-1.5 animate-pulse rounded-full bg-current motion-reduce:animate-none" aria-hidden="true" />}
         {label}
       </span>
-      <strong className="text-[15px] leading-[1.35] font-medium text-neutral-800 dark:text-night-ink">{lesson.title}</strong>
+      <strong className={`leading-[1.3] font-medium text-balance text-neutral-800 dark:text-night-ink ${current ? "text-[17px]" : "text-[15px]"}`}>{lesson.title}</strong>
       {lesson.checkpoint && (
         <span className="text-[10px] font-bold tracking-[.08em] text-ink-soft uppercase dark:text-night-soft">Checkpoint</span>
       )}
@@ -101,7 +102,7 @@ export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }
       className={`relative flex min-h-[126px] w-full ${flying ? "" : "z-1"} ${ALIGNMENT[index % 3]}`}
     >
       {current ? (
-        <div className="flex min-h-[126px] w-[min(100%,278px)] items-center px-2">
+        <div className="flex min-h-[126px] w-[min(100%,320px)] items-center px-2">
           <button
             type="button"
             data-devy-start

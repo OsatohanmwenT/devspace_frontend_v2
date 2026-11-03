@@ -41,7 +41,7 @@ export function NarrationControl({ article, personality, onPersonalityChange, on
       <div className="flex items-center">
         <button
           type="button"
-          className="focus-ring flex h-10 items-center gap-2 rounded-l-[10px] bg-[#f5f5f5] pr-2.5 pl-3 text-sm font-medium text-neutral-800 hover:bg-[#eeeeeb] dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030]"
+          className="focus-ring group flex h-10 items-center rounded-l-[10px] border border-[#e1e1e1] bg-white pr-2.5 pl-2.5 text-sm font-medium text-neutral-800 hover:bg-[#f5f5f5] dark:border-night-line dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030]"
           onClick={narration.toggle}
           aria-pressed={narration.speaking}
           aria-label={narration.speaking ? "Stop audio" : "Listen to this lesson"}
@@ -53,10 +53,10 @@ export function NarrationControl({ article, personality, onPersonalityChange, on
               <path d="M4 10v4h3.5l4.5 3.5v-11L7.5 10H4Zm12.5-.5a4 4 0 0 1 0 5M19 7a7.5 7.5 0 0 1 0 10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             )}
           </svg>
-          <span className="max-[720px]:hidden">{narration.speaking ? "Listening" : "Audio"}</span>
+          <span className={`grid transition-[grid-template-columns] duration-200 ease-out group-hover:grid-cols-[1fr] group-focus-visible:grid-cols-[1fr] max-[720px]:hidden ${narration.speaking ? "grid-cols-[1fr]" : "grid-cols-[0fr]"}`}><span className="overflow-hidden whitespace-nowrap"><span className="pl-2">{narration.speaking ? "Listening" : "Audio"}</span></span></span>
         </button>
         <Menu.Trigger
-          className="focus-ring group grid h-10 w-8 place-items-center rounded-r-[10px] border-l border-black/5 bg-[#f5f5f5] text-neutral-800 hover:bg-[#eeeeeb] dark:border-white/10 dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030]"
+          className="focus-ring group grid h-10 w-8 place-items-center rounded-r-[10px] border border-l-0 border-[#e1e1e1] bg-white text-neutral-800 hover:bg-[#f5f5f5] dark:border-night-line dark:bg-[#262626] dark:text-night-ink dark:hover:bg-[#303030]"
           aria-label="Audio settings"
         >
           <svg className="size-4 transition-transform group-data-[state=open]:rotate-180" viewBox="0 0 24 24" fill="none" aria-hidden="true">

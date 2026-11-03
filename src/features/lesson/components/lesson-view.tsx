@@ -52,8 +52,10 @@ function LessonScreen({ lesson, xp, profile }: { lesson: Lesson; xp: number; pro
   const [menuOpen, setMenuOpen] = useState(false);
   const [cheatsheetOpen, setCheatsheetOpen] = useState(false);
   const [exitOpen, setExitOpen] = useState(false);
-  const [successPulse, setSuccessPulse] = useState(0);
-  const [errorPulse, setErrorPulse] = useState(0);
+  // The screen-edge glow. One at a time: a new one replaces the last, so a quick
+  // right answer after a wrong one is not painted over by the old red.
+  const [glow, setGlow] = useState<{ tone: keyof typeof GLOW; count: number } | null>(null);
+  const flash = (tone: keyof typeof GLOW) => setGlow((current) => ({ tone, count: (current?.count ?? 0) + 1 }));
   const [line, setLine] = useState<{ text: string } | undefined>();
   const [notesOpen, setNotesOpen] = useState(false);
   const { personality, changePersonality } = useNarrationPersonality();
@@ -88,8 +90,7 @@ function LessonScreen({ lesson, xp, profile }: { lesson: Lesson; xp: number; pro
   }, [line]);
 
   const resetReactions = () => {
-    setSuccessPulse(0);
-    setErrorPulse(0);
+    setGlow(null);
     setLine(undefined);
     setDevyOpen(false);
     setAudioDone(false);
@@ -143,19 +144,19 @@ function LessonScreen({ lesson, xp, profile }: { lesson: Lesson; xp: number; pro
   const checkQuestion = () => {
     const outcome = question.check();
     if (outcome === "retry") {
-      setErrorPulse((count) => count + 1);
+      flash("error");
       play("error");
       sayLine(getDevyLine("retry"), true);
       return;
     }
     if (outcome === "correct") {
-      setSuccessPulse((count) => count + 1);
+      flash("success");
       play("success");
       const nextStreak = session.streak + 1;
       sayLine(nextStreak >= STREAK_THRESHOLD ? getStreakLine(nextStreak) : getDevyLine("correct"), true);
       return;
     }
-    setErrorPulse((count) => count + 1);
+    flash("error");
     play("error");
     sayLine(getDevyLine("wrong"), true);
   };
@@ -249,8 +250,7 @@ function LessonScreen({ lesson, xp, profile }: { lesson: Lesson; xp: number; pro
       aria-label="Lesson"
       style={{ "--devy-panel-width": `${panelWidth}px` } as React.CSSProperties}
     >
-      {successPulse > 0 && <div key={successPulse} className={`pointer-events-none absolute inset-0 z-60 animate-lesson-glow ${GLOW.success}`} aria-hidden="true" />}
-      {errorPulse > 0 && <div key={errorPulse} className={`pointer-events-none absolute inset-0 z-60 animate-lesson-glow ${GLOW.error}`} aria-hidden="true" />}
+      {glow && <div key={glow.count} className={`pointer-events-none absolute inset-0 z-60 animate-lesson-glow ${GLOW[glow.tone]}`} aria-hidden="true" />}
 
       {/* Break screens (between concepts, skill check, lesson complete) are full
           screen: no header or footer, just the moment and its button. */}
@@ -298,7 +298,7 @@ function LessonScreen({ lesson, xp, profile }: { lesson: Lesson; xp: number; pro
             onCodeChange={session.editor.update}
             onComplete={() => {
               session.editor.complete();
-              setSuccessPulse((count) => count + 1);
+              flash("success");
               play("success");
             }}
             onContinue={goNext}

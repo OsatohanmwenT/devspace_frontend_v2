@@ -45,11 +45,11 @@ export function LessonQuestion({ question, answer, checked, retrying, onAnswer, 
       {/* Nothing about correctness or the explanation is derived while a retry
           is left, so there is nothing to spoil even by inspecting the page. */}
       {!checked && retrying && (
-        <aside className="flex items-center gap-3 rounded-xl border border-[#f0dfa8] bg-[#fdf6e3] px-4 py-2.5 max-tab:items-start dark:border-[#4a3f22] dark:bg-[#2a2416]" aria-live="polite">
+        <aside className="flex items-center gap-3 rounded-xl border border-[#f0dfa8] bg-[#fdf6e3] px-4 py-2.5 max-tab:items-start dark:border-[#d9a92f] dark:bg-[#4a3a0e]" aria-live="polite">
           <DevyMood mood="neutral" className="size-9 flex-none" />
           <div className="min-w-0 flex-1">
-            <strong className="block text-sm text-neutral-800 dark:text-night-ink">Not quite yet</strong>
-            <p className="m-0 mt-0.5 text-[13px] leading-[1.4] text-ink-soft dark:text-night-soft">Have another look and try again.</p>
+            <strong className="block text-sm text-neutral-800 dark:text-[#ffe08a]">Not quite yet</strong>
+            <p className="m-0 mt-0.5 text-[13px] leading-[1.4] text-ink-soft dark:text-[#f1dfaa]">Have another look and try again.</p>
           </div>
           <AskDevyButton onClick={onAskDevy} />
         </aside>

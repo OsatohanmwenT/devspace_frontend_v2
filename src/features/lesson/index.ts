@@ -1,2 +1,2 @@
 export { LessonView } from "./components/lesson-view";
-export { LessonScene } from "./components/lesson-scene";
+export { LessonScene, LESSON_SCENE } from "./components/lesson-scene";
