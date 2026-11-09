@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import { EDITOR_BAR, EDITOR_FRAME, EDITOR_LINE, EDITOR_OUTPUT, EDITOR_SURFACE, EDITOR_TEXT } from "../lib/editor-theme";
 import { useCodeExercise } from "../hooks/use-code-exercise";
 import { CodeSurface } from "./code-surface";
 import { CodeSnippet, ConsoleOutput, ContinueButton, DevyCoach, FileTab, ResetButton, RunButton, TaskList } from "./editor-parts";
@@ -133,13 +134,13 @@ export function FullCodeEditor({ content, code, completed, onCodeChange, onCompl
       />
 
       <div ref={editorArea} className="grid min-h-0 min-w-0 grid-rows-[minmax(360px,auto)_auto] gap-2 min-[900px]:grid-rows-[minmax(0,var(--editor-height))_8px_minmax(120px,1fr)] min-[900px]:gap-0">
-        <section id="editor-code-pane" className="grid min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden rounded-lg border border-[#2a2a2e] bg-[#1e1e1e]">
-          <header className="flex min-h-10 items-stretch border-b border-white/[0.07] bg-[#252526]">
+        <section id="editor-code-pane" className={`grid min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden rounded-lg ${EDITOR_FRAME} ${EDITOR_SURFACE}`}>
+          <header className={`flex min-h-10 items-stretch border-b ${EDITOR_LINE} ${EDITOR_BAR}`}>
             <FileTab filename={content.filename} />
             <span className="ml-auto flex items-center px-4 text-xs font-semibold text-[#9a9aa0]">Python</span>
           </header>
           <CodeSurface code={currentCode} onChange={exercise.edit} onRun={exercise.run} disabled={completed} errorLine={exercise.result?.error?.line} />
-          <div className="flex flex-wrap items-center gap-2 border-t border-white/[0.07] bg-[#252526] px-4 py-2.5">
+          <div className={`flex flex-wrap items-center gap-2 border-t px-4 py-2.5 ${EDITOR_LINE} ${EDITOR_BAR}`}>
             <ResetButton onClick={exercise.reset} disabled={completed} />
             <RunButton onClick={exercise.run} />
             <div className="ml-auto flex items-center gap-3">
@@ -169,24 +170,24 @@ export function FullCodeEditor({ content, code, completed, onCodeChange, onCompl
 
         <section
           id="editor-output-pane"
-          className={`grid min-h-[140px] grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-lg border border-[#2a2a2e] bg-[#181818] ${collapsed ? "min-[900px]:grid-cols-[minmax(0,1fr)_minmax(300px,380px)]" : ""}`}
+          className={`grid min-h-[140px] grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-lg ${EDITOR_FRAME} ${EDITOR_OUTPUT} ${collapsed ? "min-[900px]:grid-cols-[minmax(0,1fr)_minmax(300px,380px)]" : ""}`}
         >
-          <header className="flex min-h-10 items-center border-b border-white/[0.07] bg-[#252526] px-4 min-[900px]:col-start-1">
-            <span className="text-[13px] font-semibold text-[#e8e8e8]">Output</span>
+          <header className={`flex min-h-10 items-center border-b px-4 min-[900px]:col-start-1 ${EDITOR_LINE} ${EDITOR_BAR}`}>
+            <span className="text-[13px] font-semibold text-neutral-800 dark:text-[#e8e8e8]">Output</span>
             {exercise.result?.error && (
-              <span className="ml-3 rounded bg-[#ff5c5c]/15 px-1.5 py-0.5 text-[11px] font-bold text-[#ff8a8a]">
+              <span className="ml-3 rounded bg-[#ff5c5c]/15 px-1.5 py-0.5 text-[11px] font-bold text-[#d1242f] dark:text-[#ff8a8a]">
                 {exercise.result.error.type === "NotSupported" ? "Not supported" : exercise.result.error.type}
               </span>
             )}
-            {exercise.result?.passed && <span className="ml-3 rounded bg-[#22c55e]/15 px-1.5 py-0.5 text-[11px] font-bold text-[#6ee7a8]">All tasks passed</span>}
+            {exercise.result?.passed && <span className="ml-3 rounded bg-[#22c55e]/15 px-1.5 py-0.5 text-[11px] font-bold text-[#15803d] dark:text-[#6ee7a8]">All tasks passed</span>}
           </header>
-          <pre className="m-0 min-h-0 overflow-auto px-4 py-3 font-mono text-[13.5px] leading-[1.6] whitespace-pre-wrap text-[#d4d4d4] min-[900px]:col-start-1" aria-live="polite" aria-atomic="true">
+          <pre className={`m-0 min-h-0 overflow-auto px-4 py-3 font-mono text-[13.5px] leading-[1.6] whitespace-pre-wrap min-[900px]:col-start-1 ${EDITOR_TEXT}`} aria-live="polite" aria-atomic="true">
             <ConsoleOutput result={exercise.result} />
           </pre>
           {/* With the exercise pane tucked away, Devy moves in beside the
               console so he is still right there after every run. */}
           {collapsed && (
-            <div className="hidden min-h-0 overflow-auto border-l border-white/[0.07] bg-canvas p-3 min-[900px]:col-start-2 min-[900px]:row-span-2 min-[900px]:row-start-1 min-[900px]:block dark:bg-transparent">
+            <div className="hidden min-h-0 overflow-auto border-l border-[#e8e8e4] bg-canvas dark:border-white/[0.07] p-3 min-[900px]:col-start-2 min-[900px]:row-span-2 min-[900px]:row-start-1 min-[900px]:block dark:bg-transparent">
               <DevyCoach devy={exercise.devy} onHint={exercise.nextHint} hintLabel={exercise.hintLabel} hasMoreHints={exercise.hasMoreHints} completed={completed} compact />
             </div>
           )}

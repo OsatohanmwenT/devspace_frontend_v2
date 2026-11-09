@@ -1,3 +1,4 @@
+export { getPaths } from "./api/paths-api";
 export { PathsView } from "./components/paths-view";
 export { PathDetailView } from "./components/path-detail-view";
 export { CustomPathView } from "./components/custom-path-view";

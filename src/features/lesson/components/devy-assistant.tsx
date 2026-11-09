@@ -163,7 +163,7 @@ export function DevyAssistant({ step, checked, profile, recentLines, lessonTitle
                       </span>
                     )}
                     {!typing && turn.response.code && (
-                      <pre className="mt-2.5 overflow-x-auto rounded-lg bg-[#1e1e1e] px-3.5 py-3 text-sm leading-[1.7] text-[#d4d4d4]">
+                      <pre className="mt-2.5 overflow-x-auto rounded-lg bg-[#f6f6f4] px-3.5 py-3 text-sm leading-[1.7] text-[#1f2328] dark:bg-[#1e1e1e] dark:text-[#d4d4d4]">
                         <code>{turn.response.code}</code>
                       </pre>
                     )}

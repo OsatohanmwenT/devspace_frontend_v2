@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { PageIntroStages, type IntroStage } from "~/components/ui/page-intro-stages";
 import { useLoad } from "~/hooks/use-load";
@@ -9,6 +10,9 @@ import { HeadToHeadView } from "./side-views";
 import { PrivateLeaguesView } from "./private-leagues-view";
 
 type View = "official" | "h2h" | "private";
+
+// Each view has a page of its own, so it can be linked to and the back button works.
+const ROUTES: Record<View, string> = { official: "/leaderboard", h2h: "/leaderboard/head-to-head", private: "/leaderboard/private" };
 
 const INTROS: Record<View, { id: string; stages: IntroStage[]; action: string; label: string }> = {
   official: {
@@ -43,8 +47,8 @@ const INTROS: Record<View, { id: string; stages: IntroStage[]; action: string; l
   },
 };
 
-function LeaderboardContent({ data }: { data: LeaderboardData }) {
-  const [view, setView] = useState<View>("official");
+function LeaderboardContent({ data, view }: { data: LeaderboardData; view: View }) {
+  const router = useRouter();
   const [seen, setSeen] = useState(data.seen);
   const intro = INTROS[view];
 
@@ -61,14 +65,14 @@ function LeaderboardContent({ data }: { data: LeaderboardData }) {
       />
     );
   }
-  if (view === "h2h") return <HeadToHeadView data={data} onBack={() => setView("official")} />;
-  if (view === "private") return <PrivateLeaguesView onBack={() => setView("official")} />;
-  return <OfficialBoard data={data} onOpenView={setView} />;
+  if (view === "h2h") return <HeadToHeadView data={data} onBack={() => router.push(ROUTES.official)} />;
+  if (view === "private") return <PrivateLeaguesView onBack={() => router.push(ROUTES.official)} />;
+  return <OfficialBoard data={data} onOpenView={(next) => router.push(ROUTES[next])} />;
 }
 
 const REFRESH_MS = 60 * 1000;
 
-export function LeaderboardView() {
+export function LeaderboardView({ view = "official" }: { view?: View }) {
   // Rival totals advance with the clock, so the board is re-fetched every
   // minute and visibly moves while the page is open.
   const [clock, setClock] = useState<number | null>(null);
@@ -81,5 +85,5 @@ export function LeaderboardView() {
   }, []);
 
   if (result.status !== "ready" || !result.data) return <main className="min-h-dvh" aria-busy="true" />;
-  return <LeaderboardContent data={result.data} />;
+  return <LeaderboardContent data={result.data} view={view} />;
 }

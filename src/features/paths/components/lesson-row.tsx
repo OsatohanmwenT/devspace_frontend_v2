@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
 import { DevyRive } from "~/components/devy";
 import type { DerivedLesson } from "../api/paths-api";
 import type { LaunchFlight } from "../hooks/use-lesson-launch";
@@ -14,8 +15,25 @@ const STATE_LABELS = {
   locked: "Locked",
 } satisfies Record<DerivedLesson["derivedState"], string>;
 
-// Lessons zig-zag down the route: left, right, centre.
-const ALIGNMENT = ["justify-start", "justify-end", "justify-center"];
+// Lessons wind down the route in a gentle S, close together, so the road is
+// the path the tiles take rather than a line drawn behind them. Phones swing
+// less, being narrower. The offset is `left`, not a transform: a transformed
+// ancestor would become the containing block of Devy's fixed-position flight
+// and throw his launch box off the tile.
+const WIND = [
+  "",
+  "relative left-24 max-tab:left-3",
+  "relative left-[168px] max-tab:left-5",
+  "relative left-24 max-tab:left-3",
+  "",
+  "relative -left-24 max-tab:-left-3",
+  "relative -left-[168px] max-tab:-left-5",
+  "relative -left-24 max-tab:-left-3",
+];
+
+// How long Devy's rise onto his pad takes after the animation starts. The page
+// lands on this tile, so the rise is kept out of sight and he appears standing.
+const INTRO_MS = 3200;
 
 // The current tile is the one thing on the roadmap worth acting on next, so a
 // soft halo breathes behind it and a spotlight from above lands on its platform.
@@ -56,11 +74,19 @@ type LessonRowProps = {
 
 export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }: LessonRowProps) {
   const reducedMotion = useReducedMotion();
+  const [riveReady, setRiveReady] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
   const state = lesson.derivedState;
   const current = state === "current";
   const locked = state === "locked";
   const label = STATE_LABELS[state];
   const flying = flight !== null;
+
+  useEffect(() => {
+    if (!riveReady) return;
+    const timer = window.setTimeout(() => setIntroDone(true), INTRO_MS);
+    return () => window.clearTimeout(timer);
+  }, [riveReady]);
   const ariaLabel = `${lesson.title}, ${label}${lesson.checkpoint ? ", checkpoint" : ""}`;
 
   // The Rive state machine draws its own launchpad; the static pedestal stands
@@ -73,7 +99,8 @@ export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }
           flying={flying}
           // The rig's "particles" state is the airborne loop.
           onStateChange={(states) => states.includes("particles") && flight?.onAirborne()}
-          className="size-full"
+          onReady={() => setRiveReady(true)}
+          className={`size-full transition-opacity duration-500 ${introDone || flying ? "opacity-100" : "opacity-0"}`}
           ariaLabel=""
         />
       </DevyFlyer>
@@ -81,28 +108,24 @@ export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }
       <LessonPedestalIcon state={state} checkpoint={lesson.checkpoint} selected={selected} />
     );
 
+  // Off the current tile, the platform sits low in its box (a flag stands above
+  // it), so the name is nudged down to the platform's own centre.
   const text = (
-    <span className={`grid min-w-0 gap-[5px] ${current ? "-ml-6" : ""}`}>
-      <span className={`flex items-center gap-1.5 text-[10px] font-bold tracking-[.08em] whitespace-nowrap uppercase ${current || selected ? "text-[#4169e1] dark:text-[#88bdf2]" : "text-ink-soft dark:text-night-soft"}`}>
-        {current && <span className="size-1.5 animate-pulse rounded-full bg-current motion-reduce:animate-none" aria-hidden="true" />}
-        {label}
-      </span>
-      <strong className={`leading-[1.3] font-medium text-balance text-neutral-800 dark:text-night-ink ${current ? "text-[17px]" : "text-[15px]"}`}>{lesson.title}</strong>
-      {lesson.checkpoint && (
-        <span className="text-[10px] font-bold tracking-[.08em] text-ink-soft uppercase dark:text-night-soft">Checkpoint</span>
-      )}
+    <span className={`grid min-w-0 gap-[5px] ${current ? "-ml-6" : "mt-[58px]"}`}>
+      <strong className={`leading-[1.3] font-medium text-balance text-neutral-800 dark:text-night-ink ${current ? "text-[17px]" : "text-[15px]"}`}>{lesson.shortTitle ?? lesson.title}</strong>
     </span>
   );
 
   return (
     <div
+      data-lesson-id={lesson.id}
       data-current-lesson={current || undefined}
       // While Devy is in flight the row stops being its own layer, so the launch scene covers the tile's
       // label and glow and only the flying canvas (see DevyFlyer) stays above it.
-      className={`relative flex min-h-[126px] w-full ${flying ? "" : "z-1"} ${ALIGNMENT[index % 3]}`}
+      className={`relative flex min-h-[148px] w-full ${flying ? "" : "z-1"} justify-center`}
     >
       {current ? (
-        <div className="flex min-h-[126px] w-[min(100%,320px)] items-center px-2">
+        <div className={`flex min-h-[148px] w-[min(100%,320px)] items-center px-2 ${WIND[index % WIND.length]}`}>
           <button
             type="button"
             data-devy-start
@@ -131,7 +154,7 @@ export function LessonRow({ lesson, index, selected, flight, onSelect, onStart }
         <button
           type="button"
           data-cuelume-toggle
-          className="focus-ring flex min-h-[126px] w-[min(100%,278px)] items-center rounded-[18px] px-2 text-left disabled:cursor-not-allowed"
+          className={`focus-ring group flex min-h-[148px] w-[min(100%,278px)] items-center rounded-[18px] px-2 text-left disabled:cursor-not-allowed ${WIND[index % WIND.length]}`}
           disabled={locked}
           aria-pressed={locked ? undefined : selected}
           aria-label={ariaLabel}

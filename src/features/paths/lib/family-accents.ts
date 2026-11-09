@@ -9,7 +9,7 @@ type FamilyAccent = {
 
 const FAMILY_ACCENTS: Record<string, FamilyAccent> = {
   ml: {
-    text: "text-[#4169e1]",
+    text: "text-[#4169e1] dark:text-[#88bdf2]",
     surface: "bg-[color-mix(in_srgb,rgba(65,105,225,0.16)_70%,#fafaf8)] dark:bg-transparent",
   },
   data: {

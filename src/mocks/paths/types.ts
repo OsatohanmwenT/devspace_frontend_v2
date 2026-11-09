@@ -3,6 +3,8 @@ import type { CustomRouteStage } from "~/types/paths";
 export type Lesson = {
   id: string;
   title: string;
+  // The two-word name shown on the route tile; the full title is used elsewhere.
+  shortTitle?: string;
   state?: string;
   checkpoint?: boolean;
   description?: string;

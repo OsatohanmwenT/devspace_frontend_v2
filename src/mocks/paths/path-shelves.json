@@ -27,6 +27,7 @@
      {
       "id": "ml-welcome",
       "title": "Welcome to machine learning",
+      "shortTitle": "Welcome to ML",
       "state": "completed"
      },
      {
@@ -42,6 +43,7 @@
      {
       "id": "ml-workflow",
       "title": "The machine learning workflow",
+      "shortTitle": "The ML workflow",
       "state": "completed",
       "checkpoint": true
      }
@@ -113,11 +115,13 @@
      {
       "id": "data-types",
       "title": "Working with data types",
+      "shortTitle": "Data types",
       "state": "locked"
      },
      {
       "id": "math-for-ml",
       "title": "Math for machine learning",
+      "shortTitle": "Math for ML",
       "state": "locked"
      },
      {
@@ -129,6 +133,7 @@
      {
       "id": "data-relationships",
       "title": "Understanding data relationships",
+      "shortTitle": "Data relationships",
       "state": "locked"
      }
     ]
@@ -162,11 +167,13 @@
      {
       "id": "clean-data",
       "title": "Clean and prepare data",
+      "shortTitle": "Prepare your data",
       "state": "locked"
      },
      {
       "id": "feature-checkpoint",
       "title": "Feature engineering checkpoint",
+      "shortTitle": "Feature checkpoint",
       "state": "locked",
       "checkpoint": true
      }
@@ -207,6 +214,7 @@
      {
       "id": "improve-model",
       "title": "Improve model performance",
+      "shortTitle": "Improve your model",
       "state": "locked"
      }
     ]
@@ -956,6 +964,7 @@
      {
       "id": "social-media-basics",
       "title": "How social media management works",
+      "shortTitle": "How social media works",
       "state": "current",
       "description": "Learn how managers connect audience value, brand goals, and measurable outcomes."
      }
@@ -1171,6 +1180,7 @@
      {
       "id": "graphic-designer-brand-preview",
       "title": "Build a small brand system",
+      "shortTitle": "Build a brand system",
       "state": "locked",
       "checkpoint": true
      }

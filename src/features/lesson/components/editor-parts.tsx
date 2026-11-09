@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import { EDITOR_LINE, EDITOR_SURFACE } from "../lib/editor-theme";
+import { PythonIcon } from "./python-icon";
 import { DevyLottie, type LottieClipName } from "~/components/devy";
 import type { ExerciseTask } from "~/types/lesson";
 import type { ExerciseResult } from "../lib/code-exercise";
@@ -36,7 +38,7 @@ function Highlighted({ code }: { code: string }) {
 
 export function CodeSnippet({ code }: { code: string }) {
   return (
-    <pre className="m-0 overflow-auto rounded-md bg-[#1e1e1e] px-3 py-2 font-mono text-[13px] leading-[1.55]">
+    <pre className="m-0 overflow-auto rounded-md bg-[#f6f6f4] px-3 py-2 font-mono dark:bg-[#1e1e1e] text-[13px] leading-[1.55]">
       <Highlighted code={code} />
     </pre>
   );
@@ -81,7 +83,7 @@ export function ConsoleOutput({ result }: { result: ExerciseResult | null }) {
       {result.output && <span>{result.output}</span>}
       {!result.output && !result.error && <span className="text-[#8a8f9c]">(Your program ran but didn’t print anything.)</span>}
       {result.error && (
-        <span className="text-[#ff8a8a]">
+        <span className="text-[#d1242f] dark:text-[#ff8a8a]">
           {result.output && !result.output.endsWith("\n") ? "\n" : ""}
           {formatPythonError(result.error)}
         </span>
@@ -175,7 +177,7 @@ export function ResetButton({ onClick, disabled }: { onClick: () => void; disabl
       title="Reset code"
       disabled={disabled}
       onClick={onClick}
-      className="focus-ring grid size-9 place-items-center rounded-lg border border-white/15 text-[#d4d4d4] transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+      className="focus-ring grid size-9 place-items-center rounded-lg border border-[#d8d8d4] text-neutral-600 transition-colors hover:bg-black/5 dark:border-white/15 dark:text-[#d4d4d4] dark:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
     >
       <svg aria-hidden="true" className="size-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />
@@ -202,9 +204,9 @@ export function ContinueButton({ onClick, label }: { onClick: () => void; label:
 
 export function FileTab({ filename }: { filename: string }) {
   return (
-    <div className="flex items-center gap-2 border-r border-white/[0.07] bg-[#1e1e1e] px-4">
-      <span className="grid size-4 place-items-center rounded-sm bg-[#569cd6] text-[9px] font-bold text-neutral-800">PY</span>
-      <span className="font-mono text-[13px] font-medium text-[#e8e8e8]">{filename}</span>
+    <div className={`flex items-center gap-2 border-r px-4 ${EDITOR_LINE} ${EDITOR_SURFACE}`}>
+      <PythonIcon />
+      <span className="font-mono text-[13px] font-medium text-neutral-800 dark:text-[#e8e8e8]">{filename}</span>
     </div>
   );
 }

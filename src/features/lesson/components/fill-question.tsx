@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { createPortal } from "react-dom";
 import type { FillQuestion } from "~/types/lesson";
+import { EDITOR_BAR, EDITOR_FRAME, EDITOR_LINE, EDITOR_SURFACE, EDITOR_TEXT } from "../lib/editor-theme";
 import { TOKEN_CLASSES, tokenizePython } from "../lib/python-highlight";
 import { clearBlank, emptyAnswer, fillNextBlank, type BlankAnswer } from "../lib/question-state";
+import { PythonIcon } from "./python-icon";
 
 type FillProps = {
   question: FillQuestion;
@@ -13,23 +16,21 @@ type FillProps = {
 };
 
 const BLANK =
-  "focus-ring mx-[3px] inline-flex min-h-[38px] min-w-[102px] items-center justify-center rounded-lg px-2.5 py-[3px] align-middle font-mono text-sm leading-[1.2] font-semibold transition-[background-color,box-shadow,transform] duration-100 active:not-disabled:translate-y-[3px] active:not-disabled:shadow-none max-tab:min-h-9 max-tab:min-w-[86px] max-tab:px-2";
+  "focus-ring mx-1 my-1 inline-flex min-h-[38px] min-w-[102px] items-center justify-center rounded-lg px-2.5 py-[3px] align-middle font-mono text-sm leading-[1.2] font-semibold transition-[background-color,box-shadow,transform] duration-100 active:not-disabled:translate-y-[3px] active:not-disabled:shadow-none max-tab:min-h-9 max-tab:min-w-[86px] max-tab:px-2";
 
 function blankState(checked: boolean, selected: string | undefined, correct: boolean) {
-  if (checked && selected && correct) return "animate-answer-correct cursor-pointer border border-solid border-[#04adc0] bg-[#cee9ed] text-neutral-800 shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#78bdc7] dark:bg-[#213c3f] dark:text-night-ink dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.1),0_4px_0_#124b53]";
-  if (checked && selected) return "animate-answer-wrong cursor-pointer border border-solid border-[#ff676d] bg-[#f6e1e2] text-neutral-800 shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#cb8990] dark:bg-[#442f30] dark:text-night-ink dark:shadow-[inset_0_1px_0_rgb(255_255_255/0.1),0_4px_0_#732d32]";
-  if (selected) return "animate-choice-in cursor-pointer border border-solid border-[#60a5fa] bg-[#2563eb] text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#1d4ed8]";
+  if (checked && selected && correct) return "animate-answer-correct cursor-pointer border border-solid border-[#86efac] bg-white text-neutral-800 shadow-[0_4px_0_#86efac] dark:bg-[#303030] dark:text-night-ink dark:shadow-[0_4px_0_#4ade80]";
+  if (checked && selected) return "animate-answer-wrong cursor-pointer border border-solid border-[#ff676d] bg-white text-neutral-800 shadow-[0_4px_0_#dc2626] dark:bg-[#303030] dark:text-night-ink dark:shadow-[0_4px_0_#b91c1c]";
+  if (selected) return "animate-choice-in cursor-pointer border border-solid border-[#d5d5d5] bg-white text-neutral-800 shadow-[0_4px_0_#d8d4cd] dark:border-[#515151] dark:bg-[#303030] dark:text-night-ink dark:shadow-[0_4px_0_#3d3d3d]";
   return "cursor-default border border-dashed border-[#d5d5d5] bg-white text-neutral-800 dark:border-[#515151] dark:bg-[#303030] dark:text-night-ink";
 }
 
 type BlankProps = FillProps & {
   blankIndex: number;
   dropTarget: number | undefined;
-  onDropTarget: (blankIndex: number | undefined) => void;
-  onDropOption: (optionIndex: number, blankIndex: number) => void;
 };
 
-function Blank({ question, answer, blankIndex, checked, onAnswer, dropTarget, onDropTarget, onDropOption }: BlankProps) {
+function Blank({ question, answer, blankIndex, checked, onAnswer, dropTarget }: BlankProps) {
   const current = answer ?? (emptyAnswer(question) as BlankAnswer);
   const selectedIndex = current[blankIndex];
   const selected = selectedIndex === undefined ? undefined : question.options[selectedIndex];
@@ -38,22 +39,10 @@ function Blank({ question, answer, blankIndex, checked, onAnswer, dropTarget, on
   return (
     <button
       type="button"
-      className={`${BLANK} ${blankState(checked, selected, selected === question.answers[blankIndex])} ${isDropTarget ? "ring-2 ring-[#6699ec] ring-offset-2 dark:ring-offset-[#1e1e1e]" : ""}`}
+      data-blank={blankIndex}
+      className={`${BLANK} ${blankState(checked, selected, selected === question.answers[blankIndex])} ${isDropTarget ? "ring-2 ring-[#6699ec] ring-offset-2 ring-offset-white dark:ring-offset-[#1e1e1e]" : ""}`}
       disabled={checked}
       onClick={() => onAnswer(clearBlank(current, blankIndex))}
-      onDragOver={(event) => {
-        if (checked) return;
-        event.preventDefault();
-        event.dataTransfer.dropEffect = "move";
-        onDropTarget(blankIndex);
-      }}
-      onDragLeave={() => isDropTarget && onDropTarget(undefined)}
-      onDrop={(event) => {
-        event.preventDefault();
-        onDropTarget(undefined);
-        const optionIndex = Number(event.dataTransfer.getData("text/plain"));
-        if (Number.isInteger(optionIndex)) onDropOption(optionIndex, blankIndex);
-      }}
       aria-label={selected ? `Blank ${blankIndex + 1}: ${selected}. Activate to clear.` : `Blank ${blankIndex + 1}: empty`}
     >
       {selected ?? " "}
@@ -61,27 +50,41 @@ function Blank({ question, answer, blankIndex, checked, onAnswer, dropTarget, on
   );
 }
 
-function TokenBank({ question, answer, checked, onAnswer, onDragStart, onDragEnd }: FillProps & { onDragStart: () => void; onDragEnd: () => void }) {
+const TOKEN =
+  "min-h-11 rounded-[10px] border border-solid border-[#d5d5d5] bg-white px-4 font-mono text-sm font-semibold text-neutral-800 shadow-[0_4px_0_#d8d4cd] dark:border-[#515151] dark:bg-[#303030] dark:text-night-ink dark:shadow-[0_4px_0_#3d3d3d]";
+
+// What the pointer is carrying: the option, and where its button sits now.
+type Carry = { optionIndex: number; x: number; y: number; width: number; height: number };
+type Press = { optionIndex: number; offsetX: number; offsetY: number; startX: number; startY: number; width: number; height: number; moving: boolean };
+
+// A press that moves further than this is a drag, not a click.
+const DRAG_THRESHOLD = 5;
+
+const blankAt = (x: number, y: number) => {
+  const blank = document.elementFromPoint(x, y)?.closest<HTMLElement>("[data-blank]");
+  return blank ? Number(blank.dataset.blank) : undefined;
+};
+
+function TokenBank({ question, answer, checked, onAnswer, carry, onPress, takeClick }: FillProps & {
+  carry: Carry | null;
+  onPress: (event: ReactPointerEvent<HTMLButtonElement>, optionIndex: number) => void;
+  takeClick: () => boolean;
+}) {
   const current = answer ?? (emptyAnswer(question) as BlankAnswer);
 
   return (
-    <div className="flex flex-wrap gap-2.5" role="group" aria-label="Answer options">
+    <div className="flex flex-wrap gap-x-4 gap-y-5" role="group" aria-label="Answer options">
       {question.options.map((option, optionIndex) => {
         const used = current.includes(optionIndex);
+        const carried = carry?.optionIndex === optionIndex;
         return (
           <button
             key={optionIndex}
             type="button"
-            className="focus-ring min-h-11 rounded-[10px] border border-[#60a5fa] bg-[#2563eb] px-4 font-mono text-sm font-semibold text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_4px_0_#1d4ed8] transition-[background-color,box-shadow,transform] duration-100 active:not-disabled:translate-y-[3px] active:not-disabled:shadow-none enabled:hover:bg-[#3b82f6] disabled:cursor-not-allowed disabled:opacity-45"
+            className={`focus-ring ${TOKEN} touch-none transition-[background-color,box-shadow,transform,opacity] duration-100 select-none active:not-disabled:translate-y-[3px] active:not-disabled:shadow-none enabled:cursor-grab enabled:hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45 dark:enabled:hover:brightness-125 ${carried ? "opacity-30" : ""}`}
             disabled={used || checked}
-            draggable={!used && !checked}
-            onDragStart={(event) => {
-              event.dataTransfer.effectAllowed = "move";
-              event.dataTransfer.setData("text/plain", String(optionIndex));
-              onDragStart();
-            }}
-            onDragEnd={onDragEnd}
-            onClick={() => onAnswer(fillNextBlank(current, optionIndex))}
+            onPointerDown={(event) => onPress(event, optionIndex)}
+            onClick={() => !takeClick() && onAnswer(fillNextBlank(current, optionIndex))}
           >
             {option}
           </button>
@@ -96,12 +99,12 @@ function TokenBank({ question, answer, checked, onAnswer, onDragStart, onDragEnd
 function CodeFill(props: BlankLayoutProps) {
   const { question } = props;
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#3a3a3a] bg-[#1e1e1e]">
-      <div className="flex items-center gap-2 border-b border-night-line bg-[#252526] px-4 py-2.5">
-        <span className="grid size-4 place-items-center rounded-sm bg-[#569cd6] text-[9px] font-bold text-neutral-800">PY</span>
-        <span className="font-mono text-[13px] text-[#d4d4d4]">{question.filename ?? "script.py"}</span>
+    <div className={`overflow-hidden rounded-2xl shadow-[0_1px_2px_rgb(0_0_0/0.04)] ${EDITOR_FRAME} ${EDITOR_SURFACE}`}>
+      <div className={`flex items-center gap-2.5 border-b px-4 py-2.5 ${EDITOR_LINE} ${EDITOR_BAR}`}>
+        <PythonIcon className="size-[18px]" />
+        <span className="font-mono text-[13px] font-medium text-neutral-800 dark:text-[#e8e8e8]">{question.filename ?? "script.py"}</span>
       </div>
-      <pre className="overflow-x-auto px-4 py-3.5 font-mono text-sm leading-[1.8] text-[#d4d4d4]">
+      <pre className={`overflow-x-auto px-5 py-5 font-mono text-sm leading-[2.2] ${EDITOR_TEXT}`}>
         <code>
           {question.segments.map((segment, index) => (
             <span key={index}>
@@ -122,7 +125,7 @@ function CodeFill(props: BlankLayoutProps) {
 function ProseFill(props: BlankLayoutProps) {
   const { question } = props;
   return (
-    <p className="m-0 text-[clamp(18px,1.5vw,21px)] leading-[1.55] text-neutral-800 max-tab:text-[19px] dark:text-night-ink">
+    <p className="m-0 text-[clamp(18px,1.5vw,21px)] leading-[2.3] text-neutral-800 max-tab:text-[19px] dark:text-night-ink">
       {question.segments.map((segment, index) => (
         <span key={index}>
           {segment}
@@ -135,13 +138,16 @@ function ProseFill(props: BlankLayoutProps) {
 
 type BlankLayoutProps = FillProps & {
   dropTarget: number | undefined;
-  onDropTarget: (blankIndex: number | undefined) => void;
-  onDropOption: (optionIndex: number, blankIndex: number) => void;
 };
 
-// Prose or code with blanks, plus the bank of options to click or drag into them.
+// Prose or code with blanks, plus the bank of options to click or drag into
+// them. Dragging is pointer-driven rather than native drag and drop, so the
+// real button follows the pointer instead of a faded snapshot of it.
 export function FillQuestionView({ question, answer, checked, onAnswer }: FillProps) {
   const [dropTarget, setDropTarget] = useState<number | undefined>();
+  const [carry, setCarry] = useState<Carry | null>(null);
+  const press = useRef<Press | null>(null);
+  const swallowClick = useRef(false);
 
   const placeOption = (optionIndex: number, blankIndex: number) => {
     if (checked || optionIndex < 0 || optionIndex >= question.options.length) return;
@@ -153,15 +159,86 @@ export function FillQuestionView({ question, answer, checked, onAnswer }: FillPr
     onAnswer(next);
   };
 
-  const layout = { question, answer, checked, onAnswer, dropTarget, onDropTarget: setDropTarget, onDropOption: placeOption };
+  const onPress = (event: ReactPointerEvent<HTMLButtonElement>, optionIndex: number) => {
+    if (checked || event.button !== 0) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    press.current = {
+      optionIndex,
+      offsetX: event.clientX - rect.left,
+      offsetY: event.clientY - rect.top,
+      startX: event.clientX,
+      startY: event.clientY,
+      width: rect.width,
+      height: rect.height,
+      moving: false,
+    };
+  };
+
+  const onMove = useEffectEvent((event: PointerEvent) => {
+    const current = press.current;
+    if (!current) return;
+    if (!current.moving && Math.hypot(event.clientX - current.startX, event.clientY - current.startY) < DRAG_THRESHOLD) return;
+    current.moving = true;
+    setCarry({
+      optionIndex: current.optionIndex,
+      x: event.clientX - current.offsetX,
+      y: event.clientY - current.offsetY,
+      width: current.width,
+      height: current.height,
+    });
+    setDropTarget(blankAt(event.clientX, event.clientY));
+  });
+
+  const onRelease = useEffectEvent((event: PointerEvent) => {
+    const current = press.current;
+    press.current = null;
+    if (!current?.moving) return;
+    // The click that follows a drag must not also fill the next blank.
+    swallowClick.current = true;
+    window.setTimeout(() => (swallowClick.current = false), 0);
+    const target = event.type === "pointerup" ? blankAt(event.clientX, event.clientY) : undefined;
+    if (target !== undefined) placeOption(current.optionIndex, target);
+    setCarry(null);
+    setDropTarget(undefined);
+  });
+
+  useEffect(() => {
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onRelease);
+    window.addEventListener("pointercancel", onRelease);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onRelease);
+      window.removeEventListener("pointercancel", onRelease);
+    };
+  }, []);
+
+  const takeClick = () => {
+    const swallowed = swallowClick.current;
+    swallowClick.current = false;
+    return swallowed;
+  };
+
+  const layout = { question, answer, checked, onAnswer, dropTarget };
 
   return (
-    <div className="grid gap-3 rounded-2xl border border-[#e1e1e1] bg-[#f7f7f7] p-3.5 max-tab:p-3 dark:border-[#373737] dark:bg-[#202020]">
+    <div className="grid gap-9 rounded-2xl border border-[#e1e1e1] bg-[#f7f7f7] p-7 max-tab:p-5 dark:border-[#373737] dark:bg-[#202020]">
       {question.type === "code-fill" ? <CodeFill {...layout} /> : <ProseFill {...layout} />}
-      <div className="grid gap-2.5">
+      <div className="grid gap-5">
         <p className="m-0 text-[15px] font-semibold text-[#777] dark:text-[#b2b2b6]">Click or drag an option to fill the blanks:</p>
-        <TokenBank {...layout} onDragStart={() => setDropTarget(undefined)} onDragEnd={() => setDropTarget(undefined)} />
+        <TokenBank {...layout} carry={carry} onPress={onPress} takeClick={takeClick} />
       </div>
+      {carry &&
+        createPortal(
+          <div
+            aria-hidden="true"
+            className={`${TOKEN} pointer-events-none fixed top-0 left-0 z-[200] grid cursor-grabbing place-items-center shadow-[0_14px_24px_-8px_rgb(0_0_0/0.35)]`}
+            style={{ width: carry.width, height: carry.height, transform: `translate(${carry.x}px, ${carry.y}px) scale(1.06) rotate(-2deg)` }}
+          >
+            {question.options[carry.optionIndex]}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

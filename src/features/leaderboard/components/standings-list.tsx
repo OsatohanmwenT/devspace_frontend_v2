@@ -13,42 +13,23 @@ function ZoneDivider({ label, className, line }: { label: string; className: str
   );
 }
 
-function HiddenRows({ count, locked, onExpand }: { count: number; locked: boolean; onExpand: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onExpand}
-      className="focus-ring w-full rounded-lg py-2 text-[11px] font-semibold tracking-[.06em] text-[#737371] uppercase transition-colors hover:text-neutral-700 dark:text-[#7d7d80] dark:hover:text-night-ink"
-    >
-      ··· {count} more{locked ? " · Premium" : ""}
-    </button>
-  );
-}
-
 type StandingsListProps = {
   label: string;
   items: BoardItem[];
-  // Whether the rest of the cohort can be revealed; otherwise the gap routes to Premium.
-  canExpand: boolean;
-  onExpand: () => void;
   onSelect?: (entry: LeaderboardEntry) => void;
 };
 
-export function StandingsList({ label, items, canExpand, onExpand, onSelect }: StandingsListProps) {
+export function StandingsList({ label, items, onSelect }: StandingsListProps) {
   return (
     <ol className="m-0 grid list-none overflow-hidden rounded-3xl bg-white p-1.5 shadow-[0_1px_3px_rgba(20,20,20,0.06)] dark:bg-[#1a1a1c] dark:shadow-none" aria-label={label}>
       <li className="grid grid-cols-[minmax(0,1fr)_auto] gap-3.5 px-4 pt-3 pb-2 text-[10px] font-semibold tracking-[.08em] text-[#737371] uppercase dark:text-[#7d7d80]">
         <span>Learner</span>
         <CoinIcon className="text-sm" />
       </li>
-      {items.map((item, index) => {
+      {items.map((item) => {
         switch (item.type) {
           case "gap":
-            return (
-              <li key={`gap-${index}`}>
-                <HiddenRows count={item.hiddenCount} locked={!canExpand} onExpand={onExpand} />
-              </li>
-            );
+            return null;
           case "promotion-line":
             return (
               <li key="promotion-line">

@@ -27,7 +27,7 @@ export function LessonHeader({ xp, menuOpen, onMenuOpenChange, onExit, onOpenChe
   useDismiss(menuOpen, () => onMenuOpenChange(false), menu);
 
   return (
-    <header className="relative grid grid-cols-[44px_minmax(0,1fr)_auto] items-center gap-3 border-b border-[#e8e6e1] bg-[#fdfcf9] px-5 max-[720px]:grid-cols-[minmax(0,1fr)_auto] max-[720px]:gap-2 max-[720px]:px-3.5 dark:border-night-line dark:bg-[#1a1a1a]">
+    <header className="relative grid grid-cols-[minmax(0,1fr)_minmax(0,600px)_minmax(0,1fr)] items-center gap-3 border-b border-[#e8e6e1] bg-[#fdfcf9] px-5 max-[720px]:grid-cols-[minmax(0,1fr)_auto] max-[720px]:gap-2 max-[720px]:px-3.5 dark:border-night-line dark:bg-[#1a1a1a]">
       <button
         type="button"
         className="focus-ring grid size-11 place-items-center rounded-lg text-[#777] hover:bg-[#f5f5f5] hover:text-neutral-700 max-[720px]:hidden dark:text-[#b2b2b6] dark:hover:bg-[#262626] dark:hover:text-night-ink"

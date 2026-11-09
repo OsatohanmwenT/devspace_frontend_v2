@@ -42,6 +42,17 @@ function PathDetail({ data }: { data: PathDetailData }) {
   const accent = getFamilyAccent(path.family).text;
   const goBack = () => router.push("/paths");
 
+  // The bar below speaks for the selected lesson, so it shows only while that
+  // lesson's tile is on screen (clear of the header and of the bar itself).
+  const [selectedInView, setSelectedInView] = useState(true);
+  useEffect(() => {
+    const tile = document.querySelector(`[data-lesson-id="${selected.id}"]`);
+    if (!tile) return;
+    const observer = new IntersectionObserver(([entry]) => setSelectedInView(entry.isIntersecting), { rootMargin: "-70px 0px -90px 0px" });
+    observer.observe(tile);
+    return () => observer.disconnect();
+  }, [selected.id]);
+
   // A long route would bury the current lesson below the fold; land on it.
   useEffect(() => {
     document.querySelector("[data-current-lesson]")?.scrollIntoView({ block: "center" });
@@ -71,9 +82,8 @@ function PathDetail({ data }: { data: PathDetailData }) {
         My learning
       </button>
 
-      <div className="grid grid-cols-[minmax(340px,420px)_minmax(0,700px)] items-start justify-between gap-14 max-[900px]:grid-cols-1 max-[900px]:gap-9 max-tab:gap-6">
-        <RegionSummary region={selectedRegion} accent={accent} onOpenResource={setResource} />
-
+      <div className="grid grid-cols-[minmax(0,700px)_minmax(340px,420px)] items-start justify-between gap-14 max-[900px]:grid-cols-1 max-[900px]:gap-9 max-tab:gap-6">
+        
         <div className="mx-auto grid w-[min(100%,700px)] min-w-0 grid-cols-[minmax(0,1fr)] gap-12">
           {frameworkReady && (
             <FrameworkCheckpoint
@@ -83,10 +93,11 @@ function PathDetail({ data }: { data: PathDetailData }) {
               }}
             />
           )}
-          {progress.regions.map((region) => (
+          {progress.regions.map((region, regionIndex) => (
             <RegionSection
               key={region.id}
               region={region}
+              lessonsBefore={progress.regions.slice(0, regionIndex).reduce((total, earlier) => total + earlier.lessons.length, 0)}
               pinned={pinnedId === region.id}
               selectedLessonId={selected.id}
               flight={launch.flight}
@@ -101,11 +112,13 @@ function PathDetail({ data }: { data: PathDetailData }) {
             lesson={selected}
             started={launch.startedIds.includes(selected.id)}
             flying={launch.flight !== null}
+            visible={selectedInView}
             onStart={() => launch.start(selected.id)}
             onDetails={() => setPreviewing(true)}
             onListen={audioLesson ? () => setListening(true) : undefined}
           />
         </div>
+        <RegionSummary region={selectedRegion} accent={accent} onOpenResource={setResource} className="max-[900px]:order-first" />
       </div>
 
       {resource === "cheatsheet" && (

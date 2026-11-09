@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useMemo, useRef, type KeyboardEvent } from "react";
+import { EDITOR_LINE, EDITOR_SURFACE } from "../lib/editor-theme";
 import { TOKEN_CLASSES, tokenizePython } from "../lib/python-highlight";
 
 const INDENT = "    ";
@@ -101,11 +102,11 @@ export function CodeSurface({ code, onChange, onRun, disabled, errorLine, minHei
   };
 
   return (
-    <div className="grid min-h-0 grid-cols-[48px_minmax(0,1fr)] overflow-hidden bg-[#1e1e1e]" style={{ minHeight }}>
-      <div className="relative overflow-hidden border-r border-white/[0.07] bg-[#1b1b1b]" aria-hidden="true">
-        <ol ref={gutter} className={`m-0 list-none py-4 pr-3 text-right text-[#6e6e73] ${TEXT}`}>
+    <div className={`grid min-h-0 grid-cols-[48px_minmax(0,1fr)] overflow-hidden ${EDITOR_SURFACE}`} style={{ minHeight }}>
+      <div className={`relative overflow-hidden border-r bg-[#fafaf8] dark:bg-[#1b1b1b] ${EDITOR_LINE}`} aria-hidden="true">
+        <ol ref={gutter} className={`m-0 list-none py-4 pr-3 text-right text-[#a0a0a5] dark:text-[#6e6e73] ${TEXT}`}>
           {lines.map((_, index) => (
-            <li key={index} className={index + 1 === errorLine ? "font-semibold text-[#ff7b7b]" : ""}>
+            <li key={index} className={index + 1 === errorLine ? "font-semibold text-[#d1242f] dark:text-[#ff7b7b]" : ""}>
               {index + 1}
             </li>
           ))}
@@ -132,7 +133,7 @@ export function CodeSurface({ code, onChange, onRun, disabled, errorLine, minHei
           <span className="sr-only">Python code editor</span>
           <textarea
             ref={textarea}
-            className={`block size-full resize-none overflow-auto border-0 bg-transparent px-4 py-4 text-transparent caret-night-ink outline-none selection:bg-[#6699ec]/35 focus-visible:ring-2 focus-visible:ring-[#6699ec]/70 focus-visible:ring-inset disabled:cursor-default ${TEXT}`}
+            className={`block size-full resize-none overflow-auto border-0 bg-transparent px-4 py-4 text-transparent caret-neutral-800 dark:caret-night-ink outline-none selection:bg-[#6699ec]/35 focus-visible:ring-2 focus-visible:ring-[#6699ec]/70 focus-visible:ring-inset disabled:cursor-default ${TEXT}`}
             value={code}
             disabled={disabled}
             spellCheck={false}

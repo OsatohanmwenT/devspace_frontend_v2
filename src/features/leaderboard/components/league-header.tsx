@@ -21,14 +21,6 @@ export function LeagueHeader({ data, joined, onOpenView }: LeagueHeaderProps) {
   const toast = useToast();
   const { league } = data;
   const you = data.standings.find((entry) => entry.isCurrentUser);
-  const nextLeague = data.ladder[data.leagueIndex + 1];
-
-  const rule =
-    league.promoteCount > 0 && league.demoteCount > 0
-      ? `Top ${league.promoteCount} advance · bottom ${league.demoteCount} drop`
-      : league.promoteCount > 0
-        ? `Top ${league.promoteCount} advance to ${nextLeague?.name}`
-        : `Hold your place · bottom ${league.demoteCount} drop`;
 
   const shareStanding = async () => {
     if (!you) return;
@@ -55,7 +47,6 @@ export function LeagueHeader({ data, joined, onOpenView }: LeagueHeaderProps) {
           {league.demoteCount > 0 ? `Finish in the bottom ${league.demoteCount} and you’ll drop one.` : "You can’t drop below this league."}
         </InfoTooltip>
       </div>
-      <p className="m-0 text-[15px] leading-normal text-ink-soft dark:text-night-soft">{rule}</p>
       {joined ? (
         <button type="button" className="focus-ring mt-1 rounded-md text-[13px] font-medium text-[#3d77eb] hover:underline dark:text-[#89baff]" onClick={shareStanding}>
           Share your standing

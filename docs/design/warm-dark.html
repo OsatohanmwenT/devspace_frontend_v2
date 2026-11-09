@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devspace Warm Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Direction: warm brown-black surfaces stepped by a hairline ring instead of borders,
+   one blue for action, gold for checkpoints. Layout idea: tokens first, then the path
+   page drawn with them, then the parts worth a closer look. */
+:root {
+  --s0: #211e1d;
+  --s1: #1b1918;
+  --s2: #302c2a;
+  --s3: #3a3532;
+  --ink: #f8f5f1;
+  --ink-2: #b7ada8;
+  --blue: #4169e1;
+  --blue-soft: #88bdf2;
+  --gold: #fbbf24;
+  --ring: inset 0 0 0 1px rgba(248, 245, 241, 0.1);
+  --ring-strong: inset 0 0 0 1px rgba(248, 245, 241, 0.16);
+  --highlight: inset 0 1px 0 0 rgba(248, 245, 241, 0.14);
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 9999px;
+  --font: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--s1); }
+body {
+  margin: 0;
+  background: var(--s1);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+}
+h1, h2, h3, p { margin: 0; text-wrap: balance; }
+.page { width: min(100% - 32px, 1180px); margin: 0 auto; padding: 56px 0 96px; display: grid; gap: 72px; }
+.intro { display: grid; gap: 10px; max-width: 62ch; }
+.intro h1 { font-size: 36px; line-height: 1.15; font-weight: 600; }
+.intro p { color: var(--ink-2); }
+.section { display: grid; gap: 24px; }
+.section > header { display: grid; gap: 6px; max-width: 64ch; }
+.section h2 { font-size: 22px; font-weight: 600; }
+.section > header p { color: var(--ink-2); }
+.label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--blue-soft); }
+
+/* Tokens */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.swatch { border-radius: var(--r-md); background: var(--s0); box-shadow: var(--ring); overflow: hidden; }
+.swatch i { display: block; height: 64px; box-shadow: var(--ring); }
+.swatch div { padding: 10px 12px 12px; display: grid; gap: 2px; }
+.swatch b { font-weight: 500; }
+.swatch span { color: var(--ink-2); font-size: 13px; font-variant-numeric: tabular-nums; }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { background: var(--s0); border-radius: var(--r-md); box-shadow: var(--ring); padding: 20px; display: grid; gap: 14px; align-content: start; }
+.card h3 { font-size: 15px; font-weight: 600; }
+.card p { color: var(--ink-2); font-size: 14px; }
+.radii { display: flex; gap: 14px; flex-wrap: wrap; align-items: end; }
+.radii div { display: grid; gap: 6px; justify-items: center; color: var(--ink-2); font-size: 12px; }
+.radii i { display: block; width: 76px; height: 56px; background: var(--s2); box-shadow: var(--ring-strong); }
+.shadows { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; padding: 8px 4px 24px; }
+.shadow-demo { display: grid; gap: 14px; }
+.shadow-demo .box { height: 92px; border-radius: var(--r-md); background: var(--s0); }
+.shadow-demo code { color: var(--ink-2); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.shadow-demo b { font-weight: 500; }
+.sh-ring { box-shadow: var(--ring); }
+.sh-card { box-shadow: var(--ring), 0 2px 1.6px rgba(0,0,0,.02), 0 5px 4px rgba(0,0,0,.024), 0 10px 8px rgba(0,0,0,.03), 0 20px 16px rgba(0,0,0,.04), 0 40px 32px rgba(0,0,0,.05); background: var(--s2) !important; }
+.sh-float { box-shadow: var(--ring), 0 12px 28px -14px rgba(0,0,0,.5); background: var(--s2) !important; }
+.sh-glow { box-shadow: var(--ring), var(--highlight), 0 16px 44px -2px rgba(65,105,225,.5), 0 40px 110px 4px rgba(65,105,225,.32), 0 22px 44px -14px rgba(0,0,0,.6); background: var(--s2) !important; }
+
+/* Frame that holds a screen */
+.frame { position: relative; border-radius: var(--r-lg); background: var(--s0); box-shadow: var(--ring); overflow: hidden; height: 880px; }
+.topbar { height: 56px; display: flex; align-items: center; gap: 28px; padding: 0 24px; box-shadow: inset 0 -1px 0 rgba(248,245,241,.08); background: var(--s1); }
+.logo { font-weight: 600; font-size: 18px; letter-spacing: -.01em; }
+.topbar nav { display: flex; gap: 22px; color: var(--ink-2); font-weight: 500; font-size: 14px; }
+.topbar nav .on { color: var(--ink); box-shadow: 0 2px 0 var(--blue-soft); padding-bottom: 14px; margin-top: 14px; }
+.chips { margin-left: auto; display: flex; gap: 8px; }
+.chip { height: 32px; padding: 0 12px; border-radius: var(--r-pill); background: var(--s2); box-shadow: var(--ring); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.screen { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; padding: 28px 48px 0; height: calc(100% - 56px); overflow: hidden; }
+@media (max-width: 900px) { .screen { grid-template-columns: 1fr; padding: 20px 16px 0; } .aside { order: -1; } .frame { height: 1100px; } }
+
+/* Route */
+.route { display: grid; align-content: start; }
+.section-card { display: grid; justify-items: center; gap: 2px; padding: 14px 18px; border-radius: var(--r-md); background: var(--s2); box-shadow: var(--ring), 0 12px 28px -14px rgba(0,0,0,.5); }
+.section-card small { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--blue-soft); }
+.section-card strong { font-weight: 500; }
+.row { height: 148px; display: flex; justify-content: center; align-items: center; }
+.stop { display: flex; align-items: center; gap: 4px; width: 300px; }
+.stop .tile { width: 144px; height: 151px; flex: none; }
+.stop .name { margin-top: 62px; font-weight: 500; font-size: 15px; line-height: 1.3; max-width: 120px; }
+.w0 { transform: none; } .w1 { transform: translateX(96px); } .w2 { transform: translateX(168px); } .w3 { transform: translateX(96px); }
+.w5 { transform: translateX(-96px); } .w6 { transform: translateX(-168px); } .w7 { transform: translateX(-96px); }
+.gap-top { height: 28px; }
+@media (max-width: 560px) { .w1, .w3 { transform: translateX(12px); } .w2 { transform: translateX(20px); } .w5, .w7 { transform: translateX(-12px); } .w6 { transform: translateX(-20px); } }
+
+/* Pedestal colours, passed down to the shared platform through custom properties */
+.p-base { fill: var(--b); } .p-rim { fill: var(--r); } .p-ring { fill: var(--g); } .p-centre { fill: var(--c); }
+.t-done { --b: #1e3a8a; --r: #3b78f5; --g: #2549b8; --c: #4a86fa; }
+.t-gold { --b: #92400e; --r: #f5b638; --g: #b45309; --c: #fcd34d; }
+.t-avail { --b: #35363b; --r: #62636a; --g: #c9c9cd; --c: #ececef; }
+.t-lock { --b: #292a2e; --r: #4c4d52; --g: #74757b; --c: #a4a5aa; }
+.t-now { --b: #20366d; --r: #2d4993; --g: #9db5d7; --c: #565581; }
+
+/* Region card */
+.aside { align-self: start; border-radius: var(--r-md); box-shadow: var(--ring), 0 20px 40px -20px rgba(0,0,0,.45); overflow: hidden; background: color-mix(in srgb, #7c5cd6 16%, var(--s0)); display: grid; }
+.aside .art { height: 190px; display: grid; place-items: center; background: color-mix(in srgb, #7c5cd6 28%, var(--s0)); }
+.aside .body { padding: 22px 24px 24px; display: grid; gap: 10px; }
+.aside h2 { font-size: 28px; font-weight: 600; line-height: 1.15; }
+.aside p { color: var(--ink-2); font-size: 14px; }
+.aside .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; padding-top: 16px; box-shadow: inset 0 1px 0 rgba(248,245,241,.1); }
+.btn { height: 44px; border-radius: var(--r-md); background: rgba(248,245,241,.08); box-shadow: var(--ring); color: var(--ink); font: 500 13px var(--font); border: 0; }
+
+/* Lesson bar */
+.bar-wrap { position: absolute; left: 48px; right: 448px; bottom: 28px; }
+@media (max-width: 900px) { .bar-wrap { left: 16px; right: 16px; } }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 28px 32px; border-radius: 28px; background: var(--s2); box-shadow: var(--ring-strong), var(--highlight), 0 16px 44px -2px rgba(65,105,225,.5), 0 40px 110px 4px rgba(65,105,225,.32), 0 22px 44px -14px rgba(0,0,0,.6); }
+.bar small { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--blue-soft); }
+.bar strong { display: block; font-size: 18px; font-weight: 500; margin-top: 4px; }
+.go { height: 48px; padding: 0 30px; border-radius: var(--r-md); border: 0; background: var(--blue); color: #fff; font: 600 15px var(--font); box-shadow: inset 0 -3px 0 rgba(0,0,0,.22); white-space: nowrap; }
+.round { width: 48px; height: 48px; border-radius: var(--r-pill); background: rgba(248,245,241,.06); box-shadow: var(--ring); display: grid; place-items: center; border: 0; color: var(--ink-2); }
+.bar-states { display: grid; gap: 28px; padding: 24px 4px 56px; }
+.bar-states .bar { padding: 22px 28px; }
+.state-note { color: var(--ink-2); font-size: 13px; margin-bottom: 14px; }
+.bar.done { box-shadow: var(--ring-strong), var(--highlight), 0 14px 36px -8px rgba(4,173,192,.3), 0 22px 44px -14px rgba(0,0,0,.6); }
+.bar.done small { color: #5fd4e0; }
+.bar.locked { background: var(--s0); box-shadow: var(--ring), 0 22px 44px -14px rgba(0,0,0,.5); border-style: dashed; }
+.bar.locked small { color: var(--ink-2); }
+.bar.locked strong { opacity: .75; }
+
+/* Tinted cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.pcard { border-radius: var(--r-md); background: color-mix(in srgb, var(--tint) 24%, var(--s0)); box-shadow: var(--ring), 0 12px 28px -14px rgba(0,0,0,.5); padding: 8px; display: grid; gap: 14px; }
+.pcard .thumb { position: relative; height: 170px; border-radius: 10px; overflow: hidden; box-shadow: var(--ring); }
+.pcard .thumb svg { display: block; width: 100%; height: 100%; }
+.pill { position: absolute; top: 10px; left: 10px; padding: 3px 11px; border-radius: var(--r-pill); background: #f8f5f1; color: #211e1d; font-size: 12px; font-weight: 500; }
+.dur { position: absolute; right: 10px; bottom: 10px; padding: 3px 11px; border-radius: var(--r-pill); background: rgba(27,25,24,.82); font-size: 12px; font-weight: 500; }
+.pcard .meta { padding: 0 12px 14px; display: grid; gap: 4px; }
+.pcard h3 { font-size: 16px; font-weight: 600; line-height: 1.3; }
+.pcard p { font-size: 13px; color: var(--ink-2); }
+.recipe { color: var(--ink-2); font-size: 13px; }
+.recipe code { color: var(--ink); background: rgba(248,245,241,.08); padding: 1px 6px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="platform" viewBox="0 0 128 134">
+      <ellipse cx="64" cy="121" rx="46" ry="9" fill="#09090b" opacity=".6"/>
+      <path class="p-base" d="M22 90c0-9 19-17 42-17s42 8 42 17v16c0 9-19 16-42 16s-42-7-42-16V90Z"/>
+      <ellipse class="p-rim" cx="64" cy="90" rx="42" ry="17"/>
+      <ellipse class="p-ring" cx="64" cy="89" rx="31" ry="12"/>
+      <ellipse class="p-centre" cx="64" cy="88" rx="21" ry="8"/>
+    </symbol>
+    <symbol id="m-check" viewBox="0 0 128 134">
+      <g transform="translate(64 88) scale(1 .68) translate(-64 -88)">
+        <path d="m60 87.5 3.2 3.2 6.8-7.7" transform="translate(0 2)" stroke="#1e3a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="m60 87.5 3.2 3.2 6.8-7.7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </g>
+    </symbol>
+    <symbol id="m-check-gold" viewBox="0 0 128 134">
+      <g transform="translate(64 88) scale(1 .68) translate(-64 -88)">
+        <path d="m60 87.5 3.2 3.2 6.8-7.7" transform="translate(0 2)" stroke="#92400e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="m60 87.5 3.2 3.2 6.8-7.7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </g>
+    </symbol>
+    <symbol id="m-dot" viewBox="0 0 128 134">
+      <g transform="translate(64 88) scale(1 .68) translate(-64 -88)"><circle cx="64" cy="88" r="4" fill="#9db5d7"/></g>
+    </symbol>
+    <symbol id="m-lock" viewBox="0 0 128 134">
+      <g transform="translate(64 88) scale(1 .68) translate(-64 -88)">
+        <g transform="translate(64 88) scale(.8) translate(-64 -88)">
+          <path d="M60.5 85.5v-2.5a3.5 3.5 0 0 1 7 0v2.5" stroke="#4b4c51" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <rect x="58" y="85" width="12" height="9" rx="2.2" fill="#4b4c51"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="m-flag" viewBox="0 0 128 134">
+      <path d="M64 64V34" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
+      <path d="M67 35h24l-7 8 7 8H67V35Z" fill="#fbbf24"/>
+    </symbol>
+    <symbol id="m-flag-dim" viewBox="0 0 128 134">
+      <path d="M64 64V34" stroke="#8a6a2b" stroke-width="5" stroke-linecap="round"/>
+      <path d="M67 35h24l-7 8 7 8H67V35Z" fill="#8a6a2b"/>
+    </symbol>
+    <symbol id="devy" viewBox="0 0 128 134">
+      <g transform="translate(0 -14)">
+        <ellipse cx="64" cy="82" rx="20" ry="22" fill="#2b3f86"/>
+        <ellipse cx="64" cy="90" rx="12" ry="12" fill="#9a95d6"/>
+        <circle cx="46" cy="58" r="8" fill="#2b3f86"/><circle cx="82" cy="58" r="8" fill="#2b3f86"/>
+        <ellipse cx="64" cy="66" rx="22" ry="18" fill="#33498f"/>
+        <circle cx="56" cy="64" r="5" fill="#fff"/><circle cx="72" cy="64" r="5" fill="#fff"/>
+        <circle cx="57" cy="65" r="2.2" fill="#111"/><circle cx="73" cy="65" r="2.2" fill="#111"/>
+        <path d="M50 56l12 3M78 56l-12 3" stroke="#111" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="page">
+  <section class="intro">
+    <span class="label">Draft · dark mode</span>
+    <h1>Warm dark, one blue, quiet depth</h1>
+    <p>A proposal for the path page and the pieces around it, drawn from what NextWork does with colour, radius and shadow. Everything below uses the same small set of tokens.</p>
+  </section>
+
+  <section class="section" aria-labelledby="t-tokens">
+    <header>
+      <span class="label">1 · Tokens</span>
+      <h2 id="t-tokens">Surfaces step up by one shade, edges are a hairline ring</h2>
+      <p>Four warm neutrals replace the cool greys. Depth comes from the next surface up and a 1px translucent ring, so cards no longer need borders.</p>
+    </header>
+    <div class="swatches">
+      <div class="swatch"><i style="background:#1b1918"></i><div><b>Page</b><span>#1B1918</span></div></div>
+      <div class="swatch"><i style="background:#211e1d"></i><div><b>Surface</b><span>#211E1D</span></div></div>
+      <div class="swatch"><i style="background:#302c2a"></i><div><b>Raised</b><span>#302C2A</span></div></div>
+      <div class="swatch"><i style="background:#3a3532"></i><div><b>Pressed / hover</b><span>#3A3532</span></div></div>
+      <div class="swatch"><i style="background:#f8f5f1"></i><div><b>Text</b><span>#F8F5F1</span></div></div>
+      <div class="swatch"><i style="background:#b7ada8"></i><div><b>Text, secondary</b><span>#B7ADA8</span></div></div>
+      <div class="swatch"><i style="background:#4169e1"></i><div><b>Action blue</b><span>#4169E1</span></div></div>
+      <div class="swatch"><i style="background:#88bdf2"></i><div><b>Blue on dark text</b><span>#88BDF2</span></div></div>
+      <div class="swatch"><i style="background:#fbbf24"></i><div><b>Checkpoint gold</b><span>#FBBF24</span></div></div>
+    </div>
+    <div class="pair">
+      <div class="card">
+        <h3>Radius scale</h3>
+        <div class="radii">
+          <div><i style="border-radius:8px"></i>8 · small buttons</div>
+          <div><i style="border-radius:16px"></i>16 · cards</div>
+          <div><i style="border-radius:24px"></i>24 · panels, frames</div>
+          <div><i style="border-radius:9999px"></i>Pill · chips</div>
+        </div>
+        <p>Four steps instead of the 14, 16, 20, 24 and 28 in use today. The lesson bar keeps 28 as its one deliberate exception.</p>
+      </div>
+      <div class="card">
+        <h3>Shadow recipes</h3>
+        <div class="shadows" style="padding:0">
+          <div class="shadow-demo"><div class="box sh-ring"></div><div><b>Ring</b><code>inset 0 0 0 1px rgb(248 245 241 / .10)</code></div></div>
+          <div class="shadow-demo"><div class="box sh-float"></div><div><b>Float</b><code>ring + 0 12px 28px -14px black / .5</code></div></div>
+        </div>
+        <p>The negative spread keeps the shadow under the object instead of around it.</p>
+      </div>
+    </div>
+    <div class="shadows">
+      <div class="shadow-demo"><div class="box sh-card"></div><div><b>Card</b><code>ring + five stacked shadows, 2px to 40px, 2% to 5% black</code></div></div>
+      <div class="shadow-demo"><div class="box sh-glow"></div><div><b>Glow, bottom-focused</b><code>ring + highlight + 0 16px 44px blue / .5 + 0 40px 110px blue / .32 + a small black lift</code></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-path">
+    <header>
+      <span class="label">2 · Path page</span>
+      <h2 id="t-path">Route on the left, region card on the right, no centre line</h2>
+      <p>The road is the S the tiles follow, and it carries on across sections: this one ends heading right, the next heads left. Tiles are bigger and flatter, completed ones share the blue, checkpoints are gold, and names sit level with the platform.</p>
+    </header>
+    <div class="frame">
+      <div class="topbar">
+        <span class="logo">Devspace</span>
+        <nav aria-label="Primary"><span>Home</span><span class="on">Paths</span><span>Leaderboard</span><span>Practice</span></nav>
+        <div class="chips"><span class="chip">1</span><span class="chip">25</span></div>
+      </div>
+      <div class="screen">
+        <div class="route">
+          <div class="section-card"><small>Section 1</small><strong>Orientation</strong></div>
+          <div class="gap-top"></div>
+          <div class="row"><div class="stop w0"><svg class="tile t-done" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-check"/></svg><span class="name">Welcome to ML</span></div></div>
+          <div class="row"><div class="stop w1"><svg class="tile t-done" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-check"/></svg><span class="name">How this path works</span></div></div>
+          <div class="row"><div class="stop w2"><svg class="tile t-done" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-check"/></svg><span class="name">Set your learning goals</span></div></div>
+          <div class="row"><div class="stop w3"><svg class="tile t-gold" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-flag"/><use href="#m-check-gold"/></svg><span class="name">The ML workflow</span></div></div>
+          <div class="section-card"><small>Section 2</small><strong>Python Foundations</strong></div>
+          <div class="gap-top"></div>
+          <div class="row"><div class="stop w0"><svg class="tile t-now" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#devy"/></svg><span class="name">Writing Programs</span></div></div>
+          <div class="row"><div class="stop w5"><svg class="tile t-avail" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-dot"/></svg><span class="name">Using Variables</span></div></div>
+          <div class="row"><div class="stop w6"><svg class="tile t-gold" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-flag"/><use href="#m-dot"/></svg><span class="name">Input and Output</span></div></div>
+          <div class="row"><div class="stop w7"><svg class="tile t-lock" viewBox="0 0 128 134" aria-hidden="true"><use href="#platform"/><use href="#m-lock"/></svg><span class="name">Program Flow</span></div></div>
+        </div>
+        <aside class="aside" aria-label="Region">
+          <div class="art">
+            <svg width="150" height="130" viewBox="0 0 150 130" aria-hidden="true">
+              <rect x="22" y="26" width="106" height="88" rx="10" fill="#7c5cd6"/>
+              <rect x="34" y="38" width="82" height="58" rx="6" fill="#241f2e"/>
+              <path d="M56 84c0-14 38-14 38 0v6H56z" fill="#f2b632"/>
+              <rect x="38" y="104" width="74" height="6" rx="3" fill="#a48be8"/>
+              <path d="M60 26c0-16 30-16 30 0" stroke="#f2b632" stroke-width="5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="body">
+            <span class="label">Region 2</span>
+            <h2>Python Foundations</h2>
+            <p>Learn to write clear Python programs, use variables, and turn simple ideas into working code.</p>
+            <div class="btns"><button class="btn" type="button">Cheatsheet</button><button class="btn" type="button">Guidebook</button></div>
+          </div>
+        </aside>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar">
+          <div><small>Current lesson</small><strong>Writing Programs</strong></div>
+          <div style="display:flex;gap:14px;align-items:center"><button class="go" type="button">Start lesson</button><button class="round" type="button" aria-label="Listen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1M4 13h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 1 1-2Zm16 0h-2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-1-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+        </div>
+      </div>
+    </div>
+    <p class="recipe">Devy on the current tile is drawn as a stand-in here; in the app it is the launchpad animation. Spacing: <code>148px</code> per row, swing <code>96px</code> then <code>168px</code>, repeating every eight lessons.</p>
+  </section>
+
+  <section class="section" aria-labelledby="t-bar">
+    <header>
+      <span class="label">3 · Lesson bar</span>
+      <h2 id="t-bar">The same bar in its three states</h2>
+      <p>Blue glow pooled underneath while a lesson is live, a quieter teal for finished ones, and a flat dashed surface for what is not open yet. It fades away when its tile scrolls out of view.</p>
+    </header>
+    <div class="bar-states">
+      <div><p class="state-note">Current</p><div class="bar"><div><small>Current lesson</small><strong>Writing Programs</strong></div><div style="display:flex;gap:14px"><button class="go" type="button">Start lesson</button><button class="round" type="button" aria-label="Listen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="3" y="13" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="17" y="13" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.8"/></svg></button></div></div></div>
+      <div><p class="state-note">Completed</p><div class="bar done"><div><small>Completed</small><strong>Welcome to ML</strong></div><button class="go" type="button" style="background:rgba(248,245,241,.1);box-shadow:var(--ring)">Review</button></div></div>
+      <div><p class="state-note">Not open yet</p><div class="bar locked"><div><small>Up next</small><strong>Program Flow</strong><p style="font-size:12px;color:var(--ink-2);margin-top:4px">Opens after your current lesson</p></div><button class="go" type="button" style="background:rgba(248,245,241,.08);color:var(--ink);box-shadow:var(--ring)">Lesson details</button></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-cards">
+    <header>
+      <span class="label">4 · Region cards</span>
+      <h2 id="t-cards">Each card takes a muted tint from its artwork</h2>
+      <p>The tint is the artwork's main colour mixed into the surface at about a quarter strength, so cards vary without any of them turning loud. One rule covers all of them.</p>
+    </header>
+    <div class="cards">
+      <article class="pcard" style="--tint:#8a9a52">
+        <div class="thumb"><svg viewBox="0 0 300 170" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="170" fill="#e8ddc9"/><path d="M0 95c60-40 120-10 180-30s90-20 120 5v100H0z" fill="#a9b36a"/><path d="M0 125c70-30 130 0 200-15s70-10 100 5v55H0z" fill="#7d8a45"/></svg><span class="pill">Beginner</span><span class="dur">1h</span></div>
+        <div class="meta"><h3>Python Foundations</h3><p>4 lessons · 35% complete</p></div>
+      </article>
+      <article class="pcard" style="--tint:#7f93a8">
+        <div class="thumb"><svg viewBox="0 0 300 170" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="170" fill="#dde3e8"/><path d="M0 110c50-20 110-5 160-12s100-15 140 0v72H0z" fill="#b9c4cf"/><path d="M0 138c60-18 120 0 200-8s70-5 100 3v37H0z" fill="#8fa0b2"/></svg><span class="pill">Intermediate</span><span class="dur">59min</span></div>
+        <div class="meta"><h3>Data and Math Foundations</h3><p>4 lessons · not started</p></div>
+      </article>
+      <article class="pcard" style="--tint:#8b6aa8">
+        <div class="thumb"><svg viewBox="0 0 300 170" preserveAspectRatio="none" aria-hidden="true"><rect width="300" height="170" fill="#e6dcee"/><path d="M0 100c70-35 120 5 190-15s80-10 110 5v80H0z" fill="#b79ad0"/><path d="M0 132c60-22 140 6 210-8s60-8 90 0v46H0z" fill="#8a64a8"/></svg><span class="pill">Advanced</span><span class="dur">1h 30m</span></div>
+        <div class="meta"><h3>Core ML</h3><p>4 lessons · locked</p></div>
+      </article>
+    </div>
+    <p class="recipe">Card surface: <code>color-mix(in srgb, artwork 24%, #211E1D)</code>. Thumbnail inset 8px with a 10px radius so the tint frames it. Chips: light pill for level, dark pill for time, so both read on any picture.</p>
+  </section>
+</main>
+</body>
+</html>

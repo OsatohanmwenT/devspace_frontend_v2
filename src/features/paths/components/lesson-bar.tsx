@@ -14,11 +14,10 @@ const LABEL_COLORS: Record<BarState, string> = {
   closed: "text-ink-soft dark:text-night-soft",
 };
 
-// Open: a bright rim sweeps around the card, as if the current tile is live and
-// tappable. Done: a calm teal edge. Closed: flat, dimmed and dashed, so it
+// Open: a soft blue glow, as if the current tile is live and tappable. Done: a calm teal edge. Closed: flat, dimmed and dashed, so it
 // reads as "not yet".
 const SURFACES: Record<BarState, string> = {
-  open: "border-transparent bg-white shadow-[0_0_22px_-2px_rgb(65_105_225/0.65),0_0_64px_-6px_rgb(65_105_225/0.55)] dark:bg-night-card",
+  open: "border-[#6f8cf0]/35 bg-white shadow-[0_30px_70px_-14px_rgb(111_140_240/0.3),0_70px_150px_-10px_rgb(111_140_240/0.2)] dark:bg-night-card",
   done: "border-[rgb(4_173_192/0.5)] bg-white shadow-[0_0_22px_-4px_rgb(4_173_192/0.35)] dark:bg-night-card",
   closed:
     "border-dashed border-[#d4d4d0] bg-[#f6f6f3] shadow-[0_0_20px_-4px_rgb(20_20_30/0.12)] dark:border-[#5a5a60] dark:bg-[#19191b] dark:shadow-[0_0_20px_-4px_rgb(154_154_168/0.3),0_0_48px_-10px_rgb(154_154_168/0.22)]",
@@ -28,12 +27,14 @@ type LessonBarProps = {
   lesson: DerivedLesson;
   started: boolean;
   flying: boolean;
+  // False while the lesson's own tile is off screen: the bar only speaks for a tile you can see.
+  visible: boolean;
   onStart: () => void;
   onDetails: () => void;
   onListen?: () => void;
 };
 
-export function LessonBar({ lesson, started, flying, onStart, onDetails, onListen }: LessonBarProps) {
+export function LessonBar({ lesson, started, flying, visible, onStart, onDetails, onListen }: LessonBarProps) {
   const reducedMotion = useReducedMotion();
   const canStart = lesson.derivedState === "current";
   const state: BarState = canStart ? "open" : lesson.derivedState === "completed" ? "done" : "closed";
@@ -42,19 +43,13 @@ export function LessonBar({ lesson, started, flying, onStart, onDetails, onListe
     <motion.aside
       aria-label="Selected lesson"
       data-lesson-bar
-      className={`sticky bottom-[18px] z-5 isolate mx-4 flex min-h-[84px] items-center justify-between gap-[18px] overflow-hidden rounded-[20px] border-[1.5px] px-[18px] py-4 max-tab:mx-0 max-tab:min-h-0 max-tab:gap-3 max-tab:rounded-2xl max-tab:p-3 max-tab:pl-4 max-tab:shadow-[0_18px_40px_-20px_rgba(0,0,0,.7)] ${SURFACES[state]}`}
+      aria-hidden={!visible}
+      inert={!visible}
+      initial={false}
+      animate={reducedMotion ? { opacity: visible ? 1 : 0 } : { opacity: visible ? 1 : 0, y: visible ? 0 : 28 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className={`sticky bottom-[18px] z-5 isolate flex min-h-[124px] items-center justify-between gap-[18px] overflow-hidden rounded-[28px] border-[1.5px] px-7 py-8 max-tab:mx-0 max-tab:min-h-0 max-tab:gap-3 max-tab:rounded-2xl max-tab:p-3 max-tab:pl-4 max-tab:shadow-[0_18px_40px_-20px_rgba(0,0,0,.7)] ${SURFACES[state]}`}
     >
-      {state === "open" && (
-        <>
-          <motion.span
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-[300%] z-0 bg-[conic-gradient(from_0deg,rgba(65,105,225,0.12)_0%,#4169e1_18%,#a9c1ff_28%,rgba(65,105,225,0.12)_45%,rgba(65,105,225,0.12)_100%)]"
-            animate={reducedMotion ? undefined : { rotate: 360 }}
-            transition={{ duration: 3.4, ease: "linear", repeat: Infinity }}
-          />
-          <span aria-hidden="true" className="pointer-events-none absolute inset-[1.5px] z-0 rounded-[18px] bg-white dark:bg-night-card" />
-        </>
-      )}
       <div className="relative z-1 min-w-0 max-tab:flex-1">
         <span className={`text-[10px] font-bold tracking-[.08em] uppercase ${LABEL_COLORS[state]}`}>{LABELS[state]}</span>
         <h2 className={`mt-[5px] truncate text-lg font-medium text-neutral-800 max-tab:mt-0.5 max-tab:text-[15px] dark:text-night-ink ${state === "closed" ? "opacity-75" : ""}`}>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCodeExercise } from "../hooks/use-code-exercise";
+import { EDITOR_BAR, EDITOR_FRAME, EDITOR_LINE, EDITOR_OUTPUT, EDITOR_SURFACE, EDITOR_TEXT } from "../lib/editor-theme";
 import { CodeSurface } from "./code-surface";
 import { ConsoleOutput, ContinueButton, DevyCoach, FileTab, ResetButton, RunButton, TaskList } from "./editor-parts";
 import type { CodeEditorProps } from "./lesson-code-editor";
@@ -23,12 +24,12 @@ export function GuidedCodeEditor({ content, code, completed, onCodeChange, onCom
           <TaskList tasks={content.tasks} result={exercise.result} />
         </div>
 
-        <section className="overflow-hidden rounded-2xl border border-[#28303c] bg-[#1e1e1e] shadow-[0_18px_40px_rgba(23,43,68,.18)]">
-          <header className="flex min-h-11 items-stretch border-b border-white/[0.07] bg-[#252526]">
+        <section className={`overflow-hidden rounded-2xl shadow-[0_18px_40px_rgba(23,43,68,.12)] ${EDITOR_FRAME} ${EDITOR_SURFACE}`}>
+          <header className={`flex min-h-11 items-stretch border-b ${EDITOR_LINE} ${EDITOR_BAR}`}>
             <FileTab filename={content.filename} />
           </header>
           <CodeSurface code={currentCode} onChange={exercise.edit} onRun={exercise.run} disabled={completed} errorLine={exercise.result?.error?.line} minHeight={240} />
-          <div className="flex flex-wrap items-center gap-2 border-t border-white/[0.07] bg-[#252526] px-4 py-3">
+          <div className={`flex flex-wrap items-center gap-2 border-t px-4 py-3 ${EDITOR_LINE} ${EDITOR_BAR}`}>
             <ResetButton onClick={exercise.reset} disabled={completed} />
             <RunButton onClick={exercise.run} />
             {completed && (
@@ -37,7 +38,7 @@ export function GuidedCodeEditor({ content, code, completed, onCodeChange, onCom
               </span>
             )}
           </div>
-          <pre className="m-0 max-h-[180px] min-h-16 overflow-auto border-t border-white/[0.07] bg-[#181818] px-4 py-3 font-mono text-[13.5px] leading-[1.6] whitespace-pre-wrap text-[#d4d4d4]" aria-live="polite">
+          <pre className={`m-0 max-h-[180px] min-h-16 overflow-auto border-t px-4 py-3 font-mono text-[13.5px] leading-[1.6] whitespace-pre-wrap ${EDITOR_LINE} ${EDITOR_OUTPUT} ${EDITOR_TEXT}`} aria-live="polite">
             <ConsoleOutput result={exercise.result} />
           </pre>
         </section>

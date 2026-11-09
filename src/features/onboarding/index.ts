@@ -8,4 +8,5 @@ export const Onboarding = dynamic(() => import("./components/onboarding"), {
   ssr: false,
 });
 
+export { FirstLessonView } from "./components/first-lesson-view";
 export { getRoleLabelByValue } from "./lib/role-label";

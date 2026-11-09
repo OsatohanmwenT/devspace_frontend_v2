@@ -31,7 +31,7 @@ export function LessonQuestion({ question, answer, checked, retrying, onAnswer, 
   const correct = checked && isQuestionCorrect(question, answer);
 
   return (
-    <section className="grid w-full max-w-[720px] gap-3">
+    <section className="grid w-full max-w-[720px] gap-8">
       <h1 className="m-0 text-[19px] font-semibold text-neutral-800 dark:text-night-ink">
         <RichText content={question.prompt} />
       </h1>

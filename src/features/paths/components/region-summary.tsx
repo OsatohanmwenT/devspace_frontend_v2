@@ -6,6 +6,7 @@ import type { DerivedRegion } from "../api/paths-api";
 export type Resource = "cheatsheet" | "guidebook";
 
 type RegionSummaryProps = {
+  className?: string;
   region: DerivedRegion;
   // Tailwind colour class for the "Region n" eyebrow.
   accent: string;
@@ -13,11 +14,11 @@ type RegionSummaryProps = {
 };
 
 // The region the selected lesson belongs to: its art, summary and the two
-// reference books. Pinned beside the route on desktop, folded into a row on
+// reference books. Pinned beside the route (to its right) on desktop, folded into a row on
 // tablet and a stack on phones.
-export function RegionSummary({ region, accent, onOpenResource }: RegionSummaryProps) {
+export function RegionSummary({ region, accent, onOpenResource, className = "" }: RegionSummaryProps) {
   return (
-    <aside className="sticky top-[86px] grid grid-cols-1 gap-3.5 rounded-2xl border border-[#eeeeeb] bg-white px-7 pt-[26px] pb-7 shadow-[0_2px_6px_rgba(20,20,20,0.06)] max-[900px]:static max-[900px]:grid-cols-[120px_minmax(0,1fr)_auto] max-[900px]:items-center max-[900px]:p-[22px] max-tab:grid-cols-[92px_minmax(0,1fr)] max-tab:gap-x-4 max-tab:gap-y-3 max-tab:p-[18px] dark:border-night-line dark:bg-night-card dark:shadow-none">
+    <aside className={`sticky top-[86px] grid grid-cols-1 gap-3.5 rounded-2xl border border-[#eeeeeb] bg-white px-7 pt-[26px] pb-7 shadow-[0_2px_6px_rgba(20,20,20,0.06)] max-[900px]:static max-[900px]:grid-cols-[120px_minmax(0,1fr)_auto] max-[900px]:items-center max-[900px]:p-[22px] max-tab:grid-cols-[92px_minmax(0,1fr)] max-tab:gap-x-4 max-tab:gap-y-3 max-tab:p-[18px] dark:border-night-line dark:bg-night-card dark:shadow-none ${className}`}>
       <div className="relative -mt-1.5 mb-1 grid min-h-[178px] place-items-center after:absolute after:bottom-[15px] after:left-1/2 after:h-3.5 after:w-[166px] after:-translate-x-1/2 after:rounded-full after:bg-black/12 max-[900px]:row-span-3 max-[900px]:m-0 max-[900px]:min-h-[120px] max-[900px]:after:bottom-[5px] max-[900px]:after:h-2.5 max-[900px]:after:w-[106px] max-tab:min-h-[92px] max-tab:after:bottom-[2px] max-tab:after:h-2 max-tab:after:w-20 dark:after:bg-black/50">
         {/* eslint-disable-next-line @next/next/no-img-element -- local path art */}
         <img

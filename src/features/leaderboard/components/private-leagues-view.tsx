@@ -45,8 +45,10 @@ function PrivateLeagueDetail({ league, data, onBack, onUpdate, onSwitch, initial
     try { await navigator.clipboard.writeText(value); setCopied(kind); toast(kind === "code" ? "Invite code copied" : "Invite link copied"); }
     catch { toast(value); }
   };
-  const tabs = ([{ id: "standings", label: "Standings" }, { id: "space", label: "Class space" }, ...(isOwner ? [{ id: "dashboard", label: "Dashboard" }] : [])] as { id: typeof page; label: string }[]);
-  const nav = (
+  // The class space and organizer dashboard are hidden for now: with their tabs
+  // gone there is only standings, so the tab bar is not shown at all.
+  const tabs = [{ id: "standings", label: "Standings" }] as { id: typeof page; label: string }[];
+  const nav = tabs.length < 2 ? null : (
     <nav aria-label="League sections" className="flex gap-1 border-b border-[#e4e2dc] dark:border-[#2e2e30]">
       {tabs.map((tab) => <button key={tab.id} type="button" aria-current={page === tab.id ? "page" : undefined} onClick={() => setPage(tab.id)} className={`focus-ring -mb-px min-h-11 border-b-2 px-4 text-sm font-semibold transition-colors ${page === tab.id ? "border-blue-600 text-neutral-800 dark:text-night-ink" : "border-transparent text-ink-soft hover:text-neutral-800 dark:text-night-soft dark:hover:text-night-ink"}`}>{tab.label}</button>)}
     </nav>

@@ -12,14 +12,13 @@ const TOKEN_PATTERN = new RegExp(
 
 export type TokenType = "comment" | "string" | "keyword" | "number" | "function" | "plain";
 
-// The code surface stays dark in both app themes, so these need no light variant.
 export const TOKEN_CLASSES: Record<TokenType, string> = {
-  comment: "italic text-[#6a9955]",
-  string: "text-[#ce9178]",
-  keyword: "text-[#569cd6]",
-  number: "text-[#b5cea8]",
-  function: "text-[#dcdcaa]",
-  plain: "text-[#d4d4d4]",
+  comment: "italic text-[#5f8a45] dark:text-[#6a9955]",
+  string: "text-[#a8402a] dark:text-[#ce9178]",
+  keyword: "text-[#0b5fc4] dark:text-[#569cd6]",
+  number: "text-[#0a7a55] dark:text-[#b5cea8]",
+  function: "text-[#8a5a00] dark:text-[#dcdcaa]",
+  plain: "text-[#1f2328] dark:text-[#d4d4d4]",
 };
 
 export function tokenizePython(code: string): { type: TokenType; value: string }[] {
